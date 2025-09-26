@@ -1,4 +1,4 @@
-package com.rn_boilerplate
+package boilerplate.expo
 
 import android.app.Application
 import com.facebook.react.PackageList

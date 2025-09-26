@@ -22,6 +22,7 @@ import { Provider } from "react-redux";
 import { ThemeProvider } from '@/context/ThemeContext';
 import { getLocalItem } from "@/utils/checkStorage";
 import BootSplash from "react-native-bootsplash";
+import { requestUserPermission } from "@/helper/notifciationService";
 
 /**
  * Main application component that serves as the entry point for the app.
@@ -47,6 +48,7 @@ const App = () => {
 
     const init = async () => {
       await getLocalItem();
+      await requestUserPermission();
     };
 
     init().finally(async () => {

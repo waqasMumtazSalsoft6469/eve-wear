@@ -7,6 +7,7 @@ export const STORAGE_KEYS = {
   IS_FIRST_TIME: 'is_first_time',
   LANGUAGE: 'language',
   THEME: 'theme',
+  FCM_TOKEN: 'fcm_token',
 } as const;
 
 export type StorageKeyType = keyof typeof STORAGE_KEYS;

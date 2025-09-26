@@ -1,4 +1,4 @@
-package com.rn_boilerplate
+package boilerplate.expo
 
 import android.os.Bundle
 
