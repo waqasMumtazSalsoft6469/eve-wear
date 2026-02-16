@@ -7,9 +7,9 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:534630157191:android:a6a2248dd35bc188d1e122",
+        "mobilesdk_app_id": "1:534630157191:android:temp123456789abcdef",
         "android_client_info": {
-          "package_name": "boilerplate.expo"
+          "package_name": "com.mapps.eveWear"
         }
       },
       "oauth_client": [],

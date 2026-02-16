@@ -1,97 +1,150 @@
-//import liraries
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
-import React, { useActionState, useState } from 'react';
-import { View } from 'react-native';
+import { Formik } from 'formik';
+import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import { ImageBackground, TouchableOpacity, View } from 'react-native';
+import * as Yup from 'yup';
 
+import { localImages } from '@/assets/images';
 import ButtonComp from '@/components/ButtonComp';
-import HeaderComp from '@/components/HeaderComp';
 import TextComp from '@/components/TextComp';
 import TextInputComp from '@/components/TextInputComp';
 import WrapperContainer from '@/components/WrapperContainer';
+import { useTheme } from '@/context/ThemeContext';
 import useIsRTL from '@/hooks/useIsRTL';
 import { AuthStackParamList } from '@/navigation/types';
 
-import { useTheme } from '@/context/ThemeContext';
 import useRTLStyles from './styles';
+
+import { BlurView } from '@sbaiahmed1/react-native-blur';
 
 const Login = () => {
     const isRTL = useIsRTL();
-    const {  theme } = useTheme();
-
-    const styles = useRTLStyles(isRTL, theme);
-    const [email, setEmail] = useState('');
+    const { theme } = useTheme();
+    const { t } = useTranslation();
     const navigation = useNavigation<NativeStackNavigationProp<AuthStackParamList>>();
+    const styles = useRTLStyles(isRTL, theme ?? 'light');
 
+    const [rememberMe, setRememberMe] = useState(false);
 
+    const validationSchema = Yup.object().shape({
+        email: Yup.string()
+            .email(t('INVALID_EMAIL'))
+            .required(t('REQUIRED')),
+        password: Yup.string()
+            .required(t('REQUIRED')),
+    });
 
-
-
-    const handleNext = () => {
-        navigation.navigate('OTPVerification', { phoneNumber: '1234567890' });
-        // TODO: Implement next step logic
+    const handleLogin = (values: any) => {
+        console.log('Login values:', values);
+        // Add login logic here
+        navigation.navigate('Main' as any);
     };
 
-    const handleSignUp = () => {
-        navigation.navigate('Signup');
+    const handleRegister = () => {
+        navigation.navigate('Register' as any);
+    };
+
+    const handleForgotPassword = () => {
+        // Navigate to forgot password screen
     };
 
     return (
         <WrapperContainer style={styles.container}>
-            <HeaderComp showBack={false} customStyle={styles.header} />
-            <View style={styles.content}>
-                <View>
-                    {/* Title Section */}
-                    <View style={styles.titleSection}>
-                        <TextComp
-                            text='SIGN_IN_TO_ACCOUNT'
-                            style={styles.title}
-                        />
-                        <View style={styles.signUpPrompt}>
-                            <TextComp
-                                text='DONT_HAVE_ACCOUNT'
-                                style={styles.greyText}
-                            />
-                            <TextComp
-                                text='SIGN_UP'
-                                style={styles.signUpLink}
-                                onPress={handleSignUp}
-                            />
-                        </View>
-                    </View>
+            <ImageBackground
+                source={localImages.loginBg}
+                style={styles.bgImage}
+                resizeMode="cover"
+            >
+                <BlurView
+                    blurType="light"
+                    blurAmount={30}
+                    style={styles.card}
+                    overlayColor="rgba(0, 0, 0, 0.2)"
+                >
+                    <TextComp text="LOGIN_TITLE" style={styles.title} />
+                    <TextComp text="LOGIN_SUBTITLE" style={styles.subtitle} />
 
-                    {/* Form Section */}
-                    <View style={styles.formSection}>
-                        <TextComp
-                            text='EMAIL_ID'
-                            style={styles.inputLabel}
-                        />
-                        <TextInputComp
-                            value={email}
-                            onChangeText={setEmail}
-                            placeholder='YOUR_EMAIL_ID'
-                            keyboardType="email-address"
-                            autoCapitalize="none"
-                        />
-                    </View>
+                    <Formik
+                        initialValues={{ email: '', password: '' }}
+                        validationSchema={validationSchema}
+                        onSubmit={handleLogin}
+                    >
+                        {({
+                            handleChange,
+                            handleBlur,
+                            handleSubmit,
+                            values,
+                            errors,
+                            touched,
+                        }) => (
+                            <View>
+                                <TextInputComp
+                                    label="EMAIL_LABEL"
+                                    required
+                                    underline
+                                    placeholder="alexa@email.com"
+                                    onChangeText={handleChange('email')}
+                                    onBlur={handleBlur('email')}
+                                    value={values.email}
+                                    error={!!errors.email}
+                                    touched={touched.email}
+                                    keyboardType="email-address"
+                                    autoCapitalize="none"
+                                    containerStyle={styles.inputContainer}
+                                />
 
-                    {/* Button Section */}
-                    <View style={styles.buttonSection}>
-                        <ButtonComp
-                            title='NEXT'
-                            onPress={handleNext}
-                            style={styles.nextButton}
-                        />
-                     
-                    </View>
-                </View>
+                                <TextInputComp
+                                    label="PASSWORD_LABEL"
+                                    required
+                                    underline
+                                    placeholder="*************"
+                                    onChangeText={handleChange('password')}
+                                    onBlur={handleBlur('password')}
+                                    value={values.password}
+                                    error={!!errors.password}
+                                    touched={touched.password}
+                                    secureTextEntry
+                                    containerStyle={styles.inputContainer}
 
-                {/* Terms Section */}
-                <TextComp
-                    text='TERMS_AGREEMENT'
-                    style={styles.termsText}
-                />
-            </View>
+                                />
+
+                                <View style={styles.footerRow}>
+                                    <TouchableOpacity
+                                        style={styles.rememberMeRow}
+                                        onPress={() => setRememberMe(!rememberMe)}
+                                    >
+                                        <View style={[
+                                            styles.checkbox,
+                                            rememberMe && { backgroundColor: 'white' }
+                                        ]} />
+                                        <TextComp text="REMEMBER_ME" style={styles.rememberMeText} />
+                                    </TouchableOpacity>
+
+                                    <TouchableOpacity onPress={handleForgotPassword}>
+                                        <TextComp text="FORGOT_PASSWORD" style={styles.forgotPasswordText} />
+                                    </TouchableOpacity>
+                                </View>
+
+                                <ButtonComp
+                                    title="LOGIN"
+                                    onPress={handleSubmit as any}
+                                    style={styles.loginButton}
+                                    textStyle={styles.loginButtonText}
+                                />
+                            </View>
+                        )}
+                    </Formik>
+
+                    <View style={styles.registerPromptRow}>
+                        <TextComp text="DONT_HAVE_ACCOUNT_LOGIN" style={styles.noAccountText} />
+                        <TouchableOpacity onPress={handleRegister}>
+                            <TextComp text="REGISTER_HERE" style={styles.registerText} />
+                        </TouchableOpacity>
+                    </View>
+                </BlurView>
+            </ImageBackground>
         </WrapperContainer>
     );
 };

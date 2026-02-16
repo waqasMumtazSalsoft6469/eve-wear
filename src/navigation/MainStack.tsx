@@ -1,62 +1,33 @@
-import { HomeIcon, HomeInactiveIcon, ProfileInactiveIcon, SettingsIcon } from '@/assets/icons';
-import {
-  Home,
-  Profile,
-  Settings
-} from '@/screens';
-import { Colors } from '@/styles/colors';
-import fontFamily from '@/styles/fontFamily';
-import { moderateScale } from '@/styles/scaling';
-import { BottomTabNavigationOptions, createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import React from 'react';
-import MyTabBar from './MyTabBar';
+import { createNativeStackNavigator, NativeStackNavigationOptions } from '@react-navigation/native-stack';
+import routes, { tabRoutes, mainRoutes } from '@/constants/routes';
+import BottomTabs from './TabStack';
 import { MainStackParamList } from './types';
-import { useTheme } from '@/context/ThemeContext';
 
-const Tab = createBottomTabNavigator<MainStackParamList>();
+const Stack = createNativeStackNavigator<MainStackParamList>();
+
+const NavigationOptions: NativeStackNavigationOptions = {
+  headerShown: false,
+};
 
 export const MainStack = () => {
-
-  const { theme } = useTheme();
-  const colors = Colors[theme];
-
-  const screenOptions: BottomTabNavigationOptions = {
-    headerShown: false,
-    tabBarShowLabel: true,
-    tabBarLabelStyle: {
-      fontSize: moderateScale(12),
-      fontFamily: fontFamily.medium,
-      color: colors.text,
-    },
-    tabBarStyle: {
-      // backgroundColor: Colors.background,
-      borderTopWidth: 1,
-      // borderTopColor: Colors.border,
-    },
-  };
-
   return (
-    <Tab.Navigator
-      screenOptions={screenOptions}
+    <Stack.Navigator
+      screenOptions={NavigationOptions}
       id={undefined}
-      tabBar={(props) => <MyTabBar {...props} />}
     >
-      <Tab.Screen name="Home" component={Home}
-        options={{
-          tabBarIcon: ({ color, focused }) => (
-            focused ? <HomeIcon color={color} /> : <HomeInactiveIcon color={color} />
-          ),
-        }} />
-      <Tab.Screen name="Profile" component={Profile} options={{
-        tabBarIcon: ({ color, focused }) => (
-          focused ? <ProfileInactiveIcon color={color} /> : <ProfileInactiveIcon color={color} />
-        ),
-      }} />
-      <Tab.Screen name="Settings" component={Settings} options={{
-        tabBarIcon: ({ color }) => (
-          <SettingsIcon fill={colors.text} width={20} height={20} />
-        )
-      }} />
-    </Tab.Navigator>
+      <Stack.Screen
+        name={routes.navigator.tab as any}
+        component={BottomTabs}
+        options={{ animation: 'none' }}
+      />
+
+      {/* Tab stack screens mapped to stack for deep link support if needed */}
+      <Stack.Screen
+        name={routes.main.settings}
+        component={tabRoutes[routes.main.settings]}
+      />          <Stack.Screen name={routes.main.userProfile} component={mainRoutes[routes.main.userProfile]} /></Stack.Navigator>
   );
-}; 
+};
+
+export default MainStack;

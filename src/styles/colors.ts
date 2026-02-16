@@ -3,6 +3,10 @@ export const commonColors = {
     // Brand Colors
     primary: '#00A13A',
     secondary: '#CD0105',
+    brandPurple: '#5C2B7E',
+    brandSalmon: '#FF8C69',
+    glassSurface: 'rgba(255, 255, 255, 0.2)',
+    glassBorder: 'rgba(255, 255, 255, 0.3)',
 
     // Status Colors
     success: '#00A13A',
@@ -40,7 +44,7 @@ const lightColors = {
     // Components
     inputBackground: commonColors.white,
     inputBorder: commonColors.gray100,
-    inputPlaceholder: commonColors.blackOpacity60,
+    inputPlaceholder: commonColors.whiteOpacity60,
     inputText: commonColors.black,
     statusBar: 'dark-content',
 
@@ -65,7 +69,7 @@ const darkColors = {
     // Components
     inputBackground: commonColors.gray600,
     inputBorder: commonColors.gray500,
-    inputPlaceholder: commonColors.whiteOpacity60,
+    inputPlaceholder: commonColors.blackOpacity60,
 
     // Buttons
     buttonPrimary: commonColors.primary,

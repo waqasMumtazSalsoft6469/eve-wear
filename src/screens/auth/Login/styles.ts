@@ -1,74 +1,107 @@
+import { commonColors, ThemeType } from '@/styles/colors';
+import fontFamily from '@/styles/fontFamily';
+import { height, moderateScale, width } from '@/styles/scaling';
 import { useMemo } from 'react';
 import { StyleSheet } from 'react-native';
-import { Colors, commonColors, ThemeType } from '@/styles/colors';
-import fontFamily from '@/styles/fontFamily';
-import { moderateScale } from '@/styles/scaling';
 
 const useRTLStyles = (isRTL: boolean, theme: ThemeType) => {
-    const colors = Colors[theme ?? 'light'];
-
     return useMemo(() => StyleSheet.create({
         container: {
             flex: 1,
-            paddingHorizontal: moderateScale(16),
         },
-        content: {
+        bgImage: {
             flex: 1,
-            marginTop: moderateScale(24),
-            justifyContent: 'space-between',
+            width: width,
+            height: height,
+            justifyContent: 'center',
+            alignItems: 'center',
         },
-        titleSection: {
-            marginBottom: moderateScale(32),
+        card: {
+            width: width * 0.85,
+            padding: moderateScale(24),
+            borderRadius: moderateScale(20),
+            shadowColor: '#515151ff',
+            shadowOffset: { width: 0, height: 4 },
+            shadowOpacity: 0.3,
+            shadowRadius: 10,
+            elevation: 5,
+            overflow: 'hidden',
         },
         title: {
-            fontSize: moderateScale(22),
-            marginBottom: moderateScale(12),
-            textTransform: 'uppercase',
+            fontSize: moderateScale(32),
             fontFamily: fontFamily.bold,
+            color: commonColors.white,
+            textAlign: isRTL ? 'right' : 'left',
+            marginBottom: moderateScale(8),
         },
-        signUpPrompt: {
+        subtitle: {
+            fontSize: moderateScale(14),
+            fontFamily: fontFamily.medium,
+            color: commonColors.white,
+            textAlign: isRTL ? 'right' : 'left',
+            marginBottom: moderateScale(30),
+            opacity: 0.9,
+        },
+        inputContainer: {
+            marginBottom: moderateScale(20),
+        },
+        footerRow: {
+            flexDirection: isRTL ? 'row-reverse' : 'row',
+            justifyContent: 'space-between',
+            alignItems: 'center',
+            marginTop: moderateScale(10),
+            marginBottom: moderateScale(25),
+        },
+        rememberMeRow: {
             flexDirection: isRTL ? 'row-reverse' : 'row',
             alignItems: 'center',
-            gap: moderateScale(6),
         },
-        greyText: {
+        checkbox: {
+            width: moderateScale(16),
+            height: moderateScale(16),
+            borderWidth: 1,
+            borderColor: commonColors.white,
+            borderRadius: moderateScale(3),
+            marginEnd: moderateScale(8),
+            backgroundColor: 'rgba(255,255,255,0.2)',
+        },
+        rememberMeText: {
             fontSize: moderateScale(12),
-            color: colors.inputPlaceholder,
             fontFamily: fontFamily.regular,
+            color: commonColors.white,
         },
-        signUpLink: {
+        forgotPasswordText: {
             fontSize: moderateScale(12),
-            color: commonColors.secondary,
             fontFamily: fontFamily.medium,
-            textDecorationLine: 'underline',
-            letterSpacing: 0.5,
-
+            color: commonColors.brandSalmon,
         },
-        formSection: {
-            marginBottom: moderateScale(24),
+        loginButton: {
+            backgroundColor: commonColors.brandPurple,
+            borderColor: commonColors.brandPurple,
+            height: moderateScale(55),
+            borderRadius: moderateScale(30),
         },
-        inputLabel: {
-            fontSize: moderateScale(16),
-            fontFamily: fontFamily.medium,
-            marginBottom: moderateScale(10),
+        loginButtonText: {
+            fontSize: moderateScale(18),
+            fontFamily: fontFamily.bold,
         },
-        buttonSection: {
-            marginBottom: moderateScale(24),
+        registerPromptRow: {
+            flexDirection: isRTL ? 'row-reverse' : 'row',
+            justifyContent: 'center',
+            marginTop: moderateScale(25),
         },
-        nextButton: {
-            height: moderateScale(48),
-            backgroundColor: commonColors.primary,
-        },
-        termsText: {
-            fontSize: moderateScale(12),
-            color: colors.inputPlaceholder,
+        noAccountText: {
+            fontSize: moderateScale(14),
             fontFamily: fontFamily.regular,
-            textAlign: 'center',
+            color: commonColors.white,
         },
-        header: {
-            paddingHorizontal: 0
-        }
-    }), [isRTL, theme, colors]); // Dependencies array includes all variables used in the styles
+        registerText: {
+            fontSize: moderateScale(14),
+            fontFamily: fontFamily.bold,
+            color: commonColors.brandSalmon,
+            marginStart: moderateScale(4),
+        },
+    }), [isRTL, theme]);
 };
 
 export default useRTLStyles;

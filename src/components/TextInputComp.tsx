@@ -24,6 +24,9 @@ interface TextInputCompProps extends TextInputProps {
     placeholder?: string;
     rightIcon?: React.ReactNode;
     onRightIconPress?: () => void;
+    underline?: boolean;
+    label?: string;
+    required?: boolean;
 }
 
 const TextInputComp: React.FC<TextInputCompProps> = ({
@@ -31,50 +34,70 @@ const TextInputComp: React.FC<TextInputCompProps> = ({
     inputStyle,
     error,
     touched,
-    placeholder,
+    placeholder = '',
     rightIcon,
     onRightIconPress,
+    underline,
+    label,
+    required,
     ...props
 }) => {
 
     const { theme } = useTheme();
     const isRTL = useIsRTL()
     const styles = useRTLStyles(isRTL, theme);
-    const colors = Colors[theme];
+    const colors = Colors[theme ?? 'light'];
 
     return (
-        <View
-            style={[
-                styles.container,
-                error && touched && styles.errorContainer,
-                containerStyle,
-            ]}
-        >
-            <TextInput
+        <View style={containerStyle}>
+            {label && (
+                <View style={styles.labelContainer}>
+                    <TextComp text={label} style={styles.label} />
+                    {required && <TextComp text="*" style={styles.requiredStar} />}
+                </View>
+            )}
+            <View
                 style={[
-                    styles.input,
-                    error && touched && styles.errorInput,
-                    inputStyle
+                    styles.container,
+                    underline && styles.underlineContainer,
+                    error && touched && styles.errorContainer,
                 ]}
-                placeholderTextColor={colors.inputPlaceholder}
-                placeholder={t(placeholder)}
-                textAlign={isRTL ? 'right' : 'left'}
-                {...props}
-            />
-            {rightIcon && (
-                <TouchableOpacity
-                    onPress={onRightIconPress}
-                    disabled={!onRightIconPress}
-                >
-                    {rightIcon}
-                </TouchableOpacity>
+            >
+                <TextInput
+                    style={[
+                        styles.input,
+                        underline && styles.underlineInput,
+                        error && touched && styles.errorInput,
+                        inputStyle
+                    ]}
+                    placeholderTextColor={colors.inputPlaceholder}
+                    placeholder={t(placeholder)}
+                    textAlign={isRTL ? 'right' : 'left'}
+                    {...props}
+                />
+                {rightIcon && (
+                    <TouchableOpacity
+                        onPress={onRightIconPress}
+                        disabled={!onRightIconPress}
+                    >
+                        {rightIcon}
+                    </TouchableOpacity>
+                )}
+            </View>
+            {error && touched && typeof error === 'string' && (
+                <TextComp text={error} style={styles.errorText} />
+            )}
+            {error && touched && typeof error !== 'string' && placeholder && (
+                <TextComp text={`${t(placeholder)} ${t('REQUIRED')}`} style={styles.errorText} />
             )}
         </View>
     );
 };
 
+import TextComp from './TextComp';
+
 const useRTLStyles = (isRTL: boolean, theme?: ThemeType) => {
-    const colors = Colors[theme];
+    const colors = Colors[theme ?? 'light'];
 
     return StyleSheet.create({
         container: {
@@ -86,6 +109,14 @@ const useRTLStyles = (isRTL: boolean, theme?: ThemeType) => {
             flexDirection: isRTL ? 'row-reverse' : 'row',
             alignItems: 'center',
         },
+        underlineContainer: {
+            backgroundColor: 'transparent',
+            borderWidth: 0,
+            borderBottomWidth: 1,
+            borderColor: commonColors.white,
+            borderRadius: 0,
+            paddingHorizontal: 0,
+        },
         input: {
             flex: 1,
             fontFamily: fontFamily.regular,
@@ -94,12 +125,34 @@ const useRTLStyles = (isRTL: boolean, theme?: ThemeType) => {
             padding: 0,
             margin: 0,
         },
-
+        underlineInput: {
+            color: commonColors.white,
+        },
+        labelContainer: {
+            flexDirection: isRTL ? 'row-reverse' : 'row',
+            marginBottom: moderateScale(8),
+        },
+        label: {
+            fontSize: moderateScale(14),
+            fontFamily: fontFamily.medium,
+            color: commonColors.white,
+        },
+        requiredStar: {
+            color: commonColors.error,
+            marginStart: moderateScale(4),
+        },
         errorContainer: {
             borderColor: commonColors.error,
         },
         errorInput: {
             color: commonColors.error,
+        },
+        errorText: {
+            color: commonColors.error,
+            fontSize: moderateScale(12),
+            fontFamily: fontFamily.regular,
+            marginTop: moderateScale(4),
+            textAlign: isRTL ? 'right' : 'left',
         },
     });
 };

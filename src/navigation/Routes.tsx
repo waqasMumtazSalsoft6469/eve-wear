@@ -7,6 +7,8 @@ import { MainStack } from './MainStack';
 import { useSelector } from 'react-redux';
 import { RootState } from '@/redux/store';
 
+import routes from '@/constants/routes';
+
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
 export const Routes = () => {
@@ -17,13 +19,14 @@ export const Routes = () => {
         <NavigationContainer>
             <Stack.Navigator screenOptions={{ headerShown: false }} id={undefined}>
                 {isFirstTime ? (
-                    <Stack.Screen name="Main" component={MainStack} />
+                    <Stack.Screen name={routes.navigator.main} component={MainStack} />
                 ) : (
-                    <Stack.Screen name="Auth" component={AuthStack} />
+                    <Stack.Screen name={routes.navigator.auth} component={AuthStack} />
                 )}
             </Stack.Navigator>
         </NavigationContainer>
     );
 };
+
 
 export default Routes;
