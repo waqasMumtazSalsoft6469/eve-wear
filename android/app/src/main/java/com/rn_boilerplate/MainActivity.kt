@@ -1,4 +1,4 @@
-package boilerplate.expo
+package com.mapps.eveWear
 
 import android.os.Bundle
 
