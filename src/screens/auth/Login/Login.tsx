@@ -2,7 +2,6 @@ import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { Formik } from 'formik';
 import React, { useState } from 'react';
-import { useTranslation } from 'react-i18next';
 import { ImageBackground, TouchableOpacity, View } from 'react-native';
 import * as Yup from 'yup';
 
@@ -11,31 +10,25 @@ import ButtonComp from '@/components/ButtonComp';
 import TextComp from '@/components/TextComp';
 import TextInputComp from '@/components/TextInputComp';
 import WrapperContainer from '@/components/WrapperContainer';
-import { useTheme } from '@/context/ThemeContext';
-import useIsRTL from '@/hooks/useIsRTL';
 import { AuthStackParamList } from '@/navigation/types';
 
-import useRTLStyles from './styles';
+import styles from './styles';
 
 import { BlurView } from '@sbaiahmed1/react-native-blur';
-import routes from '@/constants/routes';
 
 import { loginAction } from '@/redux/actions/auth';
 
 const Login = () => {
-    const isRTL = useIsRTL();
-    const { t } = useTranslation();
     const navigation = useNavigation<NativeStackNavigationProp<AuthStackParamList>>();
-    const styles = useRTLStyles(isRTL);
 
     const [rememberMe, setRememberMe] = useState(false);
 
     const validationSchema = Yup.object().shape({
         email: Yup.string()
-            .email(t('INVALID_EMAIL'))
-            .required(t('REQUIRED')),
+            .email('Invalid email')
+            .required('Required'),
         password: Yup.string()
-            .required(t('REQUIRED')),
+            .required('Required'),
     });
 
     const handleLogin = (values: any) => {
@@ -75,8 +68,8 @@ const Login = () => {
                     style={styles.card}
                     overlayColor="rgba(0, 0, 0, 0.2)"
                 >
-                    <TextComp text="LOGIN_TITLE" style={styles.title} />
-                    <TextComp text="LOGIN_SUBTITLE" style={styles.subtitle} />
+                    <TextComp text="Login" style={styles.title} />
+                    <TextComp text="Welcome back, please login to your account" style={styles.subtitle} />
 
                     <Formik
                         initialValues={{ email: '', password: '' }}
@@ -93,14 +86,14 @@ const Login = () => {
                         }) => (
                             <View>
                                 <TextInputComp
-                                    label="EMAIL_LABEL"
+                                    label="Email"
                                     required
                                     underline
                                     placeholder="alexa@email.com"
                                     onChangeText={handleChange('email')}
                                     onBlur={handleBlur('email')}
                                     value={values.email}
-                                    error={!!errors.email}
+                                    error={errors.email}
                                     touched={touched.email}
                                     keyboardType="email-address"
                                     autoCapitalize="none"
@@ -108,14 +101,14 @@ const Login = () => {
                                 />
 
                                 <TextInputComp
-                                    label="PASSWORD_LABEL"
+                                    label="Password"
                                     required
                                     underline
                                     placeholder="*************"
                                     onChangeText={handleChange('password')}
                                     onBlur={handleBlur('password')}
                                     value={values.password}
-                                    error={!!errors.password}
+                                    error={errors.password}
                                     touched={touched.password}
                                     secureTextEntry
                                     containerStyle={styles.inputContainer}
@@ -131,11 +124,11 @@ const Login = () => {
                                             styles.checkbox,
                                             rememberMe && { backgroundColor: 'white' }
                                         ]} />
-                                        <TextComp text="REMEMBER_ME" style={styles.rememberMeText} />
+                                        <TextComp text="Remember me" style={styles.rememberMeText} />
                                     </TouchableOpacity>
 
                                     <TouchableOpacity onPress={handleForgotPassword}>
-                                        <TextComp text="FORGOT_PASSWORD" style={styles.forgotPasswordText} />
+                                        <TextComp text="Forgot password?" style={styles.forgotPasswordText} />
                                     </TouchableOpacity>
                                 </View>
 
@@ -150,9 +143,9 @@ const Login = () => {
                     </Formik>
 
                     <View style={styles.registerPromptRow}>
-                        <TextComp text="DONT_HAVE_ACCOUNT_LOGIN" style={styles.noAccountText} />
+                        <TextComp text="Don't have an account?" style={styles.noAccountText} />
                         <TouchableOpacity onPress={handleRegister}>
-                            <TextComp text="REGISTER_HERE" style={styles.registerText} />
+                            <TextComp text="Register here" style={styles.registerText} />
                         </TouchableOpacity>
                     </View>
                 </BlurView>

@@ -10,8 +10,10 @@ export const changeFirstTimeState = (isFirstTime: boolean) => {
     })
 };
 
-export const loginAction = (userData: any) => {
-    const token = "static_token_12345";
+export const loginAction = (userData: any, accessToken?: string) => {
+    // Use the passed token, or fall back to token in userData, or a static default
+    const token = accessToken || userData?.token || "static_token_12345";
+
     secureStorage.setItem("USER_DATA", JSON.stringify(userData));
     secureStorage.setItem("AUTH_TOKEN", token);
     secureStorage.setItem("IS_FIRST_TIME", "true");

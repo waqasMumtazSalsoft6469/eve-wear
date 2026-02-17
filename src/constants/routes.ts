@@ -41,15 +41,9 @@ export const tabRoutes = {
   [routes.tab.shop]: Screens.Shop,
   [routes.tab.categories]: Screens.Categories,
   [routes.tab.home]: Screens.Home,
-  [routes.tab.profile]: Screens.Profile,
-  [routes.tab.settings]: Screens.Settings,
 };
 export const mainRoutes = {
   // Add other main stack screens here that are not in tabs,
-  [routes.main.cycleOverview]: Screens.CycleOverview,
-  [routes.main.settings]: Screens.Settings,
-  [routes.main.profile]: Screens.Profile,
-  [routes.main.home]: Screens.Home,
   [routes.main.chatAi]: Screens.ChatAi,
   [routes.main.shop]: Screens.Shop,
   [routes.main.categories]: Screens.Categories,

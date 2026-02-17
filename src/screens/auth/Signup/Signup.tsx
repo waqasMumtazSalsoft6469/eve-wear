@@ -11,22 +11,17 @@ import {
     Platform,
     ScrollView,
     TouchableOpacity,
-    View
+    View,
+    I18nManager
 } from 'react-native';
-import useRTLStyles from './styles';
+import styles from './styles';
 import { moderateScale } from '@/styles/scaling';
-import useIsRTL from '@/hooks/useIsRTL';
-import { useTheme } from '@/context/ThemeContext';
 import HeaderComp from '@/components/HeaderComp';
 import MyIcons from '@/components/MyIcons';
 
 type SignupScreenNavigationProp = NativeStackNavigationProp<AuthStackParamList>;
 
-// create a component
 const Signup = () => {
-    const isRTL = useIsRTL();
-    const { theme } = useTheme();
-    const styles = useRTLStyles(isRTL, theme);
 
     const navigation = useNavigation<SignupScreenNavigationProp>();
     const [formData, setFormData] = useState({
@@ -47,8 +42,6 @@ const Signup = () => {
         console.log('Form submitted:', formData);
     };
 
-
-
     return (
         <WrapperContainer>
             <KeyboardAvoidingView
@@ -65,27 +58,27 @@ const Signup = () => {
                     <View style={styles.headerContainer}>
                         <TextComp text="REGISTER" style={styles.headerTitle} />
                         <View style={styles.loginContainer}>
-                            <TextComp text="ALREADY_HAVE_ACCOUNT" style={styles.loginText} />
+                            <TextComp text="ALREADY HAVE AN ACCOUNT?" style={styles.loginText} />
                             <TouchableOpacity onPress={() => navigation.navigate('Login')}>
-                                <TextComp text="LOG_IN" style={styles.loginLink} />
+                                <TextComp text="LOG IN" style={styles.loginLink} />
                             </TouchableOpacity>
                         </View>
                     </View>
 
                     <View style={styles.formContainer}>
                         <View style={styles.inputGroup}>
-                            <TextComp text="FULL_NAME" style={styles.label} />
+                            <TextComp text="FULL NAME" style={styles.label} />
                             <TextInputComp
-                                placeholder="YOUR_NAME"
+                                placeholder="YOUR NAME"
                                 value={formData.fullName}
                                 onChangeText={(text) => handleChange('fullName', text)}
                             />
                         </View>
 
                         <View style={styles.inputGroup}>
-                            <TextComp text="EMAIL_ADDRESS" style={styles.label} />
+                            <TextComp text="EMAIL ADDRESS" style={styles.label} />
                             <TextInputComp
-                                placeholder="YOUR_EMAIL"
+                                placeholder="YOUR EMAIL"
                                 value={formData.email}
                                 onChangeText={(text) => handleChange('email', text)}
                                 keyboardType="email-address"
@@ -94,9 +87,9 @@ const Signup = () => {
                         </View>
 
                         <View style={styles.inputGroup}>
-                            <TextComp text="PHONE_NUMBER" style={styles.label} />
+                            <TextComp text="PHONE NUMBER" style={styles.label} />
                             <TextInputComp
-                                placeholder="YOUR_PHONE"
+                                placeholder="YOUR PHONE"
                                 value={formData.phone}
                                 onChangeText={(text) => handleChange('phone', text)}
                                 keyboardType="phone-pad"
@@ -106,7 +99,7 @@ const Signup = () => {
                         <View style={styles.inputGroup}>
                             <TextComp text="PASSWORD" style={styles.label} />
                             <TextInputComp
-                                placeholder="WRITE_HERE"
+                                placeholder="WRITE HERE"
                                 value={formData.password}
                                 onChangeText={(text) => handleChange('password', text)}
                                 secureTextEntry={!showPassword}
@@ -117,9 +110,9 @@ const Signup = () => {
                         </View>
 
                         <View style={styles.inputGroup}>
-                            <TextComp text="CONFIRM_PASSWORD" style={styles.label} />
+                            <TextComp text="CONFIRM PASSWORD" style={styles.label} />
                             <TextInputComp
-                                placeholder="WRITE_HERE"
+                                placeholder="WRITE HERE"
                                 value={formData.confirmPassword}
                                 onChangeText={(text) => handleChange('confirmPassword', text)}
                                 secureTextEntry={!showConfirmPassword}

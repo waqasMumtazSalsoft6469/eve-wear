@@ -1,7 +1,6 @@
-// Common colors that don't change with theme
-export const commonColors = {
+export const Colors = {
     // Brand Colors
-    primary: '#00A13A',
+    primary: '#5C2B7E',
     secondary: '#CD0105',
     brandPurple: '#5C2B7E',
     brandSalmon: '#FF8C69',
@@ -31,6 +30,28 @@ export const commonColors = {
     gray600: '#2C2C2C',
     gray700: '#1A1A1A',
 
+    // Base
+    background: '#FFFFFF',
+    surface: '#FFFFFF',
+    text: '#000000',
+    textSecondary: '#454545',
+
+    // Components
+    inputBackground: '#FFFFFF',
+    inputBorder: '#EFF0F6',
+    inputPlaceholder: 'rgba(255, 255, 255, 0.6)',
+    inputText: '#000000',
+    statusBar: 'dark-content' as const,
+
+    // Buttons
+    buttonPrimary: '#00A13A',
+    buttonSecondary: '#CD0105',
+    buttonDisabled: '#CCCCCC',
+
+    // Icons
+    iconPrimary: '#454545',
+    iconSecondary: '#9E9E9E',
+
     // Opacity
     blackOpacity60: 'rgba(0, 0, 0, 0.6)',
     whiteOpacity60: 'rgba(255, 255, 255, 0.6)',
@@ -39,63 +60,5 @@ export const commonColors = {
     transparent: 'transparent',
 } as const;
 
-const appColors = {
-    // Base
-    background: commonColors.white,
-    surface: commonColors.white,
-    text: commonColors.black,
-    textSecondary: commonColors.gray500,
-
-    // Components
-    inputBackground: commonColors.white,
-    inputBorder: commonColors.gray100,
-    inputPlaceholder: commonColors.whiteOpacity60,
-    inputText: commonColors.black,
-    statusBar: 'dark-content',
-
-    // Buttons
-    buttonPrimary: commonColors.primary,
-    buttonSecondary: commonColors.secondary,
-    buttonDisabled: commonColors.gray200,
-
-    // Icons
-    iconPrimary: commonColors.gray500,
-    iconSecondary: commonColors.gray300,
-
-    //Tabs
-    tabPrimary: commonColors.tabPrimary,
-    tabSecondary: commonColors.tabSecondary,
-    tabActive: commonColors.tabActive
-} as const;
-
-export const Colors = {
-    // Base
-    background: commonColors.white,
-    surface: commonColors.white,
-    text: commonColors.black,
-    textSecondary: commonColors.gray500,
-
-    // Components
-    inputBackground: commonColors.white,
-    inputBorder: commonColors.gray100,
-    inputPlaceholder: commonColors.whiteOpacity60,
-    inputText: commonColors.black,
-    statusBar: 'dark-content' as const,
-
-    // Buttons
-    buttonPrimary: commonColors.primary,
-    buttonSecondary: commonColors.secondary,
-    buttonDisabled: commonColors.gray200,
-
-    // Icons
-    iconPrimary: commonColors.gray500,
-    iconSecondary: commonColors.gray300,
-
-    //Tabs
-    tabPrimary: commonColors.tabPrimary,
-    tabSecondary: commonColors.tabSecondary,
-    tabActive: commonColors.tabActive
-} as const;
-
-// Type for colors
-export type AppColors = typeof Colors & typeof commonColors;
+export type AppColors = typeof Colors;
+export const commonColors = Colors;

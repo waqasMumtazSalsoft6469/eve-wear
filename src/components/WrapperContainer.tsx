@@ -1,8 +1,10 @@
+import { RootState } from '@/redux/store';
 import { useFocusEffect } from '@react-navigation/native';
 import React, { useCallback } from 'react';
 import { StatusBar, StyleSheet, ViewStyle } from 'react-native';
 import Animated, { useAnimatedStyle, useSharedValue, withSpring } from 'react-native-reanimated';
 import { SafeAreaView, SafeAreaViewProps } from 'react-native-safe-area-context';
+import { useSelector } from 'react-redux';
 
 interface WrapperContainerProps extends SafeAreaViewProps {
     children: React.ReactNode;
@@ -17,9 +19,10 @@ const WrapperContainer: React.FC<WrapperContainerProps> = ({
     // Animation shared value for borderRadius
     const borderRadius = useSharedValue(0);
 
+    const token = useSelector((state: RootState) => state.auth);
+    console.log("auth_token", token);
     useFocusEffect(
         useCallback(() => {
-            // Reset to 0 then animate to 20 whenever screen comes into focus
             borderRadius.value = 0;
             borderRadius.value = withSpring(20, {
                 damping: 15,
@@ -27,8 +30,7 @@ const WrapperContainer: React.FC<WrapperContainerProps> = ({
             });
 
             return () => {
-                // Optional: Reset when leaving if you want the "exit" feel, 
-                // but usually better to let it stay at 20 until focus resets it.
+
             };
         }, [borderRadius])
     );
@@ -41,11 +43,11 @@ const WrapperContainer: React.FC<WrapperContainerProps> = ({
 
     return (
         <SafeAreaView
-            style={[{ backgroundColor: "#000" }, styles.container, style]}
+            style={[{ backgroundColor: token ? "#fff" : "#000" }, styles.container, style]}
             {...safeAreaProps}
         >
-            <StatusBar barStyle={"light-content"} backgroundColor={"#000"} />
-            <Animated.View style={[{ flex: 1, overflow: 'hidden', backgroundColor: "#000" }, animatedStyle]}>
+            <StatusBar barStyle={token ? "dark-content" : "light-content"} backgroundColor={token ? "#fff" : "#000"} />
+            <Animated.View style={[{ flex: 1, overflow: 'hidden', backgroundColor: token ? "#fff" : "#000" }, animatedStyle]}>
                 {children}
             </Animated.View>
         </SafeAreaView>

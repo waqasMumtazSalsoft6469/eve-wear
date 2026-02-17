@@ -1,21 +1,23 @@
 import { Colors } from '@/styles/colors';
-import { useMemo } from 'react';
+import { moderateScale } from '@/styles/scaling';
 import { StyleSheet } from 'react-native';
 
-const useRTLStyles = (isRTL: boolean) => {
-    const colors = Colors;
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        backgroundColor: Colors.background,
+    },
+    content: {
+        flex: 1,
+        paddingHorizontal: moderateScale(16),
+        paddingVertical: moderateScale(12),
+    },
+    gridContainer: {
+        flexDirection: 'row',
+        flexWrap: 'wrap',
+        justifyContent: 'space-between',
+        paddingBottom: moderateScale(20),
+    },
+});
 
-    return useMemo(() => StyleSheet.create({
-        container: {
-            flex: 1,
-            backgroundColor: colors.background,
-        },
-        content: {
-            flex: 1,
-            justifyContent: 'center',
-            alignItems: 'center',
-        },
-    }), [isRTL, colors]);
-};
-
-export default useRTLStyles;
+export default styles;

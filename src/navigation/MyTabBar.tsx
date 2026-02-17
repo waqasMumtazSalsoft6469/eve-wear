@@ -1,13 +1,10 @@
 //import liraries
-import ModalComp from '@/components/ModalComp';
 import MyIcons, { IconName } from '@/components/MyIcons';
-import TextComp from '@/components/TextComp';
-import useIsRTL from '@/hooks/useIsRTL';
 import { Colors } from '@/styles/colors';
 import { moderateScale } from '@/styles/scaling';
-import React, { useMemo } from 'react';
-import { StyleSheet, TouchableOpacity, View } from 'react-native';
-import { LinearGradient } from 'react-native-linear-gradient';
+import React from 'react';
+import { StyleSheet, TouchableOpacity, View, I18nManager } from 'react-native';
+import LinearGradient from 'react-native-linear-gradient';
 import routes from '@/constants/routes';
 
 
@@ -21,20 +18,18 @@ const getTabIcon = (name: string): IconName => {
         case routes.tab.chatAi:
             return 'tabAi';
         case routes.tab.shop:
-            return 'tabBag';
-        default:
             return 'tabPlus';
+        default:
+            return 'tabBag';
     }
 };
 
 
 const MyTabBar = ({ state, descriptors, navigation }: any) => {
-    const isRTL = useIsRTL();
-    const styles = useRTLStyles(isRTL);
-    const colors = Colors;
+
     return (
         <LinearGradient
-            colors={[colors.tabPrimary, colors.tabSecondary, colors.tabPrimary]}
+            colors={[Colors.tabPrimary, Colors.tabSecondary]}
             start={{ x: 0, y: 0 }}
             end={{ x: 1, y: 0 }}
             style={styles.gradientContainer}
@@ -73,32 +68,31 @@ const MyTabBar = ({ state, descriptors, navigation }: any) => {
     );
 };
 
-const useRTLStyles = (isRTL: boolean) => {
-    const colors = Colors;
-    return useMemo(() => StyleSheet.create({
-        container: {
-            flexDirection: isRTL ? 'row-reverse' : 'row',
-            justifyContent: 'space-between',
-            alignItems: 'center',
-            paddingHorizontal: moderateScale(30),
-            minHeight: moderateScale(76),
-        },
-        subContainer: {
-            alignItems: 'center',
-            justifyContent: 'center',
-            height: moderateScale(56),
-            width: moderateScale(56),
-            borderRadius: moderateScale(28),
+const styles = StyleSheet.create({
+    container: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        paddingHorizontal: moderateScale(20),
+        minHeight: moderateScale(76),
+    },
+    subContainer: {
+        alignItems: 'center',
+        justifyContent: 'center',
+        height: moderateScale(56),
+        width: moderateScale(56),
+        borderRadius: moderateScale(28),
 
-        },
-        focused: {
-            backgroundColor: colors.tabActive,
-        },
-        gradientContainer: {
-            borderRadius: moderateScale(20),
-        }
-    }), [isRTL, colors]);
-};
+    },
+    focused: {
+        backgroundColor: Colors.tabActive,
+    },
+    gradientContainer: {
+        borderTopLeftRadius: moderateScale(20),
+        borderTopRightRadius: moderateScale(20),
+        backgroundColor: Colors.background,
+    }
+});
 
 //make this component available to the app
 export default React.memo(MyTabBar);

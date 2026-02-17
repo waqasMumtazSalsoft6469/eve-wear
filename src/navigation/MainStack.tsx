@@ -23,10 +23,6 @@ export const MainStack = () => {
         options={{ animation: 'none', }}
       />
 
-      <Stack.Screen
-        name={routes.main.settings}
-        component={mainRoutes[routes.main.settings]}
-      />
     </Stack.Navigator>
   );
 };

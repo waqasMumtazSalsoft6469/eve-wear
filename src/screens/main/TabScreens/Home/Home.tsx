@@ -2,20 +2,15 @@ import MyIcons from '@/components/MyIcons';
 import HomeHeaderComp from '@/components/HomeHeaderComp';
 import TextComp from '@/components/TextComp';
 import WrapperContainer from '@/components/WrapperContainer';
-import { useTheme } from '@/context/ThemeContext';
-import useIsRTL from '@/hooks/useIsRTL';
 import { Colors } from '@/styles/colors';
 import { moderateScale } from '@/styles/scaling';
 import React from 'react';
 import { Image, ScrollView, StyleSheet, TouchableOpacity, View } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import Svg, { Circle } from 'react-native-svg';
-import useRTLStyles from './styles';
+import styles from './styles';
 
 const Home: React.FC = () => {
-    const isRTL = useIsRTL();
-    const styles = useRTLStyles(isRTL);
-    const colors = Colors;
 
     // Placeholder data
     const dates = [
@@ -44,7 +39,7 @@ const Home: React.FC = () => {
             <ScrollView showsVerticalScrollIndicator={false}>
                 {/* Header Section with Gradient */}
                 <LinearGradient
-                    colors={[colors.tabPrimary, colors.tabSecondary]}
+                    colors={[Colors.tabPrimary, Colors.tabSecondary]}
                     start={{ x: 0, y: 0 }}
                     end={{ x: 1, y: 0 }}
                     style={styles.gradientContainer}
@@ -53,7 +48,7 @@ const Home: React.FC = () => {
 
                     <View style={styles.calendarSection}>
                         <View style={styles.calendarHeader}>
-                            <MyIcons name="back" size={moderateScale(16)} stroke={colors.text} />
+                            <MyIcons name="back" size={moderateScale(16)} stroke={Colors.text} />
                             <TextComp text="Jan 2026" style={styles.monthText} />
                         </View>
 
@@ -68,7 +63,7 @@ const Home: React.FC = () => {
                                 </TouchableOpacity>
                             ))}
                             <TouchableOpacity>
-                                <MyIcons name="back" size={moderateScale(20)} stroke={colors.text} style={{ transform: [{ rotate: '180deg' }] }} />
+                                <MyIcons name="back" size={moderateScale(20)} stroke={Colors.text} style={{ transform: [{ rotate: '180deg' }] }} />
                             </TouchableOpacity>
                         </View>
                     </View>

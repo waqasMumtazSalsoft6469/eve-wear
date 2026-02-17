@@ -12,7 +12,7 @@ import routes from '@/constants/routes';
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
 export const Routes = () => {
-    const { isFirstTime } = useSelector((state: RootState) => state.auth);
+    const { isFirstTime, auth_token } = useSelector((state: RootState) => state.auth);
 
     // Static theme since dark mode is removed
     const MyTheme = {
@@ -25,8 +25,8 @@ export const Routes = () => {
 
     return (
         <NavigationContainer theme={MyTheme}>
-            <Stack.Navigator screenOptions={{ headerShown: false, contentStyle: { backgroundColor: "#FFFFFF" } }} id={undefined}>
-                {false ? (
+            <Stack.Navigator screenOptions={{ headerShown: false, contentStyle: { backgroundColor: auth_token ? "#fff" : "#000" } }} id={undefined}>
+                {isFirstTime ? (
                     <Stack.Screen name={routes.navigator.main} component={MainStack} />
                 ) : (
                     <Stack.Screen name={routes.navigator.auth} component={AuthStack} />

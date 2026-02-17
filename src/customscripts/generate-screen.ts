@@ -26,17 +26,11 @@ function generateScreenComponent(screenName: string): string {
     return `import HeaderComp from '@/components/HeaderComp';
 import TextComp from '@/components/TextComp';
 import WrapperContainer from '@/components/WrapperContainer';
-import { useTheme } from '@/context/ThemeContext';
-import useIsRTL from '@/hooks/useIsRTL';
 import React from 'react';
 import { View } from 'react-native';
-import useRTLStyles from './styles';
+import styles from './styles';
 
 const ${componentName}: React.FC = () => {
-    const isRTL = useIsRTL();
-    const { theme } = useTheme();
-    const styles = useRTLStyles(isRTL, theme);
-
     return (
         <WrapperContainer style={styles.container}>
             <HeaderComp title="${componentName}" />
@@ -53,27 +47,22 @@ export default ${componentName};
 
 // Generate screen styles content
 function generateStylesContent(): string {
-    return `import { Colors, ThemeType } from '@/styles/colors';
-import { useMemo } from 'react';
+    return `import { Colors } from '@/styles/colors';
 import { StyleSheet } from 'react-native';
 
-const useRTLStyles = (isRTL: boolean, theme: ThemeType) => {
-    const colors = Colors[theme];
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        backgroundColor: Colors.background,
+    },
+    content: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+});
 
-    return useMemo(() => StyleSheet.create({
-        container: {
-            flex: 1,
-            backgroundColor: colors.background,
-        },
-        content: {
-            flex: 1,
-            justifyContent: 'center',
-            alignItems: 'center',
-        },
-    }), [isRTL, theme, colors]);
-};
-
-export default useRTLStyles;
+export default styles;
 `;
 }
 

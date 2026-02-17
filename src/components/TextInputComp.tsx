@@ -7,17 +7,17 @@ import {
     View,
     TextStyle,
     TouchableOpacity,
+    I18nManager
 } from 'react-native';
 import fontFamily from '@/styles/fontFamily';
 import { moderateScale } from '@/styles/scaling';
-import { t } from 'i18next';
-import useIsRTL from '@/hooks/useIsRTL';
-import { Colors, commonColors } from '@/styles/colors';
+import { Colors } from '@/styles/colors';
+import TextComp from './TextComp';
 
 interface TextInputCompProps extends TextInputProps {
     containerStyle?: ViewStyle;
     inputStyle?: TextStyle;
-    error?: boolean;
+    error?: boolean | string;
     touched?: boolean;
     placeholder?: string;
     rightIcon?: React.ReactNode;
@@ -41,10 +41,6 @@ const TextInputComp: React.FC<TextInputCompProps> = ({
     ...props
 }) => {
 
-    const isRTL = useIsRTL()
-    const styles = useRTLStyles(isRTL);
-    const colors = Colors;
-
     return (
         <View style={containerStyle}>
             {label && (
@@ -67,9 +63,9 @@ const TextInputComp: React.FC<TextInputCompProps> = ({
                         error && touched && styles.errorInput,
                         inputStyle
                     ]}
-                    placeholderTextColor={colors.inputPlaceholder}
-                    placeholder={t(placeholder)}
-                    textAlign={isRTL ? 'right' : 'left'}
+                    placeholderTextColor={Colors.inputPlaceholder}
+                    placeholder={placeholder}
+                    textAlign={I18nManager.isRTL ? 'right' : 'left'}
                     {...props}
                 />
                 {rightIcon && (
@@ -85,73 +81,67 @@ const TextInputComp: React.FC<TextInputCompProps> = ({
                 <TextComp text={error} style={styles.errorText} />
             )}
             {error && touched && typeof error !== 'string' && placeholder && (
-                <TextComp text={`${t(placeholder)} ${t('REQUIRED')}`} style={styles.errorText} />
+                <TextComp text={`${placeholder} is required`} style={styles.errorText} />
             )}
         </View>
     );
 };
 
-import TextComp from './TextComp';
-
-const useRTLStyles = (isRTL: boolean) => {
-    const colors = Colors;
-
-    return StyleSheet.create({
-        container: {
-            backgroundColor: colors.inputBackground,
-            borderWidth: 1,
-            borderColor: colors.inputBorder,
-            borderRadius: moderateScale(7),
-            padding: moderateScale(14),
-            flexDirection: isRTL ? 'row-reverse' : 'row',
-            alignItems: 'center',
-        },
-        underlineContainer: {
-            backgroundColor: 'transparent',
-            borderWidth: 0,
-            borderBottomWidth: 1,
-            borderColor: commonColors.white,
-            borderRadius: 0,
-            paddingHorizontal: 0,
-        },
-        input: {
-            flex: 1,
-            fontFamily: fontFamily.regular,
-            fontSize: moderateScale(14),
-            color: colors.text,
-            padding: 0,
-            margin: 0,
-        },
-        underlineInput: {
-            color: commonColors.white,
-        },
-        labelContainer: {
-            flexDirection: isRTL ? 'row-reverse' : 'row',
-            marginBottom: moderateScale(8),
-        },
-        label: {
-            fontSize: moderateScale(14),
-            fontFamily: fontFamily.medium,
-            color: commonColors.white,
-        },
-        requiredStar: {
-            color: commonColors.error,
-            marginStart: moderateScale(4),
-        },
-        errorContainer: {
-            borderColor: commonColors.error,
-        },
-        errorInput: {
-            color: commonColors.error,
-        },
-        errorText: {
-            color: commonColors.error,
-            fontSize: moderateScale(12),
-            fontFamily: fontFamily.regular,
-            marginTop: moderateScale(4),
-            textAlign: isRTL ? 'right' : 'left',
-        },
-    });
-};
+const styles = StyleSheet.create({
+    container: {
+        backgroundColor: Colors.inputBackground,
+        borderWidth: 1,
+        borderColor: Colors.inputBorder,
+        borderRadius: moderateScale(7),
+        padding: moderateScale(14),
+        flexDirection: I18nManager.isRTL ? 'row-reverse' : 'row',
+        alignItems: 'center',
+    },
+    underlineContainer: {
+        backgroundColor: 'transparent',
+        borderWidth: 0,
+        borderBottomWidth: 1,
+        borderColor: Colors.white,
+        borderRadius: 0,
+        paddingHorizontal: 0,
+    },
+    input: {
+        flex: 1,
+        fontFamily: fontFamily.regular,
+        fontSize: moderateScale(14),
+        color: Colors.text,
+        padding: 0,
+        margin: 0,
+    },
+    underlineInput: {
+        color: Colors.white,
+    },
+    labelContainer: {
+        flexDirection: I18nManager.isRTL ? 'row-reverse' : 'row',
+        marginBottom: moderateScale(8),
+    },
+    label: {
+        fontSize: moderateScale(14),
+        fontFamily: fontFamily.medium,
+        color: Colors.white,
+    },
+    requiredStar: {
+        color: Colors.error,
+        marginStart: moderateScale(4),
+    },
+    errorContainer: {
+        borderColor: Colors.error,
+    },
+    errorInput: {
+        color: Colors.error,
+    },
+    errorText: {
+        color: Colors.error,
+        fontSize: moderateScale(12),
+        fontFamily: fontFamily.regular,
+        marginTop: moderateScale(4),
+        textAlign: I18nManager.isRTL ? 'right' : 'left',
+    },
+});
 
 export default React.memo(TextInputComp);

@@ -8,15 +8,11 @@ import ButtonComp from '@/components/ButtonComp';
 import MyIcons from '@/components/MyIcons';
 import TextComp from '@/components/TextComp';
 import WrapperContainer from '@/components/WrapperContainer';
-import { useTheme } from '@/context/ThemeContext';
-import useIsRTL from '@/hooks/useIsRTL';
 import { AuthStackParamList } from '@/navigation/types';
 import { moderateScale } from '@/styles/scaling';
-import useRTLStyles from './styles';
+import styles from './styles';
 
 const OnBoard = () => {
-    const isRTL = useIsRTL();
-    const styles = useRTLStyles(isRTL);
     const navigation = useNavigation<NativeStackNavigationProp<AuthStackParamList>>();
 
     const handleGetStarted = () => {
@@ -48,11 +44,6 @@ const OnBoard = () => {
                 </View>
 
                 <View style={styles.contentContainer}>
-                    {/* <View style={styles.paginationContainer}>
-                        <View style={[styles.dot, styles.activeDot]} />
-                        <View style={styles.dot} />
-                        <View style={styles.dot} />
-                    </View> */}
                     <TextComp
                         text="Welcome to Eve Wear"
                         style={styles.title}
