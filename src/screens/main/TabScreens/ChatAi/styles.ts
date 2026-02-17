@@ -1,9 +1,9 @@
-import { Colors, ThemeType } from '@/styles/colors';
+import { Colors, } from '@/styles/colors';
 import { useMemo } from 'react';
 import { StyleSheet } from 'react-native';
 
-const useRTLStyles = (isRTL: boolean, theme: ThemeType) => {
-    const colors = Colors[theme];
+const useRTLStyles = (isRTL: boolean) => {
+    const colors = Colors;
 
     return useMemo(() => StyleSheet.create({
         container: {
@@ -15,7 +15,7 @@ const useRTLStyles = (isRTL: boolean, theme: ThemeType) => {
             justifyContent: 'center',
             alignItems: 'center',
         },
-    }), [isRTL, theme, colors]);
+    }), [isRTL, colors]);
 };
 
 export default useRTLStyles;

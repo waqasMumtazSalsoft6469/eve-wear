@@ -23,8 +23,7 @@ const TextComp: React.FC<TextCompProps> = ({
     ...props
 }) => {
     const { t } = useTranslation();
-    const { theme } = useTheme();
-    const colors = Colors[theme];
+    const colors = Colors;
     const isRTL = useIsRTL();
 
     const styles = useRTLStyles(isRTL);

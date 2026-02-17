@@ -1,22 +1,37 @@
 //import liraries
 import ModalComp from '@/components/ModalComp';
-import MyIcons from '@/components/MyIcons';
+import MyIcons, { IconName } from '@/components/MyIcons';
 import TextComp from '@/components/TextComp';
-import { useTheme } from '@/context/ThemeContext';
 import useIsRTL from '@/hooks/useIsRTL';
-import { Colors, commonColors, ThemeType } from '@/styles/colors';
+import { Colors } from '@/styles/colors';
 import { moderateScale } from '@/styles/scaling';
 import React, { useMemo } from 'react';
 import { StyleSheet, TouchableOpacity, View } from 'react-native';
 import { LinearGradient } from 'react-native-linear-gradient';
+import routes from '@/constants/routes';
 
 
 // create a component
-const MyTabBar = ({ state, descriptors, navigation }) => {
+const getTabIcon = (name: string): IconName => {
+    switch (name) {
+        case routes.tab.home:
+            return 'tabHome';
+        case routes.tab.cycleOverview:
+            return 'tabGallery';
+        case routes.tab.chatAi:
+            return 'tabAi';
+        case routes.tab.shop:
+            return 'tabBag';
+        default:
+            return 'tabPlus';
+    }
+};
+
+
+const MyTabBar = ({ state, descriptors, navigation }: any) => {
     const isRTL = useIsRTL();
-    const { theme } = useTheme();
-    const styles = useRTLStyles(isRTL, theme);
-    const colors = Colors[theme];
+    const styles = useRTLStyles(isRTL);
+    const colors = Colors;
     return (
         <LinearGradient
             colors={[colors.tabPrimary, colors.tabSecondary, colors.tabPrimary]}
@@ -33,14 +48,9 @@ const MyTabBar = ({ state, descriptors, navigation }) => {
                         const event = navigation.emit({ type: 'tabPress', target: route.key, canPreventDefault: true });
 
                         if (!isFocused && !event.defaultPrevented) {
-                            navigation.navigate(route.name);
+                            navigation.navigate({ name: route.name, merge: true });
                         }
                     };
-
-                    const onLongPress = () => {
-                        navigation.emit({ type: 'tabLongPress', target: route.key });
-                    };
-
                     return (
                         <TouchableOpacity
                             key={index}
@@ -49,10 +59,12 @@ const MyTabBar = ({ state, descriptors, navigation }) => {
                             accessibilityLabel={options.tabBarAccessibilityLabel}
                             testID={options.tabBarTestID}
                             onPress={onPress}
-                            onLongPress={onLongPress}
                             style={[styles.subContainer, isFocused && styles.focused]}
                         >
-                            <MyIcons name={route?.name === "Home" ? "tabHome" : route?.name === "CycleOverview" ? "tabGallery" : route?.name === "ChatAi" ? "tabAi" : route?.name === "Shop" ? "tabBag" : "tabPlus"} size={moderateScale(24)} />
+                            <MyIcons
+                                name={getTabIcon(route.name)}
+                                size={moderateScale(24)}
+                            />
                         </TouchableOpacity>
                     );
                 })}
@@ -61,8 +73,8 @@ const MyTabBar = ({ state, descriptors, navigation }) => {
     );
 };
 
-const useRTLStyles = (isRTL: boolean, theme: ThemeType) => {
-    const colors = Colors[theme];
+const useRTLStyles = (isRTL: boolean) => {
+    const colors = Colors;
     return useMemo(() => StyleSheet.create({
         container: {
             flexDirection: isRTL ? 'row-reverse' : 'row',
@@ -85,7 +97,7 @@ const useRTLStyles = (isRTL: boolean, theme: ThemeType) => {
         gradientContainer: {
             borderRadius: moderateScale(20),
         }
-    }), [isRTL, theme]);
+    }), [isRTL, colors]);
 };
 
 //make this component available to the app

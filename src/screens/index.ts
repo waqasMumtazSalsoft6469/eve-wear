@@ -11,7 +11,7 @@ export { default as Settings } from '@/screens/main/Settings/Settings';
 
 
 //tab screens
-export { default as CycleOverview } from './main/CycleOverview/CycleOverview';
+export { default as CycleOverview } from './main/TabScreens/CycleOverview/CycleOverview';
 export { default as ChatAi } from './main/TabScreens/ChatAi/ChatAi';
 export { default as Shop } from './main/TabScreens/Shop/Shop';
 export { default as Categories } from './main/TabScreens/Categories/Categories';

@@ -16,8 +16,7 @@ import useRTLStyles from './styles';
 
 const OnBoard = () => {
     const isRTL = useIsRTL();
-    const { theme } = useTheme();
-    const styles = useRTLStyles(isRTL, theme ?? 'light');
+    const styles = useRTLStyles(isRTL);
     const navigation = useNavigation<NativeStackNavigationProp<AuthStackParamList>>();
 
     const handleGetStarted = () => {

@@ -1,11 +1,11 @@
-import { Colors, commonColors, ThemeType } from '@/styles/colors';
+import { Colors, commonColors } from '@/styles/colors';
 import fontFamily from '@/styles/fontFamily';
 import { height, moderateScale, width } from '@/styles/scaling';
 import { StyleSheet } from 'react-native';
 import { useMemo } from 'react';
 
-const useRTLStyles = (isRTL: boolean, theme: ThemeType) => {
-    const colors = Colors[theme];
+const useRTLStyles = (isRTL: boolean) => {
+    const colors = Colors;
 
     return useMemo(() => StyleSheet.create({
 
@@ -80,7 +80,7 @@ const useRTLStyles = (isRTL: boolean, theme: ThemeType) => {
             color: commonColors.white,
             marginStart: moderateScale(8),
         },
-    }), [isRTL, theme]); // Dependencies array includes all variables used in the styles
+    }), [isRTL, colors]); // Dependencies array includes all variables used in the styles
 };
 
 export default useRTLStyles; 

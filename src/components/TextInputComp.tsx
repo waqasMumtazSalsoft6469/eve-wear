@@ -12,9 +12,7 @@ import fontFamily from '@/styles/fontFamily';
 import { moderateScale } from '@/styles/scaling';
 import { t } from 'i18next';
 import useIsRTL from '@/hooks/useIsRTL';
-import { useTheme } from '@/context/ThemeContext';
 import { Colors, commonColors } from '@/styles/colors';
-import { ThemeType } from '@/styles/colors';
 
 interface TextInputCompProps extends TextInputProps {
     containerStyle?: ViewStyle;
@@ -43,10 +41,9 @@ const TextInputComp: React.FC<TextInputCompProps> = ({
     ...props
 }) => {
 
-    const { theme } = useTheme();
     const isRTL = useIsRTL()
-    const styles = useRTLStyles(isRTL, theme);
-    const colors = Colors[theme ?? 'light'];
+    const styles = useRTLStyles(isRTL);
+    const colors = Colors;
 
     return (
         <View style={containerStyle}>
@@ -96,8 +93,8 @@ const TextInputComp: React.FC<TextInputCompProps> = ({
 
 import TextComp from './TextComp';
 
-const useRTLStyles = (isRTL: boolean, theme?: ThemeType) => {
-    const colors = Colors[theme ?? 'light'];
+const useRTLStyles = (isRTL: boolean) => {
+    const colors = Colors;
 
     return StyleSheet.create({
         container: {

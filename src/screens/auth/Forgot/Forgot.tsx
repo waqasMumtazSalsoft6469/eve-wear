@@ -29,9 +29,8 @@ import MyIcons from '@/components/MyIcons';
 
 const Forgot = () => {
     const isRTL = useIsRTL();
-    const { theme } = useTheme();
     const { t } = useTranslation();
-    const styles = useRTLStyles(isRTL, theme ?? 'light');
+    const styles = useRTLStyles(isRTL);
     const navigation = useNavigation<NativeStackNavigationProp<AuthStackParamList>>();
 
     const validationSchema = Yup.object().shape({

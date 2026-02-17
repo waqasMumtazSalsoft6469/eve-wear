@@ -5,38 +5,39 @@ import { useSelector } from '@/redux/hooks';
 import { Colors } from '@/styles/colors';
 import fontFamily from '@/styles/fontFamily';
 import { moderateScale } from '@/styles/scaling';
-import { useNavigation } from '@react-navigation/native';
 import React, { useState } from 'react';
-import { Pressable, StyleSheet, TouchableOpacity, View } from 'react-native';
+import { Image, StyleSheet, TouchableOpacity, View } from 'react-native';
+import LinearGradient from 'react-native-linear-gradient';
 import ModalComp from './ModalComp';
 import { LanguageInterface } from '@/redux/reducers/settings';
 import { secureStorage } from '@/utils/secureStorage';
 import { clearDataAction } from '@/redux/actions/auth';
 import ButtonComp from './ButtonComp';
 import MyIcons from './MyIcons';
-interface HeaderCompProps {
-    title?: string;
-    showBack?: boolean;
+
+interface HomeHeaderCompProps {
+    name?: string;
+    description?: string;
+    profileImage?: string;
+    onNotificationPress?: () => void;
     customStyle?: object;
 }
 
-const HeaderComp: React.FC<HeaderCompProps> = ({
-    title,
-    showBack = true,
+const HomeHeaderComp: React.FC<HomeHeaderCompProps> = ({
+    name = "Alexa",
+    description = "Your wellness journey begins here.",
+    profileImage = "https://i.pravatar.cc/150?u=alexa",
+    onNotificationPress,
     customStyle,
 }) => {
-    const navigation = useNavigation();
     const isRTL = useIsRTL();
     const styles = useRTLStyles(isRTL);
     const [isModalVisible, setIsModalVisible] = useState(false);
 
     const colors = Colors;
 
+    const { defaultTheme } = useSelector(state => state.settings);
     const { isFirstTime } = useSelector(state => state.auth);
-
-    const handleBackPress = () => {
-        navigation.goBack();
-    };
 
 
     const changedLanguage = (language: LanguageInterface) => {
@@ -56,26 +57,47 @@ const HeaderComp: React.FC<HeaderCompProps> = ({
     }
 
     return (
+
         <View style={[styles.container, customStyle]}>
-            {showBack ?
-                <TouchableOpacity
-                    onPress={handleBackPress}
-                    hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
-                >
-                    <MyIcons name="back" size={moderateScale(14)} stroke="white" />
-                </TouchableOpacity>
-                : <View />}
 
-            {title && (
-                <TextComp
-                    text={title}
-                    style={styles.titleText}
-                />
-            )}
+            <View style={styles.headerContent}>
+                <View style={styles.leftSection}>
+                    <TouchableOpacity
+                        style={styles.iconCircle}
+                        onPress={() => setIsModalVisible(true)}
+                    >
+                        <MyIcons name="menu" size={moderateScale(20)} stroke={colors.text} />
+                    </TouchableOpacity>
 
-            <Pressable onPress={() => setIsModalVisible(true)}>
-                <MyIcons name="back" size={moderateScale(14)} stroke="white" />
-            </Pressable>
+                    <View style={styles.textContainer}>
+                        <TextComp
+                            text={`Hi, ${name}! 👋`}
+                            style={styles.greetingText}
+                        />
+                        <TextComp
+                            text={description}
+                            style={styles.subText}
+                        />
+                    </View>
+                </View>
+
+                <View style={styles.rightSection}>
+                    <TouchableOpacity style={styles.profileContainer}>
+                        <Image
+                            source={{ uri: profileImage }}
+                            style={styles.profileImage}
+                        />
+                    </TouchableOpacity>
+
+                    <TouchableOpacity
+                        style={styles.iconCircle}
+                        onPress={onNotificationPress}
+                    >
+                        <MyIcons name="notification" size={moderateScale(20)} stroke={colors.text} />
+                        <View style={styles.notificationDot} />
+                    </TouchableOpacity>
+                </View>
+            </View>
 
             <ModalComp isVisible={isModalVisible} onClose={closeModal}>
                 <View style={styles.modalContainer}>
@@ -119,6 +141,7 @@ const HeaderComp: React.FC<HeaderCompProps> = ({
                 </View>
             </ModalComp>
         </View>
+
     );
 };
 
@@ -127,48 +150,100 @@ const useRTLStyles = (isRTL: boolean) => {
     const colors = Colors;
     return StyleSheet.create({
         container: {
+            width: '100%',
+            paddingHorizontal: moderateScale(16),
+            paddingTop: moderateScale(20),
+            paddingBottom: moderateScale(20),
+            borderBottomLeftRadius: moderateScale(24),
+            borderBottomRightRadius: moderateScale(24),
+        },
+        headerContent: {
             flexDirection: isRTL ? 'row-reverse' : 'row',
             alignItems: 'center',
             justifyContent: 'space-between',
-            width: '100%',
-            paddingHorizontal: moderateScale(16),
         },
-
-        titleText: {
-            fontSize: moderateScale(18),
-            fontFamily: fontFamily.medium,
+        leftSection: {
+            flexDirection: isRTL ? 'row-reverse' : 'row',
+            alignItems: 'center',
+            flex: 1,
         },
-
+        rightSection: {
+            flexDirection: isRTL ? 'row-reverse' : 'row',
+            alignItems: 'center',
+            gap: moderateScale(12),
+        },
+        iconCircle: {
+            width: moderateScale(44),
+            height: moderateScale(44),
+            borderRadius: moderateScale(22),
+            backgroundColor: 'rgba(255, 255, 255, 0.15)',
+            justifyContent: 'center',
+            alignItems: 'center',
+        },
+        textContainer: {
+            marginHorizontal: moderateScale(12),
+        },
+        greetingText: {
+            fontSize: moderateScale(22),
+            fontFamily: fontFamily.bold,
+            color: colors.text,
+        },
+        subText: {
+            fontSize: moderateScale(13),
+            fontFamily: fontFamily.regular,
+            color: colors.text,
+            opacity: 0.8,
+        },
+        profileContainer: {
+            padding: moderateScale(2),
+            borderRadius: moderateScale(25),
+            borderWidth: 1.5,
+            borderColor: colors.tabActive,
+        },
+        profileImage: {
+            width: moderateScale(40),
+            height: moderateScale(40),
+            borderRadius: moderateScale(20),
+            backgroundColor: colors.surface,
+        },
+        notificationDot: {
+            position: 'absolute',
+            top: moderateScale(12),
+            right: moderateScale(12),
+            width: moderateScale(8),
+            height: moderateScale(8),
+            borderRadius: moderateScale(4),
+            backgroundColor: '#FF3B30',
+            borderWidth: 1.5,
+            borderColor: colors.tabPrimary,
+        },
         modalContainer: {
             backgroundColor: colors.background,
-            minHeight: moderateScale(100),
+            padding: moderateScale(20),
+            borderTopLeftRadius: moderateScale(24),
+            borderTopRightRadius: moderateScale(24),
         },
-
         modalTitle: {
             fontSize: moderateScale(24),
             fontFamily: fontFamily.bold,
             marginBottom: moderateScale(24),
             textAlign: 'center',
         },
-
         section: {
             marginBottom: moderateScale(24),
         },
-
         sectionTitle: {
             fontSize: moderateScale(16),
             fontFamily: fontFamily.medium,
             marginBottom: moderateScale(12),
             opacity: 0.8,
         },
-
         optionRow: {
-            flexDirection: 'row',
+            flexDirection: isRTL ? 'row-reverse' : 'row',
             alignItems: 'center',
             justifyContent: 'space-between',
             gap: moderateScale(12),
         },
-
         optionButton: {
             flex: 1,
             padding: moderateScale(12),
@@ -178,28 +253,19 @@ const useRTLStyles = (isRTL: boolean) => {
             borderWidth: 1,
             borderColor: colors.inputBorder,
         },
-
         optionButtonActive: {
             backgroundColor: colors.text,
             borderColor: colors.text,
         },
-
         optionText: {
             fontSize: moderateScale(16),
             fontFamily: fontFamily.medium,
             color: colors.text,
         },
-
         optionTextActive: {
             color: colors.background,
-        },
-
-        logoutText: {
-            fontSize: moderateScale(16),
-            fontFamily: fontFamily.medium,
-            color: colors.text,
         },
     });
 };
 
-export default HeaderComp;
+export default HomeHeaderComp;

@@ -9,8 +9,8 @@ export const commonColors = {
     glassBorder: 'rgba(255, 255, 255, 0.3)',
 
     // Tabs Gradient
-    tabPrimary: '#401E59',
-    tabSecondary: '#66308F',
+    tabPrimary: '#331847',
+    tabSecondary: '#6b3297',
     tabActive: "#674680",
 
     // Status Colors
@@ -39,7 +39,7 @@ export const commonColors = {
     transparent: 'transparent',
 } as const;
 
-const lightColors = {
+const appColors = {
     // Base
     background: commonColors.white,
     surface: commonColors.white,
@@ -68,48 +68,34 @@ const lightColors = {
     tabActive: commonColors.tabActive
 } as const;
 
-const darkColors = {
+export const Colors = {
     // Base
-    background: commonColors.gray700,
-    surface: commonColors.gray600,
-    text: commonColors.white,
-    textSecondary: commonColors.gray300,
-    statusBar: 'light-content',
+    background: commonColors.white,
+    surface: commonColors.white,
+    text: commonColors.black,
+    textSecondary: commonColors.gray500,
 
     // Components
-    inputBackground: commonColors.gray600,
-    inputBorder: commonColors.gray500,
-    inputPlaceholder: commonColors.blackOpacity60,
+    inputBackground: commonColors.white,
+    inputBorder: commonColors.gray100,
+    inputPlaceholder: commonColors.whiteOpacity60,
+    inputText: commonColors.black,
+    statusBar: 'dark-content' as const,
 
     // Buttons
     buttonPrimary: commonColors.primary,
     buttonSecondary: commonColors.secondary,
-    buttonDisabled: commonColors.gray500,
+    buttonDisabled: commonColors.gray200,
 
     // Icons
-    iconPrimary: commonColors.gray300,
-    iconSecondary: commonColors.gray400,
+    iconPrimary: commonColors.gray500,
+    iconSecondary: commonColors.gray300,
 
     //Tabs
     tabPrimary: commonColors.tabPrimary,
     tabSecondary: commonColors.tabSecondary,
     tabActive: commonColors.tabActive
-
 } as const;
 
-export const Colors = {
-    light: lightColors,
-    dark: darkColors,
-} as const;
-
-// Type for theme colors
-export type ThemeColors = typeof lightColors;
-
-// Type for common colors
-export type CommonColors = typeof commonColors;
-
-// Type for theme names
-export type ThemeType = keyof typeof Colors;
-
-// Helper to get all available colors
-export type AppColors = ThemeColors & CommonColors;
+// Type for colors
+export type AppColors = typeof Colors & typeof commonColors;

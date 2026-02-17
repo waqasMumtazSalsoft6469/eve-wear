@@ -8,6 +8,8 @@ import { View, ViewStyle } from 'react-native';
 import { SvgProps } from 'react-native-svg';
 
 import Back from '@/assets/icons/back.svg';
+import Menu from '@/assets/icons/menu.svg';
+import Notification from '@/assets/icons/notification.svg';
 import Skip from '@/assets/icons/skip.svg';
 import TabAi from '@/assets/icons/tab-ai.svg';
 import TabBag from '@/assets/icons/tab-bag.svg';
@@ -17,6 +19,8 @@ import TabPlus from '@/assets/icons/tab-plus.svg';
 
 export type IconName =
   | 'back'
+  | 'menu'
+  | 'notification'
   | 'skip'
   | 'tabAi'
   | 'tabBag'
@@ -28,6 +32,8 @@ type IconComponent = React.FC<SvgProps>;
 
 const iconMap: Record<IconName, IconComponent> = {
   back: Back,
+  menu: Menu,
+  notification: Notification,
   skip: Skip,
   tabAi: TabAi,
   tabBag: TabBag,

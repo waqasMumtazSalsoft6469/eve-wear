@@ -6,29 +6,27 @@ import AuthStack from './AuthStack';
 import { MainStack } from './MainStack';
 import { useSelector } from 'react-redux';
 import { RootState } from '@/redux/store';
-import { useTheme } from '@/context/ThemeContext';
 
 import routes from '@/constants/routes';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
 export const Routes = () => {
-    const { theme } = useTheme();
     const { isFirstTime } = useSelector((state: RootState) => state.auth);
 
-    // Custom theme to prevent white flicker during navigation
+    // Static theme since dark mode is removed
     const MyTheme = {
-        ...(theme === 'dark' ? DarkTheme : DefaultTheme),
+        ...DefaultTheme,
         colors: {
-            ...(theme === 'dark' ? DarkTheme.colors : DefaultTheme.colors),
-            background: '#000000', // Set background to black to match WrapperContainer and prevent flicker
+            ...DefaultTheme.colors,
+            background: '#FFFFFF', // Set background to white to match our main background color
         },
     };
 
     return (
         <NavigationContainer theme={MyTheme}>
-            <Stack.Navigator screenOptions={{ headerShown: false, contentStyle: { backgroundColor: '#000' } }} id={undefined}>
-                {isFirstTime ? (
+            <Stack.Navigator screenOptions={{ headerShown: false, contentStyle: { backgroundColor: "#FFFFFF" } }} id={undefined}>
+                {false ? (
                     <Stack.Screen name={routes.navigator.main} component={MainStack} />
                 ) : (
                     <Stack.Screen name={routes.navigator.auth} component={AuthStack} />

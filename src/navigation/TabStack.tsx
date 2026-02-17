@@ -10,8 +10,7 @@ import { Colors, commonColors } from '@/styles/colors';
 const Tab = createBottomTabNavigator();
 
 const TabIcon = ({ name, focused }: { name: any, focused: boolean }) => {
-    const { theme } = useTheme();
-    const colors = Colors[theme ?? 'light'];
+    const colors = Colors;
     return <MyIcons name={name} size={moderateScale(14)} stroke={focused ? commonColors.brandPurple : colors.text} />;
 }
 
@@ -22,10 +21,10 @@ export const BottomTabs = () => {
                 headerShown: false,
             }}
             tabBar={(props) => <MyTabBar {...props} />}
-            initialRouteName={routes.main.home}
+            initialRouteName={routes.tab.home}
         >
             <Tab.Screen name={routes.tab.home} component={tabRoutes[routes.tab.home]} />
-            <Tab.Screen name={routes.main.cycleOverview} component={tabRoutes[routes.main.cycleOverview]} />
+            <Tab.Screen name={routes.tab.cycleOverview} component={tabRoutes[routes.tab.cycleOverview]} />
             <Tab.Screen name={routes.tab.chatAi} component={tabRoutes[routes.tab.chatAi]} />
             <Tab.Screen name={routes.tab.shop} component={tabRoutes[routes.tab.shop]} />
             <Tab.Screen name={routes.tab.categories} component={tabRoutes[routes.tab.categories]} />

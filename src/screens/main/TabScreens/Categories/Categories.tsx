@@ -9,8 +9,7 @@ import useRTLStyles from './styles';
 
 const Categories: React.FC = () => {
     const isRTL = useIsRTL();
-    const { theme } = useTheme();
-    const styles = useRTLStyles(isRTL, theme);
+    const styles = useRTLStyles(isRTL);
 
     return (
         <WrapperContainer style={styles.container}>

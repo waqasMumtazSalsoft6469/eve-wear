@@ -20,14 +20,13 @@ export const MainStack = () => {
       <Stack.Screen
         name={routes.navigator.tab as any}
         component={BottomTabs}
-        options={{ animation: 'none' }}
+        options={{ animation: 'none', }}
       />
 
       <Stack.Screen
         name={routes.main.settings}
         component={mainRoutes[routes.main.settings]}
       />
-      <Stack.Screen name={routes.main.cycleOverview} component={mainRoutes[routes.main.cycleOverview]} />
     </Stack.Navigator>
   );
 };

@@ -24,10 +24,9 @@ import { loginAction } from '@/redux/actions/auth';
 
 const Login = () => {
     const isRTL = useIsRTL();
-    const { theme } = useTheme();
     const { t } = useTranslation();
     const navigation = useNavigation<NativeStackNavigationProp<AuthStackParamList>>();
-    const styles = useRTLStyles(isRTL, theme ?? 'light');
+    const styles = useRTLStyles(isRTL);
 
     const [rememberMe, setRememberMe] = useState(false);
 

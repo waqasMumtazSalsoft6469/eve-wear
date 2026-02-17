@@ -1,10 +1,10 @@
-import { Colors, commonColors, ThemeType } from '@/styles/colors';
+import { Colors, commonColors } from '@/styles/colors';
 import fontFamily from '@/styles/fontFamily';
 import { height, moderateScale, width } from '@/styles/scaling';
 import { StyleSheet } from 'react-native';
 
-const useRTLStyles = (isRTL: boolean, theme: ThemeType) => {
-    const colors = Colors[theme];
+const useRTLStyles = (isRTL: boolean) => {
+    const colors = Colors;
 
     return StyleSheet.create({
         container: {

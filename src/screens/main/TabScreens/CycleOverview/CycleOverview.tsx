@@ -9,14 +9,13 @@ import useRTLStyles from './styles';
 
 const CycleOverview: React.FC = () => {
     const isRTL = useIsRTL();
-    const { theme } = useTheme();
-    const styles = useRTLStyles(isRTL, theme);
+    const styles = useRTLStyles(isRTL);
 
     return (
         <WrapperContainer style={styles.container}>
             <HeaderComp title="CycleOverview" />
             <View style={styles.content}>
-                <TextComp text="Welcome to CycleOverview" />
+                <TextComp text="Welcome to CycleOverview" style={{ color: 'red' }} />
             </View>
         </WrapperContainer>
     );

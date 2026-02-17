@@ -1,10 +1,10 @@
-import { commonColors, ThemeType } from '@/styles/colors';
+import { commonColors } from '@/styles/colors';
 import fontFamily from '@/styles/fontFamily';
 import { height, moderateScale, width } from '@/styles/scaling';
 import { useMemo } from 'react';
 import { StyleSheet } from 'react-native';
 
-const useRTLStyles = (isRTL: boolean, theme: ThemeType) => {
+const useRTLStyles = (isRTL: boolean) => {
     return useMemo(() => StyleSheet.create({
         container: {
             flex: 1,
@@ -101,7 +101,7 @@ const useRTLStyles = (isRTL: boolean, theme: ThemeType) => {
             color: commonColors.brandSalmon,
             marginStart: moderateScale(4),
         },
-    }), [isRTL, theme]);
+    }), [isRTL]);
 };
 
 export default useRTLStyles;

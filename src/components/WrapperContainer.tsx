@@ -1,5 +1,3 @@
-import { useTheme } from '@/context/ThemeContext';
-import { Colors } from '@/styles/colors';
 import { useFocusEffect } from '@react-navigation/native';
 import React, { useCallback } from 'react';
 import { StatusBar, StyleSheet, ViewStyle } from 'react-native';
@@ -16,9 +14,6 @@ const WrapperContainer: React.FC<WrapperContainerProps> = ({
     style,
     ...safeAreaProps
 }) => {
-    const { theme } = useTheme();
-    const colors = Colors[theme ?? 'light'];
-
     // Animation shared value for borderRadius
     const borderRadius = useSharedValue(0);
 
@@ -46,7 +41,7 @@ const WrapperContainer: React.FC<WrapperContainerProps> = ({
 
     return (
         <SafeAreaView
-            style={[styles.container, style, { backgroundColor: "#000" }]}
+            style={[{ backgroundColor: "#000" }, styles.container, style]}
             {...safeAreaProps}
         >
             <StatusBar barStyle={"light-content"} backgroundColor={"#000"} />
