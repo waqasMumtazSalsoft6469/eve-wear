@@ -24,6 +24,7 @@ import useIsRTL from '@/hooks/useIsRTL';
 import { AuthStackParamList } from '@/navigation/types';
 
 import useRTLStyles from './styles';
+import routes from '@/constants/routes';
 
 const Register = () => {
     const isRTL = useIsRTL();
@@ -33,13 +34,11 @@ const Register = () => {
     const styles = useRTLStyles(isRTL, theme ?? 'light');
 
     const validationSchema = Yup.object().shape({
-        name: Yup.string()
-            .required(t('REQUIRED')),
+
         email: Yup.string()
             .email(t('INVALID_EMAIL'))
             .required(t('REQUIRED')),
-        phone: Yup.string()
-            .required(t('REQUIRED')),
+
         password: Yup.string()
             .min(6, t('PASSWORD_TOO_SHORT'))
             .required(t('REQUIRED')),
@@ -48,10 +47,17 @@ const Register = () => {
             .required(t('REQUIRED')),
     });
 
-    const handleSignup = (values: any) => {
+    interface SignupValues {
+        name?: string;
+        email: string;
+        phone?: string;
+        password?: string;
+        confirmPassword?: string;
+    }
+
+    const handleSignup = (values: SignupValues) => {
         console.log('Signup values:', values);
-        // Add signup logic here
-        navigation.navigate('OTPVerification', { phoneNumber: values.phone });
+        navigation.navigate(routes.auth.login)
     };
 
     const handleLogin = () => {
@@ -102,18 +108,7 @@ const Register = () => {
                                     touched,
                                 }) => (
                                     <View>
-                                        <TextInputComp
-                                            label="NAME_LABEL"
-                                            required
-                                            underline
-                                            placeholder="Your name"
-                                            onChangeText={handleChange('name')}
-                                            onBlur={handleBlur('name')}
-                                            value={values.name}
-                                            error={!!errors.name}
-                                            touched={touched.name}
-                                            containerStyle={styles.inputContainer}
-                                        />
+
 
                                         <TextInputComp
                                             label="EMAIL_LABEL"
@@ -127,20 +122,6 @@ const Register = () => {
                                             touched={touched.email}
                                             keyboardType="email-address"
                                             autoCapitalize="none"
-                                            containerStyle={styles.inputContainer}
-                                        />
-
-                                        <TextInputComp
-                                            label="PHONE_LABEL"
-                                            required
-                                            underline
-                                            placeholder="Your phone number"
-                                            onChangeText={handleChange('phone')}
-                                            onBlur={handleBlur('phone')}
-                                            value={values.phone}
-                                            error={!!errors.phone}
-                                            touched={touched.phone}
-                                            keyboardType="phone-pad"
                                             containerStyle={styles.inputContainer}
                                         />
 

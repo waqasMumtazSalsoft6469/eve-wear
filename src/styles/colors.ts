@@ -8,6 +8,11 @@ export const commonColors = {
     glassSurface: 'rgba(255, 255, 255, 0.2)',
     glassBorder: 'rgba(255, 255, 255, 0.3)',
 
+    // Tabs Gradient
+    tabPrimary: '#401E59',
+    tabSecondary: '#66308F',
+    tabActive: "#674680",
+
     // Status Colors
     success: '#00A13A',
     error: '#FF0000',
@@ -56,6 +61,11 @@ const lightColors = {
     // Icons
     iconPrimary: commonColors.gray500,
     iconSecondary: commonColors.gray300,
+
+    //Tabs
+    tabPrimary: commonColors.tabPrimary,
+    tabSecondary: commonColors.tabSecondary,
+    tabActive: commonColors.tabActive
 } as const;
 
 const darkColors = {
@@ -79,6 +89,12 @@ const darkColors = {
     // Icons
     iconPrimary: commonColors.gray300,
     iconSecondary: commonColors.gray400,
+
+    //Tabs
+    tabPrimary: commonColors.tabPrimary,
+    tabSecondary: commonColors.tabSecondary,
+    tabActive: commonColors.tabActive
+
 } as const;
 
 export const Colors = {

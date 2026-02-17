@@ -61,7 +61,7 @@ const Home = () => {
     return (
         <WrapperContainer style={styles.container} edges={['top']}>
             <HeaderComp showBack={false} title='CHARACTERS' />
-            <FlatList
+            {/* <FlatList
                 data={characters}
                 renderItem={renderCharacterCard}
                 keyExtractor={item => item.id.toString()}
@@ -78,7 +78,7 @@ const Home = () => {
                     />
                 }
                 columnWrapperStyle={styles.columnWrapper}
-            />
+            /> */}
         </WrapperContainer>
     );
 };

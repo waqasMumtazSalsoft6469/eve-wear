@@ -1,33 +1,73 @@
+/**
+ * ⚠️ AUTO-GENERATED FILE
+ * DO NOT EDIT MANUALLY By Abdullah Ansari
+ */
 
+import React from 'react';
+import { View, ViewStyle } from 'react-native';
+import { SvgProps } from 'react-native-svg';
 
-const iconMap = {
+import Back from '@/assets/icons/back.svg';
+import Skip from '@/assets/icons/skip.svg';
+import TabAi from '@/assets/icons/tab-ai.svg';
+import TabBag from '@/assets/icons/tab-bag.svg';
+import TabGallery from '@/assets/icons/tab-gallery.svg';
+import TabHome from '@/assets/icons/tab-home.svg';
+import TabPlus from '@/assets/icons/tab-plus.svg';
 
+export type IconName =
+  | 'back'
+  | 'skip'
+  | 'tabAi'
+  | 'tabBag'
+  | 'tabGallery'
+  | 'tabHome'
+  | 'tabPlus';
+
+type IconComponent = React.FC<SvgProps>;
+
+const iconMap: Record<IconName, IconComponent> = {
+  back: Back,
+  skip: Skip,
+  tabAi: TabAi,
+  tabBag: TabBag,
+  tabGallery: TabGallery,
+  tabHome: TabHome,
+  tabPlus: TabPlus,
 };
 
-const MyIcons = ({
-    name,
-    size = 20,
-    stroke,
-    fill = 'none',
-    style,
+export interface MyIconsProps {
+  name: IconName;
+  size?: number;
+  stroke?: string;
+  fill?: string;
+  style?: ViewStyle;
+}
+
+const MyIcons: React.FC<MyIconsProps> = ({
+  name,
+  size = 20,
+  stroke,
+  fill = 'none',
+  style,
 }) => {
-    const IconComponent = iconMap[name];
+  const IconComponent = iconMap[name];
 
-    if (!IconComponent) {
-        console.warn(`[MyIcons] Icon "${name}" not found`);
-        return null;
-    }
+  if (!IconComponent) {
+    console.warn(`[MyIcons] Icon "${name}" not found`);
+    return null;
+  }
 
-    return (
-        <View style={style}>
-            <IconComponent
-                width={size}
-                height={size}
-                stroke={stroke || undefined}
-                fill={fill}
-            />
-        </View>
-    );
+  return (
+    <View style={style}>
+      <IconComponent
+        width={size}
+        height={size}
+        stroke={stroke || undefined}
+        fill={fill}
+      />
+    </View>
+  );
 };
 
 export { iconMap };

@@ -1,11 +1,14 @@
-import { commonColors, ThemeType } from '@/styles/colors';
+import { Colors, commonColors, ThemeType } from '@/styles/colors';
 import fontFamily from '@/styles/fontFamily';
 import { height, moderateScale, width } from '@/styles/scaling';
-import { useMemo } from 'react';
 import { StyleSheet } from 'react-native';
+import { useMemo } from 'react';
 
 const useRTLStyles = (isRTL: boolean, theme: ThemeType) => {
+    const colors = Colors[theme];
+
     return useMemo(() => StyleSheet.create({
+
         container: {
             flex: 1,
         },
@@ -16,14 +19,8 @@ const useRTLStyles = (isRTL: boolean, theme: ThemeType) => {
             justifyContent: 'center',
             alignItems: 'center',
         },
-        scrollContainer: {
-            flexGrow: 1,
-            justifyContent: 'center',
-            alignItems: 'center',
-            paddingVertical: moderateScale(40),
-        },
         card: {
-            width: width * 0.9,
+            width: width * 0.85,
             padding: moderateScale(24),
             borderRadius: moderateScale(20),
             shadowColor: '#515151ff',
@@ -32,6 +29,13 @@ const useRTLStyles = (isRTL: boolean, theme: ThemeType) => {
             shadowRadius: 10,
             elevation: 5,
             overflow: 'hidden',
+        },
+        content: {
+            flex: 1,
+            width: '100%',
+        },
+        titleSection: {
+            marginBottom: moderateScale(30),
         },
         title: {
             fontSize: moderateScale(32),
@@ -45,46 +49,38 @@ const useRTLStyles = (isRTL: boolean, theme: ThemeType) => {
             fontFamily: fontFamily.medium,
             color: commonColors.white,
             textAlign: isRTL ? 'right' : 'left',
-            marginBottom: moderateScale(30),
             opacity: 0.9,
+            marginBottom: moderateScale(10),
         },
         inputContainer: {
             marginBottom: moderateScale(20),
         },
-        signupButton: {
+        buttonSection: {
+            marginTop: moderateScale(10),
+        },
+        forgotButton: {
             backgroundColor: commonColors.brandPurple,
             borderColor: commonColors.brandPurple,
             height: moderateScale(55),
             borderRadius: moderateScale(30),
-            marginTop: moderateScale(10),
         },
-        signupButtonText: {
+        forgotButtonText: {
             fontSize: moderateScale(18),
             fontFamily: fontFamily.bold,
         },
-        loginPromptRow: {
-            flexDirection: isRTL ? 'row-reverse' : 'row',
-            justifyContent: 'center',
-            marginTop: moderateScale(25),
-        },
-        alreadyHaveAccountText: {
-            fontSize: moderateScale(14),
-            fontFamily: fontFamily.regular,
-            color: commonColors.white,
-        },
-        loginText: {
-            fontSize: moderateScale(14),
-            fontFamily: fontFamily.bold,
-            color: commonColors.brandSalmon,
-            marginStart: moderateScale(4),
-        },
-        registerPromptRow: {
-            flexDirection: isRTL ? 'row-reverse' : 'row',
-            marginTop: moderateScale(25),
+        backToLoginRow: {
+            flexDirection: 'row',
             justifyContent: 'center',
             alignItems: 'center',
-        }
-    }), [isRTL, theme]);
+            marginTop: moderateScale(25),
+        },
+        backToLoginText: {
+            fontSize: moderateScale(14),
+            fontFamily: fontFamily.medium,
+            color: commonColors.white,
+            marginStart: moderateScale(8),
+        },
+    }), [isRTL, theme]); // Dependencies array includes all variables used in the styles
 };
 
-export default useRTLStyles;
+export default useRTLStyles; 

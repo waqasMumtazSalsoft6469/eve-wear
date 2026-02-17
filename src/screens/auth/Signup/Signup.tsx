@@ -1,4 +1,3 @@
-import { BackArrowIcon, EyeIcon } from '@/assets/icons';
 import ButtonComp from '@/components/ButtonComp';
 import TextComp from '@/components/TextComp';
 import TextInputComp from '@/components/TextInputComp';
@@ -15,9 +14,11 @@ import {
     View
 } from 'react-native';
 import useRTLStyles from './styles';
+import { moderateScale } from '@/styles/scaling';
 import useIsRTL from '@/hooks/useIsRTL';
 import { useTheme } from '@/context/ThemeContext';
 import HeaderComp from '@/components/HeaderComp';
+import MyIcons from '@/components/MyIcons';
 
 type SignupScreenNavigationProp = NativeStackNavigationProp<AuthStackParamList>;
 
@@ -109,7 +110,7 @@ const Signup = () => {
                                 value={formData.password}
                                 onChangeText={(text) => handleChange('password', text)}
                                 secureTextEntry={!showPassword}
-                                rightIcon={<EyeIcon />}
+                                rightIcon={<MyIcons name="back" size={moderateScale(14)} stroke="white" />}
                                 onRightIconPress={() => setShowPassword(!showPassword)}
 
                             />
@@ -122,7 +123,7 @@ const Signup = () => {
                                 value={formData.confirmPassword}
                                 onChangeText={(text) => handleChange('confirmPassword', text)}
                                 secureTextEntry={!showConfirmPassword}
-                                rightIcon={<EyeIcon />}
+                                rightIcon={<MyIcons name="back" size={moderateScale(14)} stroke="white" />}
                                 onRightIconPress={() => setShowConfirmPassword(!showConfirmPassword)}
                             />
                         </View>

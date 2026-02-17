@@ -3,7 +3,7 @@ const routes = {
   auth: {
     login: 'Login',
     signup: 'Signup',
-    otp: 'OTPVerification',
+    forgot: 'Forgot',
     onboarding: 'Onboarding',
     register: 'Register',
   },
@@ -12,6 +12,20 @@ const routes = {
     profile: 'Profile',
     settings: 'Settings',
     userProfile: 'UserProfile',
+    cycleOverview: 'CycleOverview',
+    chatAi: 'ChatAi',
+    shop: 'Shop',
+    categories: 'Categories',
+  },
+  tab: {
+    home: 'Home',
+    profile: 'Profile',
+    settings: 'Settings',
+    userProfile: 'UserProfile',
+    cycleOverview: 'CycleOverview',
+    chatAi: 'ChatAi',
+    shop: 'Shop',
+    categories: 'Categories',
   },
   navigator: {
     auth: 'Auth',
@@ -22,16 +36,27 @@ const routes = {
 export const authRoutes = {
   [routes.auth.login]: Screens.Login,
   [routes.auth.signup]: Screens.Signup,
-  [routes.auth.otp]: Screens.OTPVerification,
+  [routes.auth.forgot]: Screens.Forgot,
   [routes.auth.onboarding]: Screens.Onboard,
   [routes.auth.register]: Screens.Register,
 };
 export const tabRoutes = {
-  [routes.main.home]: Screens.Home,
-  [routes.main.profile]: Screens.Profile,
-  [routes.main.settings]: Screens.Settings,
+  [routes.tab.cycleOverview]: Screens.CycleOverview,
+  [routes.tab.chatAi]: Screens.ChatAi,
+  [routes.tab.shop]: Screens.Shop,
+  [routes.tab.categories]: Screens.Categories,
+  [routes.tab.home]: Screens.Home,
+  [routes.tab.profile]: Screens.Profile,
+  [routes.tab.settings]: Screens.Settings,
 };
 export const mainRoutes = {
   // Add other main stack screens here that are not in tabs,
-}
+  [routes.main.cycleOverview]: Screens.CycleOverview,
+  [routes.main.settings]: Screens.Settings,
+  [routes.main.profile]: Screens.Profile,
+  [routes.main.home]: Screens.Home,
+  [routes.main.chatAi]: Screens.ChatAi,
+  [routes.main.shop]: Screens.Shop,
+  [routes.main.categories]: Screens.Categories,
+};
 export default routes;

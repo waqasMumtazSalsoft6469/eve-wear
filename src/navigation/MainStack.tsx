@@ -8,6 +8,7 @@ const Stack = createNativeStackNavigator<MainStackParamList>();
 
 const NavigationOptions: NativeStackNavigationOptions = {
   headerShown: false,
+  contentStyle: { backgroundColor: '#000' },
 };
 
 export const MainStack = () => {
@@ -22,11 +23,12 @@ export const MainStack = () => {
         options={{ animation: 'none' }}
       />
 
-      {/* Tab stack screens mapped to stack for deep link support if needed */}
       <Stack.Screen
         name={routes.main.settings}
-        component={tabRoutes[routes.main.settings]}
-      />          <Stack.Screen name={routes.main.userProfile} component={mainRoutes[routes.main.userProfile]} /></Stack.Navigator>
+        component={mainRoutes[routes.main.settings]}
+      />
+      <Stack.Screen name={routes.main.cycleOverview} component={mainRoutes[routes.main.cycleOverview]} />
+    </Stack.Navigator>
   );
 };
 

@@ -60,13 +60,6 @@ const App = () => {
   }, []);
 
 
-  /**
-   * Main app structure with providers in the following order:
-   * 1. SafeAreaProvider - Handles safe areas for notched devices
-   * 2. Redux Provider - Provides global state management
-   * 3. ThemeProvider - Manages light/dark theme
-   * 4. Routes - Navigation container and routing structure
-   */
   return (
     <SafeAreaProvider>
       <Provider store={store}>

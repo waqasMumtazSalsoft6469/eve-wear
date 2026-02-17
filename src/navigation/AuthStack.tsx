@@ -7,11 +7,11 @@ const Stack = createNativeStackNavigator<AuthStackParamList>();
 
 const AuthStack = () => {
   return (
-    <Stack.Navigator screenOptions={{ headerShown: false }} id={undefined}>
+    <Stack.Navigator screenOptions={{ headerShown: false, contentStyle: { backgroundColor: '#000' } }} id={undefined}>
+      <Stack.Screen name={routes.auth.onboarding} component={authRoutes[routes.auth.onboarding]} />
       <Stack.Screen name={routes.auth.login} component={authRoutes[routes.auth.login]} />
       <Stack.Screen name={routes.auth.signup} component={authRoutes[routes.auth.signup]} />
-      <Stack.Screen name={routes.auth.otp} component={authRoutes[routes.auth.otp]} />
-      <Stack.Screen name={routes.auth.onboarding} component={authRoutes[routes.auth.onboarding]} />
+      <Stack.Screen name={routes.auth.forgot} component={authRoutes[routes.auth.forgot]} />
       <Stack.Screen name={routes.auth.register} component={authRoutes[routes.auth.register]} />
     </Stack.Navigator>
   );

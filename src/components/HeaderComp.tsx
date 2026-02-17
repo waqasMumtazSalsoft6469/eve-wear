@@ -1,4 +1,3 @@
-import { BackArrowIcon, SettingsIcon } from '@/assets/icons';
 import TextComp from '@/components/TextComp';
 import { useTheme } from '@/context/ThemeContext';
 import useIsRTL from '@/hooks/useIsRTL';
@@ -15,6 +14,7 @@ import { LanguageInterface } from '@/redux/reducers/settings';
 import { secureStorage } from '@/utils/secureStorage';
 import { clearDataAction } from '@/redux/actions/auth';
 import ButtonComp from './ButtonComp';
+import MyIcons from './MyIcons';
 interface HeaderCompProps {
     title?: string;
     showBack?: boolean;
@@ -71,7 +71,7 @@ const HeaderComp: React.FC<HeaderCompProps> = ({
                     onPress={handleBackPress}
                     hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
                 >
-                    <BackArrowIcon />
+                    <MyIcons name="back" size={moderateScale(14)} stroke="white" />
                 </TouchableOpacity>
                 : <View />}
 
@@ -83,7 +83,7 @@ const HeaderComp: React.FC<HeaderCompProps> = ({
             )}
 
             <Pressable onPress={() => setIsModalVisible(true)}>
-                <SettingsIcon fill={colors.text} width={20} height={20} />
+                <MyIcons name="back" size={moderateScale(14)} stroke="white" />
             </Pressable>
 
             <ModalComp isVisible={isModalVisible} onClose={closeModal}>

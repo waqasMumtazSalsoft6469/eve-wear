@@ -7,11 +7,8 @@ export type AuthStackParamList = {
   Login: undefined;
   Signup: undefined;
   Onboarding: undefined;
-  OTPVerification: {
-    phoneNumber: string;
-  };
-  Abdullah: undefined;
   Register: undefined;
+  Forgot: undefined;
 };
 
 export type MainStackParamList = {
@@ -20,6 +17,9 @@ export type MainStackParamList = {
   Profile: undefined;
   Settings: undefined;
   UserProfile: undefined;
-
+  CycleOverview: undefined;
+  ChatAi: undefined;
+  Shop: undefined;
+  Categories: undefined;
 };
 

@@ -18,6 +18,9 @@ import { AuthStackParamList } from '@/navigation/types';
 import useRTLStyles from './styles';
 
 import { BlurView } from '@sbaiahmed1/react-native-blur';
+import routes from '@/constants/routes';
+
+import { loginAction } from '@/redux/actions/auth';
 
 const Login = () => {
     const isRTL = useIsRTL();
@@ -38,16 +41,26 @@ const Login = () => {
 
     const handleLogin = (values: any) => {
         console.log('Login values:', values);
-        // Add login logic here
-        navigation.navigate('Main' as any);
+        const { email } = values;
+
+        // Simulating login with static data
+        const userData = {
+            id: 1,
+            email: email,
+            username: email.split('@')[0],
+            firstName: "Static",
+            lastName: "User",
+            token: "static_token_12345"
+        };
+
+        loginAction(userData);
     };
 
     const handleRegister = () => {
         navigation.navigate('Register' as any);
-    };
-
+    }
     const handleForgotPassword = () => {
-        // Navigate to forgot password screen
+        navigation.navigate('Forgot');
     };
 
     return (
