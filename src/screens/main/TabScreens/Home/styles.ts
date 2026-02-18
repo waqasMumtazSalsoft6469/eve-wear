@@ -17,17 +17,25 @@ const styles = StyleSheet.create({
     calendarSection: {
         paddingHorizontal: moderateScale(16),
         marginTop: moderateScale(10),
-
     },
     calendarHeader: {
         flexDirection: 'row',
         alignItems: 'center',
         marginBottom: moderateScale(10),
     },
+    calendarStripLeft: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        backgroundColor: 'rgba(123, 55, 128, 0.6)',
+        borderRadius: moderateScale(50),
+        padding: moderateScale(10),
+        gap: moderateScale(8),
+
+    },
     monthText: {
         fontSize: moderateScale(16),
         fontFamily: fontFamily.medium,
-        color: Colors.text,
+        color: Colors.white,
         marginLeft: moderateScale(8),
     },
     calendarStrip: {
@@ -37,29 +45,31 @@ const styles = StyleSheet.create({
     },
     dateItem: {
         alignItems: 'center',
-        paddingVertical: moderateScale(8),
-        paddingHorizontal: moderateScale(12),
-        borderRadius: moderateScale(20),
+        paddingVertical: moderateScale(6),
+        paddingHorizontal: moderateScale(14),
+        borderRadius: moderateScale(30),
     },
     activeDateItem: {
-        backgroundColor: 'rgba(255, 255, 255, 0.2)',
+        backgroundColor: Colors.orange,
+        borderRadius: moderateScale(30),
     },
     dayName: {
         fontSize: moderateScale(12),
         fontFamily: fontFamily.regular,
-        color: Colors.text,
+        color: Colors.white,
         opacity: 0.8,
     },
     dateNumber: {
         fontSize: moderateScale(16),
         fontFamily: fontFamily.bold,
-        color: Colors.text,
+        color: Colors.white,
         marginTop: moderateScale(4),
     },
     cycleSection: {
         alignItems: 'center',
         zIndex: 1,
-        backgroundColor: Colors.background
+        backgroundColor: Colors.background,
+        marginTop: moderateScale(20),
     },
     cycleCircle: {
         width: moderateScale(220),

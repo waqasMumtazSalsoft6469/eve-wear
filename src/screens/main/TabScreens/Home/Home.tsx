@@ -9,6 +9,7 @@ import { Image, ScrollView, StyleSheet, TouchableOpacity, View } from 'react-nat
 import LinearGradient from 'react-native-linear-gradient';
 import Svg, { Circle } from 'react-native-svg';
 import styles from './styles';
+import { localImages } from '@/assets/images';
 
 const Home: React.FC = () => {
 
@@ -25,12 +26,12 @@ const Home: React.FC = () => {
         {
             title: 'Take Vitamin D',
             time: '08:00 AM',
-            image: 'https://i.pravatar.cc/100?u=vitamind',
+            image: localImages.product1,
         },
         {
             title: 'Eat Healthy Diet',
             time: '12:00 PM',
-            image: 'https://i.pravatar.cc/100?u=diet',
+            image: localImages.product2,
         },
     ];
 
@@ -48,22 +49,25 @@ const Home: React.FC = () => {
 
                     <View style={styles.calendarSection}>
                         <View style={styles.calendarHeader}>
-                            <MyIcons name="back" size={moderateScale(16)} stroke={Colors.text} />
+                            <MyIcons name="back" size={moderateScale(16)} />
                             <TextComp text="Jan 2026" style={styles.monthText} />
                         </View>
 
                         <View style={styles.calendarStrip}>
-                            {dates.map((item, index) => (
-                                <TouchableOpacity
-                                    key={index}
-                                    style={[styles.dateItem, item.active && styles.activeDateItem]}
-                                >
-                                    <TextComp text={item.day} style={styles.dayName} />
-                                    <TextComp text={item.date.toString()} style={styles.dateNumber} />
-                                </TouchableOpacity>
-                            ))}
+                            <View style={styles.calendarStripLeft}>
+
+                                {dates.map((item, index) => (
+                                    <TouchableOpacity
+                                        key={index}
+                                        style={[styles.dateItem, item.active && styles.activeDateItem]}
+                                    >
+                                        <TextComp text={item.day} style={styles.dayName} />
+                                        <TextComp text={item.date.toString()} style={styles.dateNumber} />
+                                    </TouchableOpacity>
+                                ))}
+                            </View>
                             <TouchableOpacity>
-                                <MyIcons name="back" size={moderateScale(20)} stroke={Colors.text} style={{ transform: [{ rotate: '180deg' }] }} />
+                                <MyIcons name="back" size={moderateScale(20)} style={{ transform: [{ rotate: '180deg' }] }} />
                             </TouchableOpacity>
                         </View>
                     </View>
@@ -121,7 +125,7 @@ const Home: React.FC = () => {
                             <TextComp text="Log Period" style={styles.logText} />
                         </TouchableOpacity>
                     </View>
-                    <MyIcons name="tabBag" size={moderateScale(32)} fill="#FF4B4B" />
+                    <MyIcons name="bloodDrop" size={moderateScale(32)} />
                 </View>
 
                 <View style={styles.remindersSection}>
@@ -137,7 +141,7 @@ const Home: React.FC = () => {
                             <View key={index} style={styles.reminderCard}>
                                 <View style={styles.reminderImageContainer}>
                                     <Image
-                                        source={{ uri: item.image }}
+                                        source={item.image as any}
                                         style={{ width: '100%', height: '100%', borderRadius: moderateScale(12) }}
                                     />
                                 </View>

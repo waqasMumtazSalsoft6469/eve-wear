@@ -7,6 +7,7 @@ import { moderateScale } from '@/styles/scaling';
 import React, { useState } from 'react';
 import { ScrollView, View } from 'react-native';
 import styles from './styles';
+import { localImages } from '@/assets/images';
 
 const Categories: React.FC = () => {
 
@@ -16,33 +17,28 @@ const Categories: React.FC = () => {
         {
             id: 1,
             title: "Supplements",
-            image: "https://example.com/supplements.png",
+            image: localImages.product1,
             color: Colors.brandSalmon,
         },
         {
             id: 2,
             title: "Wellness & PH Balance",
-            image: "https://example.com/wellness.png",
+            image: localImages.product2,
             color: Colors.brandSalmon,
         },
         {
             id: 3,
             title: "Vitamins",
-            image: "https://example.com/vitamins.png",
+            image: localImages.product3,
             color: Colors.brandSalmon,
         },
         {
             id: 4,
             title: "Fitness Wear",
-            image: "https://example.com/fitness.png",
+            image: localImages.product4,
             color: Colors.brandSalmon,
         },
-        {
-            id: 5,
-            title: "Sanitary Pads",
-            image: "https://example.com/pads.png",
-            color: Colors.brandSalmon,
-        },
+
     ];
 
     return (

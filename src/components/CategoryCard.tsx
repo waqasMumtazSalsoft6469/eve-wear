@@ -36,7 +36,7 @@ const CategoryCard: React.FC<CategoryCardProps> = ({
                 {/* Placeholder Image View */}
                 <View style={[styles.placeholderImage, { backgroundColor: Colors.gray50 }]}>
                     {image ? (
-                        <Image source={{ uri: image }} style={styles.categoryImage} resizeMode="contain" />
+                        <Image source={image as any} style={styles.categoryImage} resizeMode="contain" />
                     ) : (
                         <TextComp text="IMG" style={{ color: Colors.brandPurple, opacity: 0.3 }} />
                     )}
@@ -84,7 +84,7 @@ const styles = StyleSheet.create({
     categoryLabelText: {
         color: Colors.white,
         fontSize: moderateScale(14),
-        fontFamily: fontFamily.medium,
+        fontFamily: fontFamily.bold,
         textAlign: 'center',
     },
 });

@@ -58,6 +58,10 @@ export const Colors = {
 
     // Transparent
     transparent: 'transparent',
+
+    //Text 
+    orange: '#bf6457'
+
 } as const;
 
 export type AppColors = typeof Colors;

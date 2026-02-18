@@ -14,7 +14,13 @@ const routes = {
     chatAi: 'ChatAi',
     shop: 'Shop',
     categories: 'Categories',
-  },
+    myOrders: 'MyOrders',
+    subscription: 'Subscription',
+    mySessions: 'MySessions',
+    contactUs: 'ContactUs',
+    ourCollaboration: 'OurCollaboration',
+    insurance: 'Insurance',
+},
   tab: {
     home: 'Home',
     cycleOverview: 'CycleOverview',
@@ -47,5 +53,11 @@ export const mainRoutes = {
   [routes.main.chatAi]: Screens.ChatAi,
   [routes.main.shop]: Screens.Shop,
   [routes.main.categories]: Screens.Categories,
+  [routes.main.myOrders]: Screens.MyOrders,
+  [routes.main.subscription]: Screens.Subscription,
+  [routes.main.mySessions]: Screens.MySessions,
+  [routes.main.contactUs]: Screens.ContactUs,
+  [routes.main.ourCollaboration]: Screens.OurCollaboration,
+  [routes.main.insurance]: Screens.Insurance,
 };
 export default routes;

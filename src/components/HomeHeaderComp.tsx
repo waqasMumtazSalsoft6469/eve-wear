@@ -1,13 +1,10 @@
 import TextComp from '@/components/TextComp';
-import { useSelector } from '@/redux/hooks';
+import { useDrawerSafe } from '@/context/DrawerContext';
 import { Colors } from '@/styles/colors';
 import fontFamily from '@/styles/fontFamily';
 import { moderateScale } from '@/styles/scaling';
-import React, { useState } from 'react';
+import React from 'react';
 import { Image, StyleSheet, TouchableOpacity, View, I18nManager } from 'react-native';
-import ModalComp from './ModalComp';
-import { clearDataAction } from '@/redux/actions/auth';
-import ButtonComp from './ButtonComp';
 import MyIcons from './MyIcons';
 
 interface HomeHeaderCompProps {
@@ -25,32 +22,17 @@ const HomeHeaderComp: React.FC<HomeHeaderCompProps> = ({
     onNotificationPress,
     customStyle,
 }) => {
-    const [isModalVisible, setIsModalVisible] = useState(false);
-
-    const { isFirstTime } = useSelector(state => state.auth);
-
-    const closeModal = () => {
-        setIsModalVisible(false);
-    }
-
-    const onLogout = () => {
-        closeModal();
-        setTimeout(() => {
-            clearDataAction();
-        }, 400);
-    }
+    const drawer = useDrawerSafe();
 
     return (
-
         <View style={[styles.container, customStyle]}>
-
             <View style={styles.headerContent}>
                 <View style={styles.leftSection}>
                     <TouchableOpacity
                         style={styles.iconCircle}
-                        onPress={() => setIsModalVisible(true)}
+                        onPress={() => drawer?.open()}
                     >
-                        <MyIcons name="menu" size={moderateScale(20)} stroke={Colors.text} />
+                        <MyIcons name="drawerMenu" size={moderateScale(20)} />
                     </TouchableOpacity>
 
                     <View style={styles.textContainer}>
@@ -77,29 +59,11 @@ const HomeHeaderComp: React.FC<HomeHeaderCompProps> = ({
                         style={styles.iconCircle}
                         onPress={onNotificationPress}
                     >
-                        <MyIcons name="notification" size={moderateScale(20)} stroke={Colors.text} />
-                        <View style={styles.notificationDot} />
+                        <MyIcons name="drawerNotificationWhite" size={moderateScale(20)} />
                     </TouchableOpacity>
                 </View>
             </View>
-
-            <ModalComp isVisible={isModalVisible} onClose={closeModal}>
-                <View style={styles.modalContainer}>
-                    <TextComp
-                        text="SETTINGS"
-                        style={styles.modalTitle}
-                    />
-
-                    {isFirstTime ? (
-                        <View style={{ marginTop: moderateScale(16) }}>
-                            <ButtonComp title="LOGOUT" onPress={onLogout} />
-                        </View>
-                    ) : null}
-
-                </View>
-            </ModalComp>
         </View>
-
     );
 };
 
@@ -142,13 +106,14 @@ const styles = StyleSheet.create({
     greetingText: {
         fontSize: moderateScale(22),
         fontFamily: fontFamily.bold,
-        color: Colors.text,
+        color: Colors.white,
     },
     subText: {
         fontSize: moderateScale(13),
         fontFamily: fontFamily.regular,
-        color: Colors.text,
+        color: Colors.white,
         opacity: 0.8,
+        width: '90%'
     },
     profileContainer: {
         padding: moderateScale(2),
@@ -172,18 +137,6 @@ const styles = StyleSheet.create({
         backgroundColor: '#FF3B30',
         borderWidth: 1.5,
         borderColor: Colors.tabPrimary,
-    },
-    modalContainer: {
-        backgroundColor: Colors.background,
-        padding: moderateScale(20),
-        borderTopLeftRadius: moderateScale(24),
-        borderTopRightRadius: moderateScale(24),
-    },
-    modalTitle: {
-        fontSize: moderateScale(24),
-        fontFamily: fontFamily.bold,
-        marginBottom: moderateScale(24),
-        textAlign: 'center',
     },
 });
 

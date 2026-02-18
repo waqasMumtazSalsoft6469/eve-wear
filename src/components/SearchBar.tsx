@@ -10,6 +10,8 @@ interface SearchBarProps extends TextInputProps {
     onChangeText: (text: string) => void;
     placeholder?: string;
     onFilterPress?: () => void;
+    /** When false, only the search input is shown (no filter button). Default true. */
+    showFilterButton?: boolean;
     containerStyle?: ViewStyle;
 }
 
@@ -18,15 +20,14 @@ const SearchBar: React.FC<SearchBarProps> = ({
     onChangeText,
     placeholder = "Search..",
     onFilterPress,
+    showFilterButton = true,
     containerStyle,
     ...props
 }) => {
     return (
         <View style={[styles.searchRow, containerStyle]}>
             <View style={styles.searchContainer}>
-                {/* Search Icon Placeholder */}
-                {/* <View style={{ width: 20, height: 20, borderRadius: 10, borderWidth: 2, borderColor: Colors.gray400 }} /> */}
-                <MyIcons name="search" size={moderateScale(20)} />
+                <MyIcons name="search" size={moderateScale(20)} stroke={Colors.gray400} />
                 <TextInput
                     placeholder={placeholder}
                     placeholderTextColor={Colors.gray400}
@@ -36,12 +37,13 @@ const SearchBar: React.FC<SearchBarProps> = ({
                     {...props}
                 />
             </View>
-            <TouchableOpacity style={styles.filterButton} onPress={onFilterPress}>
-                {/* Filter icon simulation */}
-                <View style={{ width: 16, height: 2, backgroundColor: Colors.white, marginBottom: 4 }} />
-                <View style={{ width: 16, height: 2, backgroundColor: Colors.white, marginBottom: 4 }} />
-                <View style={{ width: 10, height: 2, backgroundColor: Colors.white }} />
-            </TouchableOpacity>
+            {showFilterButton && (
+                <TouchableOpacity style={styles.filterButton} onPress={onFilterPress}>
+                    <View style={{ width: 16, height: 2, backgroundColor: Colors.white, marginBottom: 4 }} />
+                    <View style={{ width: 16, height: 2, backgroundColor: Colors.white, marginBottom: 4 }} />
+                    <View style={{ width: 10, height: 2, backgroundColor: Colors.white }} />
+                </TouchableOpacity>
+            )}
         </View>
     );
 };

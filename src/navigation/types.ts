@@ -21,5 +21,11 @@ export type MainStackParamList = {
   ChatAi: undefined;
   Shop: undefined;
   Categories: undefined;
+  MyOrders: undefined;
+  Subscription: undefined;
+  MySessions: undefined;
+  ContactUs: undefined;
+  OurCollaboration: undefined;
+  Insurance: undefined;
 };
 

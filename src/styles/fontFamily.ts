@@ -1,6 +1,5 @@
 export default {
-    regular: 'Inter-Regular',
-    bold: 'Inter-Bold',
-    medium: 'Inter-Medium',
-    semiBold: 'Inter-SemiBold',
+    regular: 'Lato-Regular',
+    bold: 'Lato-Bold',
+    light: 'Lato-Light',
 };  
