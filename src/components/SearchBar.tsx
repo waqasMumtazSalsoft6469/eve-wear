@@ -3,6 +3,7 @@ import fontFamily from '@/styles/fontFamily';
 import { moderateScale } from '@/styles/scaling';
 import React from 'react';
 import { StyleSheet, TextInput, View, TouchableOpacity, TextInputProps, ViewStyle } from 'react-native';
+import MyIcons from './MyIcons';
 
 interface SearchBarProps extends TextInputProps {
     value: string;
@@ -24,7 +25,8 @@ const SearchBar: React.FC<SearchBarProps> = ({
         <View style={[styles.searchRow, containerStyle]}>
             <View style={styles.searchContainer}>
                 {/* Search Icon Placeholder */}
-                <View style={{ width: 20, height: 20, borderRadius: 10, borderWidth: 2, borderColor: Colors.gray400 }} />
+                {/* <View style={{ width: 20, height: 20, borderRadius: 10, borderWidth: 2, borderColor: Colors.gray400 }} /> */}
+                <MyIcons name="search" size={moderateScale(20)} />
                 <TextInput
                     placeholder={placeholder}
                     placeholderTextColor={Colors.gray400}

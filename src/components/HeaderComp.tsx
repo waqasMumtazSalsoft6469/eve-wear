@@ -10,12 +10,15 @@ import ModalComp from './ModalComp';
 import { clearDataAction } from '@/redux/actions/auth';
 import ButtonComp from './ButtonComp';
 import MyIcons, { IconName } from './MyIcons';
+import { useDrawerSafe } from '@/context/DrawerContext';
 
 interface HeaderCompProps {
     title?: string;
     showBack?: boolean;
     customStyle?: object;
     iconColor?: string;
+    leftIcon?: IconName;
+    onLeftIconPress?: () => void;
     rightIcon?: IconName;
     onRightIconPress?: () => void;
     titleStyle?: object;
@@ -26,11 +29,14 @@ const HeaderComp: React.FC<HeaderCompProps> = ({
     showBack = true,
     customStyle,
     iconColor = Colors.white,
+    leftIcon,
+    onLeftIconPress,
     rightIcon,
     onRightIconPress,
     titleStyle
 }) => {
     const navigation = useNavigation();
+    const drawer = useDrawerSafe();
     const [isModalVisible, setIsModalVisible] = useState(false);
 
     const { isFirstTime } = useSelector(state => state.auth);
@@ -52,14 +58,23 @@ const HeaderComp: React.FC<HeaderCompProps> = ({
 
     return (
         <View style={[styles.container, customStyle]}>
-            {showBack ?
+            {showBack ? (
                 <TouchableOpacity
                     onPress={handleBackPress}
                     hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
                 >
                     <MyIcons name="back" size={moderateScale(24)} stroke={iconColor} />
                 </TouchableOpacity>
-                : <View style={{ width: moderateScale(24) }} />}
+            ) : leftIcon ? (
+                <TouchableOpacity
+                    onPress={onLeftIconPress || drawer?.toggle}
+                    hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
+                >
+                    <MyIcons name={leftIcon} size={moderateScale(24)} stroke={iconColor} />
+                </TouchableOpacity>
+            ) : (
+                <View style={{ width: moderateScale(24) }} />
+            )}
 
             {title && (
                 <TextComp
