@@ -38,6 +38,7 @@ const HeaderComp: React.FC<HeaderCompProps> = ({
     const navigation = useNavigation();
     const drawer = useDrawerSafe();
     const [isModalVisible, setIsModalVisible] = useState(false);
+    const [isLoadingLogout, setIsLoadingLogout] = useState(false);
 
     const { isFirstTime } = useSelector(state => state.auth);
 
@@ -50,10 +51,14 @@ const HeaderComp: React.FC<HeaderCompProps> = ({
     }
 
     const onLogout = () => {
-        closeModal();
+        setIsLoadingLogout(true);
         setTimeout(() => {
-            clearDataAction();
-        }, 400);
+            closeModal();
+            setTimeout(() => {
+                clearDataAction();
+                setIsLoadingLogout(false);
+            }, 400);
+        }, 1500);
     }
 
     return (
@@ -96,7 +101,11 @@ const HeaderComp: React.FC<HeaderCompProps> = ({
 
                     {isFirstTime ? (
                         <View style={{ marginTop: moderateScale(16) }}>
-                            <ButtonComp title="LOGOUT" onPress={onLogout} />
+                            <ButtonComp
+                                title="LOGOUT"
+                                onPress={onLogout}
+                                loading={isLoadingLogout}
+                            />
                         </View>
                     ) : null}
 
@@ -117,7 +126,7 @@ const styles = StyleSheet.create({
     },
     titleText: {
         fontSize: moderateScale(18),
-        fontFamily: fontFamily.medium,
+        fontFamily: fontFamily.bold,
     },
     modalContainer: {
         backgroundColor: Colors.background,

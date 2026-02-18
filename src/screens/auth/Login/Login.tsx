@@ -25,6 +25,7 @@ const STAGGER_DELAY = 80;
 const Login = () => {
     const navigation = useNavigation<NativeStackNavigationProp<AuthStackParamList>>();
     const [rememberMe, setRememberMe] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
 
     const cardAnimation = useFadeSlide({ duration: 450, translateY: 35 });
     const titleStyle = useStagger(0, STAGGER_DELAY).animatedStyle;
@@ -43,20 +44,24 @@ const Login = () => {
     });
 
     const handleLogin = (values: any) => {
+        setIsLoading(true);
         console.log('Login values:', values);
         const { email } = values;
 
         // Simulating login with static data
-        const userData = {
-            id: 1,
-            email: email,
-            username: email.split('@')[0],
-            firstName: "Static",
-            lastName: "User",
-            token: "static_token_12345"
-        };
+        setTimeout(() => {
+            const userData = {
+                id: 1,
+                email: email,
+                username: email.split('@')[0],
+                firstName: "Static",
+                lastName: "User",
+                token: "static_token_12345"
+            };
 
-        loginAction(userData);
+            loginAction(userData);
+            setIsLoading(false);
+        }, 2000);
     };
 
     const handleRegister = () => {
@@ -88,99 +93,100 @@ const Login = () => {
                         </Animated.View>
 
                         <Formik
-                        initialValues={{ email: '', password: '' }}
-                        validationSchema={validationSchema}
-                        onSubmit={handleLogin}
-                    >
-                        {({
-                            handleChange,
-                            handleBlur,
-                            handleSubmit,
-                            values,
-                            errors,
-                            touched,
-                        }) => (
-                            <Animated.View style={formStyle}>
-                                <TextInputComp
-                                    label="Email"
-                                    required
-                                    underline
-                                    placeholder="alexa@email.com"
-                                    onChangeText={handleChange('email')}
-                                    onBlur={handleBlur('email')}
-                                    value={values.email}
-                                    error={errors.email}
-                                    touched={touched.email}
-                                    keyboardType="email-address"
-                                    autoCapitalize="none"
-                                    containerStyle={styles.inputContainer}
-                                />
-
-                                <TextInputComp
-                                    label="Password"
-                                    required
-                                    underline
-                                    placeholder="*************"
-                                    onChangeText={handleChange('password')}
-                                    onBlur={handleBlur('password')}
-                                    value={values.password}
-                                    error={errors.password}
-                                    touched={touched.password}
-                                    secureTextEntry
-                                    containerStyle={styles.inputContainer}
-
-                                />
-
-                                <View style={styles.footerRow}>
-                                    <TouchableOpacity
-                                        style={styles.rememberMeRow}
-                                        onPress={() => setRememberMe(!rememberMe)}
-                                    >
-                                        <View style={[
-                                            styles.checkbox,
-                                            rememberMe && { backgroundColor: 'white' }
-                                        ]} />
-                                        <TextComp text="Remember me" style={styles.rememberMeText} />
-                                    </TouchableOpacity>
-
-                                    <TouchableOpacity onPress={handleForgotPassword}>
-                                        <TextComp text="Forgot password?" style={styles.forgotPasswordText} />
-                                    </TouchableOpacity>
-                                </View>
-
-                                <TouchableOpacity
-                                    onPress={handleSubmit as any}
-                                    onPressIn={onPressIn}
-                                    onPressOut={onPressOut}
-                                    activeOpacity={1}
-                                >
-                                    <Animated.View style={loginButtonStyle}>
-                                        <ButtonComp
-                                            title="LOGIN"
-                                            onPress={handleSubmit as any}
-                                            style={styles.loginButton}
-                                            textStyle={styles.loginButtonText}
-                                        />
-                                    </Animated.View>
-                                </TouchableOpacity>
-                            </Animated.View>
-                        )}
-                    </Formik>
-
-                    <Animated.View style={[styles.registerPromptRow, registerRowStyle]}>
-                        <TextComp text="Don't have an account?" style={styles.noAccountText} />
-                        <TouchableOpacity
-                            onPress={handleRegister}
-                            onPressIn={registerPressIn}
-                            onPressOut={registerPressOut}
-                            activeOpacity={1}
+                            initialValues={{ email: '', password: '' }}
+                            validationSchema={validationSchema}
+                            onSubmit={handleLogin}
                         >
-                            <Animated.View style={registerLinkStyle}>
-                                <TextComp text="Register here" style={styles.registerText} />
-                            </Animated.View>
-                        </TouchableOpacity>
-                    </Animated.View>
-                </BlurView>
+                            {({
+                                handleChange,
+                                handleBlur,
+                                handleSubmit,
+                                values,
+                                errors,
+                                touched,
+                            }) => (
+                                <Animated.View style={formStyle}>
+                                    <TextInputComp
+                                        label="Email"
+                                        required
+                                        underline
+                                        placeholder="alexa@email.com"
+                                        onChangeText={handleChange('email')}
+                                        onBlur={handleBlur('email')}
+                                        value={values.email}
+                                        error={errors.email}
+                                        touched={touched.email}
+                                        keyboardType="email-address"
+                                        autoCapitalize="none"
+                                        containerStyle={styles.inputContainer}
+                                    />
+
+                                    <TextInputComp
+                                        label="Password"
+                                        required
+                                        underline
+                                        placeholder="*************"
+                                        onChangeText={handleChange('password')}
+                                        onBlur={handleBlur('password')}
+                                        value={values.password}
+                                        error={errors.password}
+                                        touched={touched.password}
+                                        secureTextEntry
+                                        containerStyle={styles.inputContainer}
+
+                                    />
+
+                                    <View style={styles.footerRow}>
+                                        <TouchableOpacity
+                                            style={styles.rememberMeRow}
+                                            onPress={() => setRememberMe(!rememberMe)}
+                                        >
+                                            <View style={[
+                                                styles.checkbox,
+                                                rememberMe && { backgroundColor: 'white' }
+                                            ]} />
+                                            <TextComp text="Remember me" style={styles.rememberMeText} />
+                                        </TouchableOpacity>
+
+                                        <TouchableOpacity onPress={handleForgotPassword}>
+                                            <TextComp text="Forgot password?" style={styles.forgotPasswordText} />
+                                        </TouchableOpacity>
+                                    </View>
+
+                                    <TouchableOpacity
+                                        onPress={handleSubmit as any}
+                                        onPressIn={onPressIn}
+                                        onPressOut={onPressOut}
+                                        activeOpacity={1}
+                                    >
+                                        <Animated.View style={loginButtonStyle}>
+                                            <ButtonComp
+                                                title="LOGIN"
+                                                onPress={handleSubmit as any}
+                                                loading={isLoading}
+                                                style={styles.loginButton}
+                                                textStyle={styles.loginButtonText}
+                                            />
+                                        </Animated.View>
+                                    </TouchableOpacity>
+                                </Animated.View>
+                            )}
+                        </Formik>
+
+                        <Animated.View style={[styles.registerPromptRow, registerRowStyle]}>
+                            <TextComp text="Don't have an account?" style={styles.noAccountText} />
+                            <TouchableOpacity
+                                onPress={handleRegister}
+                                onPressIn={registerPressIn}
+                                onPressOut={registerPressOut}
+                                activeOpacity={1}
+                            >
+                                <Animated.View style={registerLinkStyle}>
+                                    <TextComp text="Register here" style={styles.registerText} />
+                                </Animated.View>
+                            </TouchableOpacity>
+                        </Animated.View>
+                    </BlurView>
                 </Animated.View>
             </ImageBackground>
         </WrapperContainer>

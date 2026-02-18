@@ -33,13 +33,18 @@ const Signup = () => {
     });
     const [showPassword, setShowPassword] = useState(false);
     const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
 
     const handleChange = (name: string, value: string) => {
         setFormData(prev => ({ ...prev, [name]: value }));
     };
 
     const handleSubmit = () => {
+        setIsLoading(true);
         console.log('Form submitted:', formData);
+        setTimeout(() => {
+            setIsLoading(false);
+        }, 2000);
     };
 
     return (
@@ -124,6 +129,7 @@ const Signup = () => {
                         <ButtonComp
                             title="NEXT"
                             onPress={handleSubmit}
+                            loading={isLoading}
                             style={styles.submitButton}
                         />
                     </View>

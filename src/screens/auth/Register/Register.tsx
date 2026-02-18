@@ -1,7 +1,7 @@
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { Formik } from 'formik';
-import React from 'react';
+import React, { useState } from 'react';
 import { ImageBackground, ScrollView, TouchableOpacity, View } from 'react-native';
 import Animated from 'react-native-reanimated';
 import * as Yup from 'yup';
@@ -23,6 +23,7 @@ const STAGGER_DELAY = 80;
 
 const Register = () => {
     const navigation = useNavigation<NativeStackNavigationProp<AuthStackParamList>>();
+    const [isLoading, setIsLoading] = useState(false);
 
     const cardAnimation = useFadeSlide({ duration: 450, translateY: 35 });
     const titleStyle = useStagger(0, STAGGER_DELAY).animatedStyle;
@@ -46,8 +47,13 @@ const Register = () => {
     });
 
     const handleRegister = (values: any) => {
+        setIsLoading(true);
         console.log('Register values:', values);
         // Implement register logic here
+        setTimeout(() => {
+            setIsLoading(false);
+            // navigation.navigate('Home');
+        }, 2000);
     };
 
     const handleLogin = () => {
@@ -77,95 +83,96 @@ const Register = () => {
                             </Animated.View>
 
                             <Formik
-                            initialValues={{ username: '', email: '', password: '', confirmPassword: '' }}
-                            validationSchema={validationSchema}
-                            onSubmit={handleRegister}
-                        >
-                            {({
-                                handleChange,
-                                handleBlur,
-                                handleSubmit,
-                                values,
-                                errors,
-                                touched,
-                            }) => (
-                                <Animated.View style={formStyle}>
-                                    <TextInputComp
-                                        label="Email"
-                                        required
-                                        underline
-                                        placeholder="alexa@email.com"
-                                        onChangeText={handleChange('email')}
-                                        onBlur={handleBlur('email')}
-                                        value={values.email}
-                                        error={errors.email}
-                                        touched={touched.email}
-                                        keyboardType="email-address"
-                                        autoCapitalize="none"
-                                        containerStyle={styles.inputContainer}
-                                    />
-
-                                    <TextInputComp
-                                        label="Password"
-                                        required
-                                        underline
-                                        placeholder="*************"
-                                        onChangeText={handleChange('password')}
-                                        onBlur={handleBlur('password')}
-                                        value={values.password}
-                                        error={errors.password}
-                                        touched={touched.password}
-                                        secureTextEntry
-                                        containerStyle={styles.inputContainer}
-                                    />
-
-                                    <TextInputComp
-                                        label="Confirm Password"
-                                        required
-                                        underline
-                                        placeholder="*************"
-                                        onChangeText={handleChange('confirmPassword')}
-                                        onBlur={handleBlur('confirmPassword')}
-                                        value={values.confirmPassword}
-                                        error={errors.confirmPassword}
-                                        touched={touched.confirmPassword}
-                                        secureTextEntry
-                                        containerStyle={styles.inputContainer}
-                                    />
-
-                                    <TouchableOpacity
-                                        onPress={handleSubmit as any}
-                                        onPressIn={onPressIn}
-                                        onPressOut={onPressOut}
-                                        activeOpacity={1}
-                                    >
-                                        <Animated.View style={registerButtonStyle}>
-                                            <ButtonComp
-                                                title="REGISTER"
-                                                onPress={handleSubmit as any}
-                                                style={styles.signupButton}
-                                                textStyle={styles.signupButtonText}
-                                            />
-                                        </Animated.View>
-                                    </TouchableOpacity>
-                                </Animated.View>
-                            )}
-                        </Formik>
-
-                        <Animated.View style={[styles.loginPromptRow, loginRowStyle]}>
-                            <TextComp text="Already have an account?" style={styles.alreadyHaveAccountText} />
-                            <TouchableOpacity
-                                onPress={handleLogin}
-                                onPressIn={loginLinkPressIn}
-                                onPressOut={loginLinkPressOut}
-                                activeOpacity={1}
+                                initialValues={{ username: '', email: '', password: '', confirmPassword: '' }}
+                                validationSchema={validationSchema}
+                                onSubmit={handleRegister}
                             >
-                                <Animated.View style={loginLinkStyle}>
-                                    <TextComp text="Login here" style={styles.loginText} />
-                                </Animated.View>
-                            </TouchableOpacity>
-                        </Animated.View>
-                    </BlurView>
+                                {({
+                                    handleChange,
+                                    handleBlur,
+                                    handleSubmit,
+                                    values,
+                                    errors,
+                                    touched,
+                                }) => (
+                                    <Animated.View style={formStyle}>
+                                        <TextInputComp
+                                            label="Email"
+                                            required
+                                            underline
+                                            placeholder="alexa@email.com"
+                                            onChangeText={handleChange('email')}
+                                            onBlur={handleBlur('email')}
+                                            value={values.email}
+                                            error={errors.email}
+                                            touched={touched.email}
+                                            keyboardType="email-address"
+                                            autoCapitalize="none"
+                                            containerStyle={styles.inputContainer}
+                                        />
+
+                                        <TextInputComp
+                                            label="Password"
+                                            required
+                                            underline
+                                            placeholder="*************"
+                                            onChangeText={handleChange('password')}
+                                            onBlur={handleBlur('password')}
+                                            value={values.password}
+                                            error={errors.password}
+                                            touched={touched.password}
+                                            secureTextEntry
+                                            containerStyle={styles.inputContainer}
+                                        />
+
+                                        <TextInputComp
+                                            label="Confirm Password"
+                                            required
+                                            underline
+                                            placeholder="*************"
+                                            onChangeText={handleChange('confirmPassword')}
+                                            onBlur={handleBlur('confirmPassword')}
+                                            value={values.confirmPassword}
+                                            error={errors.confirmPassword}
+                                            touched={touched.confirmPassword}
+                                            secureTextEntry
+                                            containerStyle={styles.inputContainer}
+                                        />
+
+                                        <TouchableOpacity
+                                            onPress={handleSubmit as any}
+                                            onPressIn={onPressIn}
+                                            onPressOut={onPressOut}
+                                            activeOpacity={1}
+                                        >
+                                            <Animated.View style={registerButtonStyle}>
+                                                <ButtonComp
+                                                    title="REGISTER"
+                                                    onPress={handleSubmit as any}
+                                                    loading={isLoading}
+                                                    style={styles.signupButton}
+                                                    textStyle={styles.signupButtonText}
+                                                />
+                                            </Animated.View>
+                                        </TouchableOpacity>
+                                    </Animated.View>
+                                )}
+                            </Formik>
+
+                            <Animated.View style={[styles.loginPromptRow, loginRowStyle]}>
+                                <TextComp text="Already have an account?" style={styles.alreadyHaveAccountText} />
+                                <TouchableOpacity
+                                    onPress={handleLogin}
+                                    onPressIn={loginLinkPressIn}
+                                    onPressOut={loginLinkPressOut}
+                                    activeOpacity={1}
+                                >
+                                    <Animated.View style={loginLinkStyle}>
+                                        <TextComp text="Login here" style={styles.loginText} />
+                                    </Animated.View>
+                                </TouchableOpacity>
+                            </Animated.View>
+                        </BlurView>
                     </Animated.View>
                 </ScrollView>
             </ImageBackground>

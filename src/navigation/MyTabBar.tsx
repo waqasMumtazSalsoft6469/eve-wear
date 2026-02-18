@@ -1,12 +1,17 @@
-//import liraries
+// import liraries
 import MyIcons, { IconName } from '@/components/MyIcons';
 import { Colors } from '@/styles/colors';
 import { moderateScale } from '@/styles/scaling';
-import React from 'react';
-import { StyleSheet, TouchableOpacity, View, I18nManager } from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { StyleSheet, TouchableOpacity, View, LayoutChangeEvent } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import routes from '@/constants/routes';
-
+import Animated, {
+    useAnimatedStyle,
+    useSharedValue,
+    withTiming,
+    Easing,
+} from 'react-native-reanimated';
 
 // create a component
 const getTabIcon = (name: string): IconName => {
@@ -24,8 +29,59 @@ const getTabIcon = (name: string): IconName => {
     }
 };
 
+interface TabItemProps {
+    route: any;
+    isFocused: boolean;
+    onPress: () => void;
+    options: any;
+    onLayout: (event: LayoutChangeEvent) => void;
+}
+
+const TabItem = React.memo(({ route, isFocused, onPress, options, onLayout }: TabItemProps) => {
+    return (
+        <TouchableOpacity
+            accessibilityRole="button"
+            accessibilityState={isFocused ? { selected: true } : {}}
+            accessibilityLabel={options.tabBarAccessibilityLabel}
+            testID={options.tabBarTestID}
+            onPress={onPress}
+            onLayout={onLayout}
+            style={styles.subContainer}
+        >
+            <MyIcons
+                name={getTabIcon(route.name)}
+                size={moderateScale(24)}
+            />
+        </TouchableOpacity>
+    );
+});
 
 const MyTabBar = ({ state, descriptors, navigation }: any) => {
+    const [offsets, setOffsets] = useState<Record<number, number>>({});
+    const translateX = useSharedValue(0);
+
+    // Dynamic animation on index change
+    useEffect(() => {
+        const targetX = offsets[state.index];
+        if (targetX !== undefined) {
+            translateX.value = withTiming(targetX, {
+                duration: 300,
+                easing: Easing.inOut(Easing.ease),
+            });
+        }
+    }, [state.index, offsets, translateX]);
+
+    const animatedStyle = useAnimatedStyle(() => ({
+        transform: [{ translateX: translateX.value }],
+    }));
+
+    const handleTabLayout = (index: number) => (event: LayoutChangeEvent) => {
+        const { x } = event.nativeEvent.layout;
+        setOffsets(prev => {
+            if (prev[index] === x) return prev;
+            return { ...prev, [index]: x };
+        });
+    };
 
     return (
         <LinearGradient
@@ -35,32 +91,34 @@ const MyTabBar = ({ state, descriptors, navigation }: any) => {
             style={styles.gradientContainer}
         >
             <View style={styles.container}>
-                {state?.routes.map((route: any, index: any) => {
+                {/* Smooth Sliding Background Circle Indicator */}
+                <Animated.View style={[styles.activeIndicator, animatedStyle]} />
+
+                {state?.routes.map((route: any, index: number) => {
                     const { options } = descriptors[route.key];
                     const isFocused = state.index === index;
 
                     const onPress = () => {
-                        const event = navigation.emit({ type: 'tabPress', target: route.key, canPreventDefault: true });
+                        const event = navigation.emit({
+                            type: 'tabPress',
+                            target: route.key,
+                            canPreventDefault: true
+                        });
 
                         if (!isFocused && !event.defaultPrevented) {
                             navigation.navigate({ name: route.name, merge: true });
                         }
                     };
+
                     return (
-                        <TouchableOpacity
-                            key={index}
-                            accessibilityRole="button"
-                            accessibilityState={isFocused ? { selected: true } : {}}
-                            accessibilityLabel={options.tabBarAccessibilityLabel}
-                            testID={options.tabBarTestID}
+                        <TabItem
+                            key={route.key}
+                            route={route}
+                            isFocused={isFocused}
                             onPress={onPress}
-                            style={[styles.subContainer, isFocused && styles.focused]}
-                        >
-                            <MyIcons
-                                name={getTabIcon(route.name)}
-                                size={moderateScale(24)}
-                            />
-                        </TouchableOpacity>
+                            options={options}
+                            onLayout={handleTabLayout(index)}
+                        />
                     );
                 })}
             </View>
@@ -68,24 +126,32 @@ const MyTabBar = ({ state, descriptors, navigation }: any) => {
     );
 };
 
+const TAB_SIZE = moderateScale(56);
+const CONTAINER_HEIGHT = moderateScale(76);
+
 const styles = StyleSheet.create({
     container: {
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
         paddingHorizontal: moderateScale(20),
-        minHeight: moderateScale(76),
+        minHeight: CONTAINER_HEIGHT,
     },
     subContainer: {
         alignItems: 'center',
         justifyContent: 'center',
-        height: moderateScale(56),
-        width: moderateScale(56),
-        borderRadius: moderateScale(28),
-
+        height: TAB_SIZE,
+        width: TAB_SIZE,
+        borderRadius: TAB_SIZE / 2,
+        zIndex: 1, // Keep icons above the indicator
     },
-    focused: {
+    activeIndicator: {
+        position: 'absolute',
+        width: TAB_SIZE,
+        height: TAB_SIZE,
+        borderRadius: TAB_SIZE / 2,
         backgroundColor: Colors.tabActive,
+        top: (CONTAINER_HEIGHT - TAB_SIZE) / 2,
     },
     gradientContainer: {
         borderTopLeftRadius: moderateScale(20),
@@ -94,5 +160,5 @@ const styles = StyleSheet.create({
     }
 });
 
-//make this component available to the app
+// make this component available to the app
 export default React.memo(MyTabBar);

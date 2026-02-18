@@ -1,7 +1,7 @@
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { Formik } from 'formik';
-import React from 'react';
+import React, { useState } from 'react';
 import { ImageBackground, TouchableOpacity, View } from 'react-native';
 import Animated from 'react-native-reanimated';
 import * as Yup from 'yup';
@@ -25,6 +25,7 @@ const STAGGER_DELAY = 80;
 
 const Forgot = () => {
     const navigation = useNavigation<NativeStackNavigationProp<AuthStackParamList>>();
+    const [isLoading, setIsLoading] = useState(false);
 
     const cardAnimation = useFadeSlide({ duration: 450, translateY: 35 });
     const titleSectionStyle = useStagger(0, STAGGER_DELAY).animatedStyle;
@@ -40,8 +41,13 @@ const Forgot = () => {
     });
 
     const handleForgotPassword = (values: any) => {
+        setIsLoading(true);
         console.log('Forgot Password values:', values);
         // Implement forgot password logic here
+        setTimeout(() => {
+            setIsLoading(false);
+            // navigation.navigate('Otp');
+        }, 2000);
     };
 
     const handleBackToLogin = () => {
@@ -73,70 +79,71 @@ const Forgot = () => {
                         </Animated.View>
 
                         <Formik
-                        initialValues={{ email: '' }}
-                        validationSchema={validationSchema}
-                        onSubmit={handleForgotPassword}
-                    >
-                        {({
-                            handleChange,
-                            handleBlur,
-                            handleSubmit,
-                            values,
-                            errors,
-                            touched,
-                        }) => (
-                            <Animated.View style={formStyle}>
-                                <TextInputComp
-                                    label="Email"
-                                    required
-                                    underline
-                                    placeholder="alexa@email.com"
-                                    onChangeText={handleChange('email')}
-                                    onBlur={handleBlur('email')}
-                                    value={values.email}
-                                    error={errors.email}
-                                    touched={touched.email}
-                                    keyboardType="email-address"
-                                    autoCapitalize="none"
-                                    containerStyle={styles.inputContainer}
-                                />
-
-                                <View style={styles.buttonSection}>
-                                    <TouchableOpacity
-                                        onPress={handleSubmit as any}
-                                        onPressIn={onPressIn}
-                                        onPressOut={onPressOut}
-                                        activeOpacity={1}
-                                    >
-                                        <Animated.View style={sendButtonStyle}>
-                                            <ButtonComp
-                                                title="SEND LINK"
-                                                onPress={handleSubmit as any}
-                                                style={styles.forgotButton}
-                                                textStyle={styles.forgotButtonText}
-                                            />
-                                        </Animated.View>
-                                    </TouchableOpacity>
-                                </View>
-                            </Animated.View>
-                        )}
-                    </Formik>
-
-                    <Animated.View style={backRowStyle}>
-                        <TouchableOpacity
-                            style={styles.backToLoginRow}
-                            onPress={handleBackToLogin}
-                            onPressIn={backPressIn}
-                            onPressOut={backPressOut}
-                            activeOpacity={1}
+                            initialValues={{ email: '' }}
+                            validationSchema={validationSchema}
+                            onSubmit={handleForgotPassword}
                         >
-                            <Animated.View style={[backLinkStyle, { flexDirection: 'row', alignItems: 'center' }]}>
-                                <MyIcons name="back" size={moderateScale(14)} stroke="white" />
-                                <TextComp text="Back to Login" style={styles.backToLoginText} />
-                            </Animated.View>
-                        </TouchableOpacity>
-                    </Animated.View>
-                </BlurView>
+                            {({
+                                handleChange,
+                                handleBlur,
+                                handleSubmit,
+                                values,
+                                errors,
+                                touched,
+                            }) => (
+                                <Animated.View style={formStyle}>
+                                    <TextInputComp
+                                        label="Email"
+                                        required
+                                        underline
+                                        placeholder="alexa@email.com"
+                                        onChangeText={handleChange('email')}
+                                        onBlur={handleBlur('email')}
+                                        value={values.email}
+                                        error={errors.email}
+                                        touched={touched.email}
+                                        keyboardType="email-address"
+                                        autoCapitalize="none"
+                                        containerStyle={styles.inputContainer}
+                                    />
+
+                                    <View style={styles.buttonSection}>
+                                        <TouchableOpacity
+                                            onPress={handleSubmit as any}
+                                            onPressIn={onPressIn}
+                                            onPressOut={onPressOut}
+                                            activeOpacity={1}
+                                        >
+                                            <Animated.View style={sendButtonStyle}>
+                                                <ButtonComp
+                                                    title="SEND LINK"
+                                                    onPress={handleSubmit as any}
+                                                    loading={isLoading}
+                                                    style={styles.forgotButton}
+                                                    textStyle={styles.forgotButtonText}
+                                                />
+                                            </Animated.View>
+                                        </TouchableOpacity>
+                                    </View>
+                                </Animated.View>
+                            )}
+                        </Formik>
+
+                        <Animated.View style={backRowStyle}>
+                            <TouchableOpacity
+                                style={styles.backToLoginRow}
+                                onPress={handleBackToLogin}
+                                onPressIn={backPressIn}
+                                onPressOut={backPressOut}
+                                activeOpacity={1}
+                            >
+                                <Animated.View style={[backLinkStyle, { flexDirection: 'row', alignItems: 'center' }]}>
+                                    <MyIcons name="back" size={moderateScale(14)} stroke="white" />
+                                    <TextComp text="Back to Login" style={styles.backToLoginText} />
+                                </Animated.View>
+                            </TouchableOpacity>
+                        </Animated.View>
+                    </BlurView>
                 </Animated.View>
             </ImageBackground>
 

@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React, { useMemo, useState } from 'react';
 import { Image, ScrollView, TouchableOpacity, View } from 'react-native';
 import Animated from 'react-native-reanimated';
 import { useNavigation } from '@react-navigation/native';
@@ -23,6 +23,7 @@ const ANIMATION_DELAY_AFTER_SPLASH = 550;
 
 const OnBoard = () => {
     const navigation = useNavigation<NativeStackNavigationProp<AuthStackParamList>>();
+    const [isLoading, setIsLoading] = useState(false);
     const initialDelay = useMemo(
         () => (consumeFirstOnBoardAfterLaunch() ? ANIMATION_DELAY_AFTER_SPLASH : 0),
         []
@@ -41,7 +42,11 @@ const OnBoard = () => {
     const { animatedStyle: skipStyle, onPressIn: skipPressIn, onPressOut: skipPressOut } = usePressScale();
 
     const handleGetStarted = () => {
-        navigation.navigate('Login');
+        setIsLoading(true);
+        setTimeout(() => {
+            setIsLoading(false);
+            navigation.navigate('Login');
+        }, 1200);
     };
 
     const handleSkip = () => {
@@ -100,6 +105,7 @@ const OnBoard = () => {
                                 <ButtonComp
                                     title="Get Started"
                                     onPress={handleGetStarted}
+                                    loading={isLoading}
                                     style={styles.getStartedButton}
                                     textStyle={styles.getStartedButtonText}
                                 />

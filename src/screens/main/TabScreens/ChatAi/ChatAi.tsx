@@ -5,11 +5,12 @@ import TextComp from '@/components/TextComp';
 import WrapperContainer from '@/components/WrapperContainer';
 import { Colors } from '@/styles/colors';
 import { moderateScale } from '@/styles/scaling';
-import React from 'react';
+import React, { useState } from 'react';
 import { ScrollView, View } from 'react-native';
 import styles from './styles';
 
 const ChatAi: React.FC = () => {
+    const [isLoading, setIsLoading] = useState(false);
 
     const questions = [
         {
@@ -64,7 +65,11 @@ const ChatAi: React.FC = () => {
 
                 <ButtonComp
                     title="Start Chat"
-                    onPress={() => { }}
+                    onPress={() => {
+                        setIsLoading(true);
+                        setTimeout(() => setIsLoading(false), 2000);
+                    }}
+                    loading={isLoading}
                     style={styles.startChatButton}
                     textStyle={styles.startChatText}
                 />
