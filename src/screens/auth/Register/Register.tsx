@@ -3,6 +3,7 @@ import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { Formik } from 'formik';
 import React from 'react';
 import { ImageBackground, ScrollView, TouchableOpacity, View } from 'react-native';
+import Animated from 'react-native-reanimated';
 import * as Yup from 'yup';
 
 import { localImages } from '@/assets/images';
@@ -10,13 +11,26 @@ import ButtonComp from '@/components/ButtonComp';
 import TextComp from '@/components/TextComp';
 import TextInputComp from '@/components/TextInputComp';
 import WrapperContainer from '@/components/WrapperContainer';
+import { useFadeSlide } from '@/hooks/animations/useFadeSlide';
+import { usePressScale } from '@/hooks/animations/usePressScale';
+import { useStagger } from '@/hooks/animations/useStagger';
 import { AuthStackParamList } from '@/navigation/types';
+import { BlurView } from '@sbaiahmed1/react-native-blur';
 
 import styles from './styles';
-import { BlurView } from '@sbaiahmed1/react-native-blur';
+
+const STAGGER_DELAY = 80;
 
 const Register = () => {
     const navigation = useNavigation<NativeStackNavigationProp<AuthStackParamList>>();
+
+    const cardAnimation = useFadeSlide({ duration: 450, translateY: 35 });
+    const titleStyle = useStagger(0, STAGGER_DELAY).animatedStyle;
+    const subtitleStyle = useStagger(1, STAGGER_DELAY).animatedStyle;
+    const formStyle = useStagger(2, STAGGER_DELAY).animatedStyle;
+    const loginRowStyle = useStagger(3, STAGGER_DELAY).animatedStyle;
+    const { animatedStyle: registerButtonStyle, onPressIn, onPressOut } = usePressScale();
+    const { animatedStyle: loginLinkStyle, onPressIn: loginLinkPressIn, onPressOut: loginLinkPressOut } = usePressScale();
 
     const validationSchema = Yup.object().shape({
 
@@ -48,16 +62,21 @@ const Register = () => {
                 resizeMode="cover"
             >
                 <ScrollView contentContainerStyle={styles.scrollContainer} showsVerticalScrollIndicator={false}>
-                    <BlurView
-                        blurType="light"
-                        blurAmount={30}
-                        style={styles.card}
-                        overlayColor="rgba(0, 0, 0, 0.2)"
-                    >
-                        <TextComp text="Register" style={styles.title} />
-                        <TextComp text="Create your account to get started" style={styles.subtitle} />
+                    <Animated.View style={cardAnimation.animatedStyle}>
+                        <BlurView
+                            blurType="light"
+                            blurAmount={30}
+                            style={styles.card}
+                            overlayColor="rgba(0, 0, 0, 0.2)"
+                        >
+                            <Animated.View style={titleStyle}>
+                                <TextComp text="Register" style={styles.title} />
+                            </Animated.View>
+                            <Animated.View style={subtitleStyle}>
+                                <TextComp text="Create your account to get started" style={styles.subtitle} />
+                            </Animated.View>
 
-                        <Formik
+                            <Formik
                             initialValues={{ username: '', email: '', password: '', confirmPassword: '' }}
                             validationSchema={validationSchema}
                             onSubmit={handleRegister}
@@ -70,9 +89,7 @@ const Register = () => {
                                 errors,
                                 touched,
                             }) => (
-                                <View>
-
-
+                                <Animated.View style={formStyle}>
                                     <TextInputComp
                                         label="Email"
                                         required
@@ -116,23 +133,40 @@ const Register = () => {
                                         containerStyle={styles.inputContainer}
                                     />
 
-                                    <ButtonComp
-                                        title="REGISTER"
+                                    <TouchableOpacity
                                         onPress={handleSubmit as any}
-                                        style={styles.signupButton}
-                                        textStyle={styles.signupButtonText}
-                                    />
-                                </View>
+                                        onPressIn={onPressIn}
+                                        onPressOut={onPressOut}
+                                        activeOpacity={1}
+                                    >
+                                        <Animated.View style={registerButtonStyle}>
+                                            <ButtonComp
+                                                title="REGISTER"
+                                                onPress={handleSubmit as any}
+                                                style={styles.signupButton}
+                                                textStyle={styles.signupButtonText}
+                                            />
+                                        </Animated.View>
+                                    </TouchableOpacity>
+                                </Animated.View>
                             )}
                         </Formik>
 
-                        <View style={styles.loginPromptRow}>
+                        <Animated.View style={[styles.loginPromptRow, loginRowStyle]}>
                             <TextComp text="Already have an account?" style={styles.alreadyHaveAccountText} />
-                            <TouchableOpacity onPress={handleLogin}>
-                                <TextComp text="Login here" style={styles.loginText} />
+                            <TouchableOpacity
+                                onPress={handleLogin}
+                                onPressIn={loginLinkPressIn}
+                                onPressOut={loginLinkPressOut}
+                                activeOpacity={1}
+                            >
+                                <Animated.View style={loginLinkStyle}>
+                                    <TextComp text="Login here" style={styles.loginText} />
+                                </Animated.View>
                             </TouchableOpacity>
-                        </View>
+                        </Animated.View>
                     </BlurView>
+                    </Animated.View>
                 </ScrollView>
             </ImageBackground>
         </WrapperContainer>

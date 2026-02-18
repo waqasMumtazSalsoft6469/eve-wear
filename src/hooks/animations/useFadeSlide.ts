@@ -3,6 +3,7 @@ import {
     useSharedValue,
     useAnimatedStyle,
     withTiming,
+    withDelay,
     Easing,
 } from 'react-native-reanimated';
 
@@ -21,16 +22,14 @@ export const useFadeSlide = ({
     const translate = useSharedValue(translateY);
 
     useEffect(() => {
-        opacity.value = withTiming(1, {
-            duration,
-            easing: Easing.out(Easing.ease),
-        });
-
-        translate.value = withTiming(0, {
-            duration,
-            easing: Easing.out(Easing.ease),
-        });
-    }, []);
+        const timingConfig = { duration, easing: Easing.out(Easing.ease) };
+        opacity.value = delay
+            ? withDelay(delay, withTiming(1, timingConfig))
+            : withTiming(1, timingConfig);
+        translate.value = delay
+            ? withDelay(delay, withTiming(0, timingConfig))
+            : withTiming(0, timingConfig);
+    }, [delay, duration]);
 
     const animatedStyle = useAnimatedStyle(() => ({
         opacity: opacity.value,

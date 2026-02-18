@@ -3,6 +3,7 @@ import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { Formik } from 'formik';
 import React, { useState } from 'react';
 import { ImageBackground, TouchableOpacity, View } from 'react-native';
+import Animated from 'react-native-reanimated';
 import * as Yup from 'yup';
 
 import { localImages } from '@/assets/images';
@@ -10,18 +11,28 @@ import ButtonComp from '@/components/ButtonComp';
 import TextComp from '@/components/TextComp';
 import TextInputComp from '@/components/TextInputComp';
 import WrapperContainer from '@/components/WrapperContainer';
+import { useFadeSlide } from '@/hooks/animations/useFadeSlide';
+import { usePressScale } from '@/hooks/animations/usePressScale';
+import { useStagger } from '@/hooks/animations/useStagger';
 import { AuthStackParamList } from '@/navigation/types';
+import { loginAction } from '@/redux/actions/auth';
+import { BlurView } from '@sbaiahmed1/react-native-blur';
 
 import styles from './styles';
 
-import { BlurView } from '@sbaiahmed1/react-native-blur';
-
-import { loginAction } from '@/redux/actions/auth';
+const STAGGER_DELAY = 80;
 
 const Login = () => {
     const navigation = useNavigation<NativeStackNavigationProp<AuthStackParamList>>();
-
     const [rememberMe, setRememberMe] = useState(false);
+
+    const cardAnimation = useFadeSlide({ duration: 450, translateY: 35 });
+    const titleStyle = useStagger(0, STAGGER_DELAY).animatedStyle;
+    const subtitleStyle = useStagger(1, STAGGER_DELAY).animatedStyle;
+    const formStyle = useStagger(2, STAGGER_DELAY).animatedStyle;
+    const registerRowStyle = useStagger(3, STAGGER_DELAY).animatedStyle;
+    const { animatedStyle: loginButtonStyle, onPressIn, onPressOut } = usePressScale();
+    const { animatedStyle: registerLinkStyle, onPressIn: registerPressIn, onPressOut: registerPressOut } = usePressScale();
 
     const validationSchema = Yup.object().shape({
         email: Yup.string()
@@ -62,16 +73,21 @@ const Login = () => {
                 style={styles.bgImage}
                 resizeMode="cover"
             >
-                <BlurView
-                    blurType="light"
-                    blurAmount={30}
-                    style={styles.card}
-                    overlayColor="rgba(0, 0, 0, 0.2)"
-                >
-                    <TextComp text="Login" style={styles.title} />
-                    <TextComp text="Welcome back, please login to your account" style={styles.subtitle} />
+                <Animated.View style={cardAnimation.animatedStyle}>
+                    <BlurView
+                        blurType="light"
+                        blurAmount={30}
+                        style={styles.card}
+                        overlayColor="rgba(0, 0, 0, 0.2)"
+                    >
+                        <Animated.View style={titleStyle}>
+                            <TextComp text="Login" style={styles.title} />
+                        </Animated.View>
+                        <Animated.View style={subtitleStyle}>
+                            <TextComp text="Welcome back, please login to your account" style={styles.subtitle} />
+                        </Animated.View>
 
-                    <Formik
+                        <Formik
                         initialValues={{ email: '', password: '' }}
                         validationSchema={validationSchema}
                         onSubmit={handleLogin}
@@ -84,7 +100,7 @@ const Login = () => {
                             errors,
                             touched,
                         }) => (
-                            <View>
+                            <Animated.View style={formStyle}>
                                 <TextInputComp
                                     label="Email"
                                     required
@@ -132,23 +148,40 @@ const Login = () => {
                                     </TouchableOpacity>
                                 </View>
 
-                                <ButtonComp
-                                    title="LOGIN"
+                                <TouchableOpacity
                                     onPress={handleSubmit as any}
-                                    style={styles.loginButton}
-                                    textStyle={styles.loginButtonText}
-                                />
-                            </View>
+                                    onPressIn={onPressIn}
+                                    onPressOut={onPressOut}
+                                    activeOpacity={1}
+                                >
+                                    <Animated.View style={loginButtonStyle}>
+                                        <ButtonComp
+                                            title="LOGIN"
+                                            onPress={handleSubmit as any}
+                                            style={styles.loginButton}
+                                            textStyle={styles.loginButtonText}
+                                        />
+                                    </Animated.View>
+                                </TouchableOpacity>
+                            </Animated.View>
                         )}
                     </Formik>
 
-                    <View style={styles.registerPromptRow}>
+                    <Animated.View style={[styles.registerPromptRow, registerRowStyle]}>
                         <TextComp text="Don't have an account?" style={styles.noAccountText} />
-                        <TouchableOpacity onPress={handleRegister}>
-                            <TextComp text="Register here" style={styles.registerText} />
+                        <TouchableOpacity
+                            onPress={handleRegister}
+                            onPressIn={registerPressIn}
+                            onPressOut={registerPressOut}
+                            activeOpacity={1}
+                        >
+                            <Animated.View style={registerLinkStyle}>
+                                <TextComp text="Register here" style={styles.registerText} />
+                            </Animated.View>
                         </TouchableOpacity>
-                    </View>
+                    </Animated.View>
                 </BlurView>
+                </Animated.View>
             </ImageBackground>
         </WrapperContainer>
     );
