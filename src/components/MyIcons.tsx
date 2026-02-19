@@ -14,6 +14,8 @@ import Billing from '@/assets/icons/billing.svg';
 import BloodDrop from '@/assets/icons/blood-drop.svg';
 import Cancel from '@/assets/icons/cancel.svg';
 import ChangePlan from '@/assets/icons/change-plan.svg';
+import ClockWhite from '@/assets/icons/clock-white.svg';
+import DateWhite from '@/assets/icons/date-white.svg';
 import DrawerCollaboration from '@/assets/icons/drawer-collaboration.svg';
 import DrawerContact from '@/assets/icons/drawer-contact.svg';
 import DrawerHome from '@/assets/icons/drawer-home.svg';
@@ -25,6 +27,8 @@ import DrawerOrders from '@/assets/icons/drawer-orders.svg';
 import DrawerSessions from '@/assets/icons/drawer-sessions.svg';
 import DrawerSubscription from '@/assets/icons/drawer-subscription.svg';
 import Google from '@/assets/icons/google.svg';
+import Help from '@/assets/icons/help.svg';
+import LocationWhite from '@/assets/icons/location-white.svg';
 import Logo from '@/assets/icons/logo.svg';
 import Menu from '@/assets/icons/menu.svg';
 import Notification from '@/assets/icons/notification.svg';
@@ -49,6 +53,8 @@ export type IconName =
   | 'bloodDrop'
   | 'cancel'
   | 'changePlan'
+  | 'clockWhite'
+  | 'dateWhite'
   | 'drawerCollaboration'
   | 'drawerContact'
   | 'drawerHome'
@@ -60,6 +66,8 @@ export type IconName =
   | 'drawerSessions'
   | 'drawerSubscription'
   | 'google'
+  | 'help'
+  | 'locationWhite'
   | 'logo'
   | 'menu'
   | 'notification'
@@ -86,6 +94,8 @@ const iconMap: Record<IconName, IconComponent> = {
   bloodDrop: BloodDrop,
   cancel: Cancel,
   changePlan: ChangePlan,
+  clockWhite: ClockWhite,
+  dateWhite: DateWhite,
   drawerCollaboration: DrawerCollaboration,
   drawerContact: DrawerContact,
   drawerHome: DrawerHome,
@@ -97,6 +107,8 @@ const iconMap: Record<IconName, IconComponent> = {
   drawerSessions: DrawerSessions,
   drawerSubscription: DrawerSubscription,
   google: Google,
+  help: Help,
+  locationWhite: LocationWhite,
   logo: Logo,
   menu: Menu,
   notification: Notification,

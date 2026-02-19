@@ -8,6 +8,7 @@
     "lint": "eslint .",
     "start": "react-native start",
     "test": "jest",
+    "mobile": "adb -s 8BEY0YD9Y reverse tcp:8081 tcp:8081 && yarn run start",
     "generate:screen": "ts-node src/customscripts/generate-screen.ts",
     "generate:screen:watch": "ts-node src/customscripts/generate-screen.ts --watch",
     "delete:screen": "ts-node src/customscripts/delete-screen.ts",
@@ -15,6 +16,7 @@
     "generate:icons:watch": "ts-node src/customscripts/generate-icons.ts --watch",
     "generate:images": "ts-node src/customscripts/generate-images.ts",
     "generate:images:watch": "ts-node src/customscripts/generate-images.ts --watch"
+
   },
   "dependencies": {
     "@react-native-clipboard/clipboard": "^1.16.3",

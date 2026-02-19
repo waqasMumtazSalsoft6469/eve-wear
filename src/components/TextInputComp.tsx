@@ -130,7 +130,7 @@ const styles = StyleSheet.create({
     },
     label: {
         fontSize: moderateScale(14),
-        fontFamily: fontFamily.medium,
+        fontFamily: fontFamily.regular,
         color: Colors.white,
     },
     requiredStar: {

@@ -48,7 +48,7 @@ export const Colors = {
     buttonPrimary: '#00A13A',
     buttonSecondary: '#CD0105',
     buttonDisabled: '#CCCCCC',
-    gradientPrimary: ['#FF8C69', '#E07A5F'] as readonly [string, string],
+    gradientPrimary: ['#E07A7F','#FF8C69'] as readonly [string, string],
 
     // Icons
     iconPrimary: '#454545',
@@ -72,6 +72,17 @@ export const Colors = {
     actionIconOrange: '#FF9800',
     actionIconRed: '#F44336',
     actionIconGrey: '#616161',
+
+    // Sessions
+    sessionBannerBg: '#FFEBEE',
+    sessionBannerText: '#C62828',
+    sessionDetailIconBg: '#8D6E63',
+
+    // Insurance plan card gradients
+    insuranceBronze: ['#5D4037', '#8D6E63'] as readonly [string, string],
+    insuranceSilver: ['#455A64', '#90A4AE'] as readonly [string, string],
+    insuranceGold: ['#F9A825', '#FFD54F'] as readonly [string, string],
+    insurancePlatinum: ['#37474F', '#78909C'] as readonly [string, string],
 } as const;
 
 export type AppColors = typeof Colors;

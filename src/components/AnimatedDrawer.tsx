@@ -36,7 +36,7 @@ const MENU_ITEMS: MenuItem[] = [
     { label: 'Subscription', icon: 'drawerSubscription', screen: routes.main.subscription },
     { label: 'Insurance', icon: 'drawerInsurance', screen: routes.main.insurance },
     { label: 'Contact Us', icon: 'drawerContact', screen: routes.main.support },
-    { label: "Help And FAQ's", icon: 'drawerContact', screen: routes.main.help },
+    { label: "Help And FAQ's", icon: 'help', screen: routes.main.help },
     { label: 'Our Collaborators', icon: 'drawerCollaboration', screen: routes.main.ourCollaboration },
 ];
 
