@@ -2,10 +2,14 @@ import * as Screens from '@/screens';
 const routes = {
   auth: {
     login: 'Login',
-    signup: 'Signup',
     forgot: 'Forgot',
     onboarding: 'Onboarding',
     register: 'Register',
+    healthConsent: 'HealthConsent',
+    dateOfBirth: 'DateOfBirth',
+    height: 'Height',
+    weight: 'Weight',
+    healthPreferences: 'HealthPreferences',
   },
   main: {
     profile: 'Profile',
@@ -39,10 +43,14 @@ const routes = {
 } as const;
 export const authRoutes = {
   [routes.auth.login]: Screens.Login,
-  [routes.auth.signup]: Screens.Signup,
   [routes.auth.forgot]: Screens.Forgot,
   [routes.auth.onboarding]: Screens.Onboard,
   [routes.auth.register]: Screens.Register,
+  [routes.auth.healthConsent]: Screens.HealthConsent,
+  [routes.auth.dateOfBirth]: Screens.DateOfBirth,
+  [routes.auth.height]: Screens.Height,
+  [routes.auth.weight]: Screens.Weight,
+  [routes.auth.healthPreferences]: Screens.HealthPreferences,
 };
 export const tabRoutes = {
   [routes.tab.cycleOverview]: Screens.CycleOverview,

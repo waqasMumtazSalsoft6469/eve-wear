@@ -5,10 +5,14 @@ export type RootStackParamList = {
 
 export type AuthStackParamList = {
   Login: undefined;
-  Signup: undefined;
   Onboarding: undefined;
   Register: undefined;
   Forgot: undefined;
+  HealthConsent: undefined;
+  DateOfBirth: undefined;
+  Height: undefined;
+  Weight: undefined;
+  HealthPreferences: undefined;
 };
 
 export type MainStackParamList = {

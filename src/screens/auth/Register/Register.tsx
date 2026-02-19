@@ -14,6 +14,7 @@ import WrapperContainer from '@/components/WrapperContainer';
 import { useFadeSlide } from '@/hooks/animations/useFadeSlide';
 import { usePressScale } from '@/hooks/animations/usePressScale';
 import { useStagger } from '@/hooks/animations/useStagger';
+import routes from '@/constants/routes';
 import { AuthStackParamList } from '@/navigation/types';
 import { BlurView } from '@sbaiahmed1/react-native-blur';
 
@@ -49,11 +50,10 @@ const Register = () => {
     const handleRegister = (values: any) => {
         setIsLoading(true);
         console.log('Register values:', values);
-        // Implement register logic here
         setTimeout(() => {
             setIsLoading(false);
-            // navigation.navigate('Home');
-        }, 2000);
+            navigation.navigate(routes.auth.healthConsent as any);
+        }, 1500);
     };
 
     const handleLogin = () => {

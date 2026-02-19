@@ -1,9 +1,13 @@
 //auth screens
 export { default as Login } from './auth/Login/Login';
-export { default as Signup } from './auth/Signup/Signup';
 export { default as Forgot } from './auth/Forgot/Forgot';
 export { default as Onboard } from './auth/Onboard/OnBoard';
 export { default as Register } from './auth/Register/Register';
+export { default as HealthConsent } from './auth/HealthConsent/HealthConsent';
+export { default as DateOfBirth } from './auth/DateOfBirth/DateOfBirth';
+export { default as Height } from './auth/Height/Height';
+export { default as Weight } from './auth/Weight/Weight';
+export { default as HealthPreferences } from './auth/HealthPreferences/HealthPreferences';
 
 //home screens
 export { default as Profile } from '@/screens/main/Profile/Profile';
