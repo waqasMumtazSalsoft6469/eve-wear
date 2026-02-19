@@ -42,11 +42,13 @@ export const Colors = {
     inputPlaceholder: 'rgba(255, 255, 255, 0.6)',
     inputText: '#000000',
     statusBar: 'dark-content' as const,
+    inputBackgroundApp: '#f7f7f7',
 
     // Buttons
     buttonPrimary: '#00A13A',
     buttonSecondary: '#CD0105',
     buttonDisabled: '#CCCCCC',
+    gradientPrimary: ['#FF8C69', '#E07A5F'] as readonly [string, string],
 
     // Icons
     iconPrimary: '#454545',
@@ -59,9 +61,17 @@ export const Colors = {
     // Transparent
     transparent: 'transparent',
 
-    //Text 
-    orange: '#bf6457'
+    // Text
+    orange: '#bf6457',
 
+    // Support / Contact
+    supportEmail: '#D9534F',
+
+    // Action item icons (Manage Subscriptions)
+    actionIconBlue: '#2196F3',
+    actionIconOrange: '#FF9800',
+    actionIconRed: '#F44336',
+    actionIconGrey: '#616161',
 } as const;
 
 export type AppColors = typeof Colors;

@@ -43,11 +43,11 @@ const WrapperContainer: React.FC<WrapperContainerProps> = ({
 
     return (
         <SafeAreaView
-            style={[{ backgroundColor: token ? "#fff" : "#000" }, styles.container, style]}
+            style={[{ backgroundColor: token ? "#FAFAFA" : "#000" }, styles.container, style]}
             {...safeAreaProps}
         >
-            <StatusBar barStyle={token ? "dark-content" : "light-content"} backgroundColor={token ? "#fff" : "#000"} />
-            <Animated.View style={[{ flex: 1, overflow: 'hidden', backgroundColor: token ? "#fff" : "#000" }, animatedStyle]}>
+            <StatusBar barStyle={token ? "dark-content" : "light-content"} backgroundColor={token ? "#FAFAFA" : "#000"} />
+            <Animated.View style={[{ flex: 1, overflow: 'hidden', backgroundColor: token ? "#FAFAFA" : "#000" }, animatedStyle]}>
                 {children}
             </Animated.View>
         </SafeAreaView>

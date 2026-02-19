@@ -33,7 +33,7 @@ interface ButtonCompProps {
     textStyle?: TextStyle;
     width?: DimensionValue;
     height?: DimensionValue;
-    variant?: 'primary' | 'secondary';
+    variant?: 'primary' | 'secondary' | 'premium' | 'outline';
     leftIcon?: React.ReactNode;
     rightIcon?: React.ReactNode;
     iconSize?: number;
@@ -121,6 +121,7 @@ const ButtonComp: React.FC<ButtonCompProps> = ({
     const textStyles = [
         styles.text,
         variant === 'secondary' && styles.textSecondary,
+        variant === 'outline' && styles.textOutline,
         disabled && styles.textDisabled,
         textStyle,
     ];
@@ -132,10 +133,45 @@ const ButtonComp: React.FC<ButtonCompProps> = ({
 
     const loaderColor = (StyleSheet.flatten(textStyles) as TextStyle).color || Colors.white;
 
-    let gradientColors: string[] = [Colors.tabPrimary, Colors.tabSecondary];
-    if (disabled) {
-        gradientColors = [Colors.gray200, Colors.gray200];
-    }
+    const isGradient = variant === 'primary';
+    const isOutline = variant === 'outline';
+    const gradientColors: string[] = disabled
+        ? [Colors.gray200, Colors.gray200]
+        : isGradient
+          ? [...Colors.gradientPrimary]
+          : [Colors.white, Colors.white];
+    const solidBackgroundColor =
+        variant === 'secondary'
+            ? Colors.secondary
+            : variant === 'premium'
+              ? Colors.brandPurple
+              : isOutline
+                ? Colors.transparent
+                : undefined;
+
+    const buttonContent = (
+        <>
+            <Animated.View style={[styles.contentContainer, contentStyle]}>
+                {leftIcon && (
+                    <View style={iconContainerStyle}>
+                        {leftIcon}
+                    </View>
+                )}
+                <TextComp style={textStyles} text={title} />
+                {rightIcon && (
+                    <View style={iconContainerStyle}>
+                        {rightIcon}
+                    </View>
+                )}
+            </Animated.View>
+            <Animated.View
+                style={[styles.loaderContainer, loaderStyle]}
+                pointerEvents="none"
+            >
+                <ActivityIndicator color={loaderColor} size="small" />
+            </Animated.View>
+        </>
+    );
 
     return (
         <AnimatedTouchableOpacity
@@ -145,35 +181,28 @@ const ButtonComp: React.FC<ButtonCompProps> = ({
             activeOpacity={0.8}
             onLayout={handleLayout}
         >
-            <LinearGradient
-                colors={gradientColors}
-                start={{ x: 0, y: 0 }}
-                end={{ x: 1, y: 0 }}
-                style={styles.gradient}
-            >
-                {/* Content Container (Text + Icons) */}
-                <Animated.View style={[styles.contentContainer, contentStyle]}>
-                    {leftIcon && (
-                        <View style={iconContainerStyle}>
-                            {leftIcon}
-                        </View>
-                    )}
-                    <TextComp style={textStyles} text={title} />
-                    {rightIcon && (
-                        <View style={iconContainerStyle}>
-                            {rightIcon}
-                        </View>
-                    )}
-                </Animated.View>
-
-                {/* Loader Container */}
-                <Animated.View
-                    style={[styles.loaderContainer, loaderStyle]}
-                    pointerEvents="none"
+            {isGradient ? (
+                <LinearGradient
+                    colors={gradientColors}
+                    start={{ x: 0, y: 0 }}
+                    end={{ x: 1, y: 0 }}
+                    style={styles.gradient}
                 >
-                    <ActivityIndicator color={loaderColor} size="small" />
-                </Animated.View>
-            </LinearGradient>
+                    {buttonContent}
+                </LinearGradient>
+            ) : (
+                <View
+                    style={[
+                        styles.gradient,
+                        solidBackgroundColor != null && {
+                            backgroundColor: disabled && !isOutline ? Colors.gray200 : solidBackgroundColor,
+                        },
+                        isOutline && styles.outlineInner,
+                    ]}
+                >
+                    {buttonContent}
+                </View>
+            )}
         </AnimatedTouchableOpacity>
     );
 };
@@ -216,12 +245,20 @@ const styles = StyleSheet.create({
     textSecondary: {
         color: Colors.white,
     },
+    textOutline: {
+        color: Colors.text,
+    },
     textDisabled: {
         color: Colors.gray400,
     },
     iconContainer: {
         justifyContent: 'center',
         alignItems: 'center',
+    },
+    outlineInner: {
+        backgroundColor: Colors.transparent,
+        borderWidth: 1,
+        borderColor: Colors.inputBorder,
     },
 });
 

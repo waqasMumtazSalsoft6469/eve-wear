@@ -90,6 +90,7 @@ const CycleOverview: React.FC = () => {
                 iconColor={Colors.brandPurple}
                 rightIcon="notification"
                 titleStyle={{ color: Colors.brandPurple }}
+                leftIcon="menu"
             />
             <ScrollView style={{ flex: 1 }} contentContainerStyle={styles.content} showsVerticalScrollIndicator={false}>
 

@@ -25,6 +25,9 @@ interface TextInputCompProps extends TextInputProps {
     underline?: boolean;
     label?: string;
     required?: boolean;
+    labelStyle?: TextStyle;
+    placeholderTextColor?: string;
+    inputContainerStyle?: ViewStyle;
 }
 
 const TextInputComp: React.FC<TextInputCompProps> = ({
@@ -38,14 +41,18 @@ const TextInputComp: React.FC<TextInputCompProps> = ({
     underline,
     label,
     required,
+    labelStyle,
+    placeholderTextColor,
+    inputContainerStyle,
     ...props
 }) => {
+    const resolvedPlaceholderColor = placeholderTextColor ?? Colors.inputPlaceholder;
 
     return (
         <View style={containerStyle}>
             {label && (
                 <View style={styles.labelContainer}>
-                    <TextComp text={label} style={styles.label} />
+                    <TextComp text={label} style={[styles.label, labelStyle]} />
                     {required && <TextComp text="*" style={styles.requiredStar} />}
                 </View>
             )}
@@ -54,6 +61,7 @@ const TextInputComp: React.FC<TextInputCompProps> = ({
                     styles.container,
                     underline && styles.underlineContainer,
                     error && touched && styles.errorContainer,
+                    inputContainerStyle
                 ]}
             >
                 <TextInput
@@ -63,7 +71,7 @@ const TextInputComp: React.FC<TextInputCompProps> = ({
                         error && touched && styles.errorInput,
                         inputStyle
                     ]}
-                    placeholderTextColor={Colors.inputPlaceholder}
+                    placeholderTextColor={resolvedPlaceholderColor}
                     placeholder={placeholder}
                     textAlign={I18nManager.isRTL ? 'right' : 'left'}
                     {...props}

@@ -24,8 +24,13 @@ export type MainStackParamList = {
   MyOrders: undefined;
   Subscription: undefined;
   MySessions: undefined;
-  ContactUs: undefined;
   OurCollaboration: undefined;
   Insurance: undefined;
+  ManageSubscriptions: undefined;
+  BillingHistory: undefined;
+  PaymentMethod: undefined;
+  Help: undefined;
+  Support: undefined;
+
 };
 

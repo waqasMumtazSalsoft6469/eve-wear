@@ -1,16 +1,16 @@
 import TextComp from '@/components/TextComp';
+import { useDrawerSafe } from '@/context/DrawerContext';
+import { clearDataAction } from '@/redux/actions/auth';
 import { useSelector } from '@/redux/hooks';
 import { Colors } from '@/styles/colors';
 import fontFamily from '@/styles/fontFamily';
 import { moderateScale } from '@/styles/scaling';
 import { useNavigation } from '@react-navigation/native';
 import React, { useState } from 'react';
-import { Pressable, StyleSheet, TouchableOpacity, View, I18nManager } from 'react-native';
-import ModalComp from './ModalComp';
-import { clearDataAction } from '@/redux/actions/auth';
+import { I18nManager, Pressable, StyleSheet, TouchableOpacity, View } from 'react-native';
 import ButtonComp from './ButtonComp';
+import ModalComp from './ModalComp';
 import MyIcons, { IconName } from './MyIcons';
-import { useDrawerSafe } from '@/context/DrawerContext';
 
 interface HeaderCompProps {
     title?: string;
@@ -45,6 +45,9 @@ const HeaderComp: React.FC<HeaderCompProps> = ({
     const handleBackPress = () => {
         navigation.goBack();
     };
+    const handleMenuPress = () => {
+        drawer?.open();
+    };
 
     const closeModal = () => {
         setIsModalVisible(false);
@@ -63,22 +66,16 @@ const HeaderComp: React.FC<HeaderCompProps> = ({
 
     return (
         <View style={[styles.container, customStyle]}>
-            {showBack ? (
-                <TouchableOpacity
-                    onPress={handleBackPress}
+            {leftIcon ? (
+                <Pressable
+                    onPress={leftIcon === "menu" ? handleMenuPress : handleBackPress}
                     hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
+                    style={styles.iconButton}
                 >
-                    <MyIcons name="back" size={moderateScale(24)} stroke={iconColor} />
-                </TouchableOpacity>
-            ) : leftIcon ? (
-                <TouchableOpacity
-                    onPress={onLeftIconPress || drawer?.toggle}
-                    hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
-                >
-                    <MyIcons name={leftIcon} size={moderateScale(24)} stroke={iconColor} />
-                </TouchableOpacity>
+                    <MyIcons name={leftIcon || "back"} size={moderateScale(24)} />
+                </Pressable>
             ) : (
-                <View style={{ width: moderateScale(24) }} />
+                <View style={{ width: moderateScale(40) }} />
             )}
 
             {title && (
@@ -88,29 +85,11 @@ const HeaderComp: React.FC<HeaderCompProps> = ({
                 />
             )}
 
-            <Pressable onPress={onRightIconPress || (() => setIsModalVisible(true))}>
-                <MyIcons name={rightIcon || "menu"} size={moderateScale(24)} stroke={iconColor} />
-            </Pressable>
+            {rightIcon ? <Pressable onPress={onRightIconPress} hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }} style={styles.rightIconButton}>
+                <MyIcons name={rightIcon} size={moderateScale(24)} />
+            </Pressable> : <View style={{ width: moderateScale(40) }} />}
 
-            <ModalComp isVisible={isModalVisible} onClose={closeModal}>
-                <View style={styles.modalContainer}>
-                    <TextComp
-                        text="SETTINGS"
-                        style={styles.modalTitle}
-                    />
 
-                    {isFirstTime ? (
-                        <View style={{ marginTop: moderateScale(16) }}>
-                            <ButtonComp
-                                title="LOGOUT"
-                                onPress={onLogout}
-                                loading={isLoadingLogout}
-                            />
-                        </View>
-                    ) : null}
-
-                </View>
-            </ModalComp>
         </View>
     );
 };
@@ -138,6 +117,32 @@ const styles = StyleSheet.create({
         marginBottom: moderateScale(24),
         textAlign: 'center',
     },
+    iconButton: {
+        width: moderateScale(40),
+        height: moderateScale(40),
+        alignItems: 'center',
+        justifyContent: 'center',
+        backgroundColor: Colors.white,
+        borderRadius: moderateScale(60),
+        elevation: 2,
+        shadowColor: Colors.inputBorder,
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.25,
+        shadowRadius: 3.84
+    },
+    rightIconButton: {
+        width: moderateScale(40),
+        height: moderateScale(40),
+        alignItems: 'center',
+        justifyContent: 'center',
+        backgroundColor: Colors.white,
+        borderRadius: moderateScale(60),
+        elevation: 2,
+        shadowColor: Colors.inputBorder,
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.25,
+        shadowRadius: 3.84
+    }
 });
 
 export default HeaderComp;
