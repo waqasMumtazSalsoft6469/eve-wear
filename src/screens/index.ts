@@ -37,3 +37,4 @@ export { default as LogSymptoms } from './main/LogSymptoms/LogSymptoms';
 export { default as CycleHistory } from './main/CycleHistory/CycleHistory';
 export { default as InsightsThreads } from './main/InsightsThreads/InsightsThreads';
 export { default as ReminderAlert } from './main/ReminderAlert/ReminderAlert';
+export { default as AiChatScreen } from './main/AiChatScreen/AiChatScreen';

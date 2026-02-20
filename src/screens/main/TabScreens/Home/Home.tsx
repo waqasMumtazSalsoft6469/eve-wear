@@ -49,7 +49,7 @@ const Home: React.FC = () => {
                     end={{ x: 1, y: 0 }}
                     style={styles.gradientContainer}
                 >
-                    <HomeHeaderComp />
+                    <HomeHeaderComp onNotificationPress={() => navigation.navigate(routes.main.notification)}/>
 
                     <View style={styles.calendarSection}>
                         <View style={styles.calendarHeader}>

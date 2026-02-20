@@ -11,6 +11,7 @@ import { I18nManager, Pressable, StyleSheet, TouchableOpacity, View } from 'reac
 import ButtonComp from './ButtonComp';
 import ModalComp from './ModalComp';
 import MyIcons, { IconName } from './MyIcons';
+import routes from '@/constants/routes';
 
 interface HeaderCompProps {
     title?: string;
@@ -85,7 +86,7 @@ const HeaderComp: React.FC<HeaderCompProps> = ({
                 />
             )}
 
-            {rightIcon ? <Pressable onPress={onRightIconPress} hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }} style={styles.rightIconButton}>
+            {rightIcon ? <Pressable onPress={onRightIconPress ? onRightIconPress : () => navigation.navigate(routes.main.notification as never)} hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }} style={styles.rightIconButton}>
                 <MyIcons name={rightIcon} size={moderateScale(24)} />
             </Pressable> : <View style={{ width: moderateScale(40) }} />}
 
@@ -128,7 +129,8 @@ const styles = StyleSheet.create({
         shadowColor: Colors.inputBorder,
         shadowOffset: { width: 0, height: 2 },
         shadowOpacity: 0.25,
-        shadowRadius: 3.84
+        shadowRadius: 3.84,
+        
     },
     rightIconButton: {
         width: moderateScale(40),

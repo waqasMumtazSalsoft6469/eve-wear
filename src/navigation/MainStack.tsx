@@ -43,6 +43,7 @@ export const MainStack = () => {
       <Stack.Screen name={routes.main.cycleHistory} component={mainRoutes[routes.main.cycleHistory]} />
       <Stack.Screen name={routes.main.insightsThreads} component={mainRoutes[routes.main.insightsThreads]} />
       <Stack.Screen name={routes.main.reminderAlert} component={mainRoutes[routes.main.reminderAlert]} />
+      <Stack.Screen name={routes.main.aiChatScreen} component={mainRoutes[routes.main.aiChatScreen]} />
 </Stack.Navigator>
       </AnimatedDrawer>
     </DrawerProvider>

@@ -46,9 +46,10 @@ const Categories: React.FC = () => {
             <HeaderComp
                 title="Shop Categories"
                 iconColor={Colors.brandPurple}
+                showBack={true}
+                leftIcon="menu"
                 rightIcon="notification"
                 titleStyle={{ color: Colors.brandPurple }}
-                showBack={false}
             />
 
             <View style={styles.content}>

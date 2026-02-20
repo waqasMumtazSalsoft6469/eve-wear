@@ -34,6 +34,7 @@ const routes = {
     cycleHistory: 'CycleHistory',
     insightsThreads: 'InsightsThreads',
     reminderAlert: 'ReminderAlert',
+    aiChatScreen: 'AiChatScreen',
 },
   tab: {
     home: 'Home',
@@ -87,5 +88,6 @@ export const mainRoutes = {
   [routes.main.cycleHistory]: Screens.CycleHistory,
   [routes.main.insightsThreads]: Screens.InsightsThreads,
   [routes.main.reminderAlert]: Screens.ReminderAlert,
+  [routes.main.aiChatScreen]: Screens.AiChatScreen,
 };
 export default routes;

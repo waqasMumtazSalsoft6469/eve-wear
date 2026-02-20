@@ -6,6 +6,9 @@ import { moderateScale } from '@/styles/scaling';
 import React from 'react';
 import { Image, StyleSheet, TouchableOpacity, View, I18nManager } from 'react-native';
 import MyIcons from './MyIcons';
+import routes from '@/constants/routes';
+import { MainStackParamList } from '@/navigation/types';
+import { NavigationProp, useNavigation } from '@react-navigation/native';
 
 interface HomeHeaderCompProps {
     name?: string;
@@ -22,6 +25,7 @@ const HomeHeaderComp: React.FC<HomeHeaderCompProps> = ({
     onNotificationPress,
     customStyle,
 }) => {
+    const navigation = useNavigation<NavigationProp<MainStackParamList>>();
     const drawer = useDrawerSafe();
 
     return (
@@ -57,7 +61,7 @@ const HomeHeaderComp: React.FC<HomeHeaderCompProps> = ({
 
                     <TouchableOpacity
                         style={styles.iconCircle}
-                        onPress={onNotificationPress}
+                        onPress={onNotificationPress ? onNotificationPress : () => navigation.navigate(routes.main.notification)}
                     >
                         <MyIcons name="drawerNotificationWhite" size={moderateScale(20)} />
                     </TouchableOpacity>

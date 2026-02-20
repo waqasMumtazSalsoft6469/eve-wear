@@ -42,5 +42,6 @@ export type MainStackParamList = {
   CycleHistory: undefined;
   InsightsThreads: undefined;
   ReminderAlert: undefined;
+  AiChatScreen: undefined;
 };
 

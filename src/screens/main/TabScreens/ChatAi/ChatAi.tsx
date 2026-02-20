@@ -8,8 +8,11 @@ import { moderateScale } from '@/styles/scaling';
 import React, { useState } from 'react';
 import { ScrollView, View } from 'react-native';
 import styles from './styles';
+import routes from '@/constants/routes';
+import { useNavigation } from '@react-navigation/native';
 
 const ChatAi: React.FC = () => {
+    const navigation = useNavigation<any>();
     const [isLoading, setIsLoading] = useState(false);
 
     const questions = [
@@ -38,8 +41,9 @@ const ChatAi: React.FC = () => {
     return (
         <WrapperContainer style={styles.container}>
             <HeaderComp
-                title={""}
+                title={"Chat AI"}
                 showBack={true}
+                leftIcon="menu"
                 rightIcon="notification"
                 iconColor={Colors.text}
                 onRightIconPress={() => { }}
@@ -67,7 +71,9 @@ const ChatAi: React.FC = () => {
                     title="Start Chat"
                     onPress={() => {
                         setIsLoading(true);
-                        setTimeout(() => setIsLoading(false), 2000);
+                        setTimeout(() => {setIsLoading(false)
+                        navigation.navigate(routes.main.aiChatScreen)
+                        , 2000});
                     }}
                     loading={isLoading}
                     style={styles.startChatButton}

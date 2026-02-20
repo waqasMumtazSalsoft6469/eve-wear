@@ -6739,6 +6739,17 @@ __metadata:
   languageName: node
   linkType: hard
 
+"gifted-charts-core@npm:0.1.78":
+  version: 0.1.78
+  resolution: "gifted-charts-core@npm:0.1.78"
+  peerDependencies:
+    react: "*"
+    react-native: "*"
+    react-native-svg: "*"
+  checksum: 10c0/fb9081c345759d9fafc616e78992beeae603e3b284e2e069b7dfdaabaea5b99469d2d607f4d725b10ca67042d96d0c5293fd08f5c39ff022e78fb12676455155
+  languageName: node
+  linkType: hard
+
 "github-from-package@npm:0.0.0":
   version: 0.0.0
   resolution: "github-from-package@npm:0.0.0"
@@ -9994,6 +10005,26 @@ __metadata:
   languageName: node
   linkType: hard
 
+"react-native-gifted-charts@npm:^1.4.74":
+  version: 1.4.74
+  resolution: "react-native-gifted-charts@npm:1.4.74"
+  dependencies:
+    gifted-charts-core: "npm:0.1.78"
+  peerDependencies:
+    expo-linear-gradient: "*"
+    react: "*"
+    react-native: "*"
+    react-native-linear-gradient: "*"
+    react-native-svg: "*"
+  peerDependenciesMeta:
+    expo-linear-gradient:
+      optional: true
+    react-native-linear-gradient:
+      optional: true
+  checksum: 10c0/7fc02f8af595419f9b3d21ac8277726148b4b8723d0508debeda4cd62688240088a110648a6f2c548fcfd0d6930eb784fbca1a1f4f7fbf9a0d6407fc4a0e2ab3
+  languageName: node
+  linkType: hard
+
 "react-native-is-edge-to-edge@npm:1.2.1, react-native-is-edge-to-edge@npm:^1.2.1":
   version: 1.2.1
   resolution: "react-native-is-edge-to-edge@npm:1.2.1"
@@ -10560,6 +10591,7 @@ __metadata:
     react-native: "npm:0.81.4"
     react-native-bootsplash: "npm:^6.3.10"
     react-native-calendars: "npm:^1.1314.0"
+    react-native-gifted-charts: "npm:^1.4.74"
     react-native-linear-gradient: "npm:^2.8.3"
     react-native-modal: "npm:^14.0.0-rc.1"
     react-native-otp-entry: "npm:^1.8.5"

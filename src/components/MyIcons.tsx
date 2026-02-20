@@ -10,11 +10,15 @@ import { SvgProps } from 'react-native-svg';
 import Apple from '@/assets/icons/apple.svg';
 import BackBlack from '@/assets/icons/back-black.svg';
 import Back from '@/assets/icons/back.svg';
+import BadgeEarned from '@/assets/icons/badge-earned.svg';
 import Billing from '@/assets/icons/billing.svg';
 import BloodDrop from '@/assets/icons/blood-drop.svg';
 import Cancel from '@/assets/icons/cancel.svg';
+import ChallengeLevel from '@/assets/icons/challenge-level.svg';
 import ChangePlan from '@/assets/icons/change-plan.svg';
 import ClockWhite from '@/assets/icons/clock-white.svg';
+import CycleConsistency from '@/assets/icons/cycle-consistency.svg';
+import DateTime from '@/assets/icons/date-time.svg';
 import DateWhite from '@/assets/icons/date-white.svg';
 import DrawerCollaboration from '@/assets/icons/drawer-collaboration.svg';
 import DrawerContact from '@/assets/icons/drawer-contact.svg';
@@ -31,12 +35,14 @@ import Help from '@/assets/icons/help.svg';
 import LocationWhite from '@/assets/icons/location-white.svg';
 import Logo from '@/assets/icons/logo.svg';
 import Menu from '@/assets/icons/menu.svg';
+import Mic from '@/assets/icons/mic.svg';
 import Notification from '@/assets/icons/notification.svg';
 import Pause from '@/assets/icons/pause.svg';
 import Paypal from '@/assets/icons/paypal.svg';
 import Plus from '@/assets/icons/plus.svg';
 import Search from '@/assets/icons/search.svg';
 import Skip from '@/assets/icons/skip.svg';
+import Streak from '@/assets/icons/streak.svg';
 import TabAi from '@/assets/icons/tab-ai.svg';
 import TabBag from '@/assets/icons/tab-bag.svg';
 import TabCross from '@/assets/icons/tab-cross.svg';
@@ -49,11 +55,15 @@ export type IconName =
   | 'apple'
   | 'backBlack'
   | 'back'
+  | 'badgeEarned'
   | 'billing'
   | 'bloodDrop'
   | 'cancel'
+  | 'challengeLevel'
   | 'changePlan'
   | 'clockWhite'
+  | 'cycleConsistency'
+  | 'dateTime'
   | 'dateWhite'
   | 'drawerCollaboration'
   | 'drawerContact'
@@ -70,12 +80,14 @@ export type IconName =
   | 'locationWhite'
   | 'logo'
   | 'menu'
+  | 'mic'
   | 'notification'
   | 'pause'
   | 'paypal'
   | 'plus'
   | 'search'
   | 'skip'
+  | 'streak'
   | 'tabAi'
   | 'tabBag'
   | 'tabCross'
@@ -90,11 +102,15 @@ const iconMap: Record<IconName, IconComponent> = {
   apple: Apple,
   backBlack: BackBlack,
   back: Back,
+  badgeEarned: BadgeEarned,
   billing: Billing,
   bloodDrop: BloodDrop,
   cancel: Cancel,
+  challengeLevel: ChallengeLevel,
   changePlan: ChangePlan,
   clockWhite: ClockWhite,
+  cycleConsistency: CycleConsistency,
+  dateTime: DateTime,
   dateWhite: DateWhite,
   drawerCollaboration: DrawerCollaboration,
   drawerContact: DrawerContact,
@@ -111,12 +127,14 @@ const iconMap: Record<IconName, IconComponent> = {
   locationWhite: LocationWhite,
   logo: Logo,
   menu: Menu,
+  mic: Mic,
   notification: Notification,
   pause: Pause,
   paypal: Paypal,
   plus: Plus,
   search: Search,
   skip: Skip,
+  streak: Streak,
   tabAi: TabAi,
   tabBag: TabBag,
   tabCross: TabCross,
