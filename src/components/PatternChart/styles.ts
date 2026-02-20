@@ -48,6 +48,5 @@ export default StyleSheet.create({
         minHeight: CHART_HEIGHT,
         overflow: 'hidden',
         borderRadius: moderateScale(8),
-        flex: 1,
     },
 });
