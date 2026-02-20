@@ -36,7 +36,14 @@ export const MainStack = () => {
           <Stack.Screen name={routes.main.paymentMethod} component={mainRoutes[routes.main.paymentMethod]} />
           <Stack.Screen name={routes.main.help} component={mainRoutes[routes.main.help]} />
           <Stack.Screen name={routes.main.support} component={mainRoutes[routes.main.support]} />
-        </Stack.Navigator>
+              <Stack.Screen name={routes.main.logPeriod} component={mainRoutes[routes.main.logPeriod]} />
+      <Stack.Screen name={routes.main.ovulationFertility} component={mainRoutes[routes.main.ovulationFertility]} />
+      <Stack.Screen name={routes.main.notification} component={mainRoutes[routes.main.notification]} />
+      <Stack.Screen name={routes.main.logSymptoms} component={mainRoutes[routes.main.logSymptoms]} />
+      <Stack.Screen name={routes.main.cycleHistory} component={mainRoutes[routes.main.cycleHistory]} />
+      <Stack.Screen name={routes.main.insightsThreads} component={mainRoutes[routes.main.insightsThreads]} />
+      <Stack.Screen name={routes.main.reminderAlert} component={mainRoutes[routes.main.reminderAlert]} />
+</Stack.Navigator>
       </AnimatedDrawer>
     </DrawerProvider>
   );

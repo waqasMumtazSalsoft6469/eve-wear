@@ -7,7 +7,7 @@ import { Colors } from '@/styles/colors';
 import { height, moderateScale, width } from '@/styles/scaling';
 import { useNavigation } from '@react-navigation/native';
 import React from 'react';
-import { I18nManager, ImageBackground, StyleSheet, TouchableOpacity, View } from 'react-native';
+import { I18nManager, ImageBackground, ScrollView, StyleSheet, TouchableOpacity, View } from 'react-native';
 import Animated, { interpolate, useAnimatedStyle } from 'react-native-reanimated';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import MyIcons, { IconName } from './MyIcons';
@@ -38,6 +38,10 @@ const MENU_ITEMS: MenuItem[] = [
     { label: 'Contact Us', icon: 'drawerContact', screen: routes.main.support },
     { label: "Help And FAQ's", icon: 'help', screen: routes.main.help },
     { label: 'Our Collaborators', icon: 'drawerCollaboration', screen: routes.main.ourCollaboration },
+    { label: 'Log Symptoms', icon: 'drawerCollaboration', screen: routes.main.logSymptoms },
+    { label: 'Cycle History', icon: 'drawerCollaboration', screen: routes.main.cycleHistory },
+    { label: 'Insights Threads', icon: 'drawerCollaboration', screen: routes.main.insightsThreads },
+    { label: 'Reminder & Alerts', icon: 'drawerCollaboration', screen: routes.main.reminderAlert },
 ];
 
 const DrawerContent: React.FC = () => {
@@ -64,17 +68,21 @@ const DrawerContent: React.FC = () => {
 
     return (
         <View style={[styles.drawerContent]}>
-
-            <View>
+            <View style={styles.drawerHeader}>
                 <TouchableOpacity onPress={close} hitSlop={moderateScale(10)}>
                     <MyIcons name="tabCross" size={moderateScale(22)} />
                 </TouchableOpacity>
-                {/* Profile */}
                 <View style={styles.profileSection}>
                     <TextComp text="Eve User" style={styles.profileName} />
                 </View>
+            </View>
 
-                {/* Menu */}
+            <ScrollView
+                style={styles.menuScroll}
+                contentContainerStyle={styles.menuScrollContent}
+                showsVerticalScrollIndicator={false}
+                bounces={false}
+            >
                 <View style={styles.menuSection}>
                     {MENU_ITEMS.map((item, index) => (
                         <TouchableOpacity
@@ -88,9 +96,8 @@ const DrawerContent: React.FC = () => {
                         </TouchableOpacity>
                     ))}
                 </View>
-            </View>
+            </ScrollView>
 
-            {/* Logout */}
             <TouchableOpacity
                 style={[styles.logoutButton, { marginBottom: insets.bottom + moderateScale(10) }]}
                 onPress={handleLogout}
@@ -186,8 +193,16 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'space-between',
     },
-
-
+    drawerHeader: {
+        marginTop: moderateScale(30),
+    },
+    menuScroll: {
+        flex: 1,
+    },
+    menuScrollContent: {
+        paddingVertical: moderateScale(8),
+        paddingRight: moderateScale(8),
+    },
     profileName: {
         color: Colors.orange,
         fontSize: moderateScale(30),
@@ -195,8 +210,8 @@ const styles = StyleSheet.create({
         marginBottom: moderateScale(4),
     },
     profileSection: {
-        marginTop: moderateScale(30),
-        marginBottom: moderateScale(20)
+        marginTop: moderateScale(12),
+        marginBottom: moderateScale(8),
     },
     profileEmail: {
         color: Colors.black,

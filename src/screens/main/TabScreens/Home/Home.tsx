@@ -10,8 +10,12 @@ import LinearGradient from 'react-native-linear-gradient';
 import Svg, { Circle } from 'react-native-svg';
 import styles from './styles';
 import { localImages } from '@/assets/images';
+import routes from '@/constants/routes';
+import { NavigationProp, useNavigation } from '@react-navigation/native';
+import { MainStackParamList } from '@/navigation/types';
 
 const Home: React.FC = () => {
+    const navigation = useNavigation<NavigationProp<MainStackParamList>>();
 
     // Placeholder data
     const dates = [
@@ -79,28 +83,28 @@ const Home: React.FC = () => {
                                 <Circle
                                     cx="50"
                                     cy="50"
-                                    r="45"
+                                    r="46"
                                     stroke="#E0E0E0"
-                                    strokeWidth="2"
+                                    strokeWidth="3"
                                     fill="none"
                                     strokeDasharray="1, 2"
                                 />
                                 <Circle
                                     cx="50"
                                     cy="50"
-                                    r="45"
+                                    r="46"
                                     stroke="#FF8C69"
                                     strokeWidth="4"
                                     fill="none"
                                     strokeDasharray="40, 100"
                                     strokeLinecap="round"
                                 />
-                                <Circle
+                                {/* <Circle
                                     cx="85"
-                                    cy="75"
+                                    cy="76"
                                     r="3"
                                     fill="#FF8C69"
-                                />
+                                /> */}
                             </Svg>
                         </View>
                         <LinearGradient
@@ -121,7 +125,7 @@ const Home: React.FC = () => {
                             text="Your Period Is Predicted To Start In 5 Days"
                             style={styles.predictionText}
                         />
-                        <TouchableOpacity>
+                        <TouchableOpacity onPress={() => navigation.navigate(routes.main.logPeriod)}>
                             <TextComp text="Log Period" style={styles.logText} />
                         </TouchableOpacity>
                     </View>

@@ -27,6 +27,13 @@ const routes = {
     paymentMethod: 'PaymentMethod',
     help: 'Help',
     support: 'Support',
+    logPeriod: 'LogPeriod',
+    ovulationFertility: 'OvulationFertility',
+    notification: 'Notification',
+    logSymptoms: 'LogSymptoms',
+    cycleHistory: 'CycleHistory',
+    insightsThreads: 'InsightsThreads',
+    reminderAlert: 'ReminderAlert',
 },
   tab: {
     home: 'Home',
@@ -73,5 +80,12 @@ export const mainRoutes = {
   [routes.main.paymentMethod]: Screens.PaymentMethod,
   [routes.main.help]: Screens.Help,
   [routes.main.support]: Screens.Support,
+  [routes.main.logPeriod]: Screens.LogPeriod,
+  [routes.main.ovulationFertility]: Screens.OvulationFertility,
+  [routes.main.notification]: Screens.Notification,
+  [routes.main.logSymptoms]: Screens.LogSymptoms,
+  [routes.main.cycleHistory]: Screens.CycleHistory,
+  [routes.main.insightsThreads]: Screens.InsightsThreads,
+  [routes.main.reminderAlert]: Screens.ReminderAlert,
 };
 export default routes;

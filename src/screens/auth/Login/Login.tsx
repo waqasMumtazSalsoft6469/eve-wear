@@ -153,13 +153,13 @@ const Login = () => {
                                         </TouchableOpacity>
                                     </View>
 
-                                    <TouchableOpacity
+                                    {/* <TouchableOpacity
                                         onPress={handleSubmit as any}
                                         onPressIn={onPressIn}
                                         onPressOut={onPressOut}
                                         activeOpacity={1}
                                     >
-                                        <Animated.View style={loginButtonStyle}>
+                                        <Animated.View style={loginButtonStyle}> */}
                                             <ButtonComp
                                                 title="LOGIN"
                                                 onPress={handleSubmit as any}
@@ -167,8 +167,8 @@ const Login = () => {
                                                 style={styles.loginButton}
                                                 textStyle={styles.loginButtonText}
                                             />
-                                        </Animated.View>
-                                    </TouchableOpacity>
+                                        {/* </Animated.View>
+                                    </TouchableOpacity> */}
                                 </Animated.View>
                             )}
                         </Formik>

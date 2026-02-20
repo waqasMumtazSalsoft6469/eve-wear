@@ -12,7 +12,7 @@ export interface SegmentedControlProps {
     segments: string[];
     selectedIndex: number;
     onSelect: (index: number) => void;
-    gradientColors?: readonly [string, string];
+    gradientColors?: readonly [string, string, string?];
 }
 
 const SegmentedControl: React.FC<SegmentedControlProps> = ({

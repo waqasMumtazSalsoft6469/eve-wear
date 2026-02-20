@@ -138,7 +138,7 @@ const ButtonComp: React.FC<ButtonCompProps> = ({
     const gradientColors: string[] = disabled
         ? [Colors.gray200, Colors.gray200]
         : isGradient
-          ? [...Colors.gradientPrimary]
+          ? [...Colors.gradientSecondary]
           : [Colors.white, Colors.white];
     const solidBackgroundColor =
         variant === 'secondary'

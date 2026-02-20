@@ -35,6 +35,12 @@ export type MainStackParamList = {
   PaymentMethod: undefined;
   Help: undefined;
   Support: undefined;
-
+  LogPeriod: undefined;
+  OvulationFertility: undefined;
+  Notification: undefined;
+  LogSymptoms: undefined;
+  CycleHistory: undefined;
+  InsightsThreads: undefined;
+  ReminderAlert: undefined;
 };
 

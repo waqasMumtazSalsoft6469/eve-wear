@@ -48,7 +48,8 @@ export const Colors = {
     buttonPrimary: '#00A13A',
     buttonSecondary: '#CD0105',
     buttonDisabled: '#CCCCCC',
-    gradientPrimary: ['#E07A7F','#FF8C69'] as readonly [string, string],
+    gradientPrimary: ['#E07A7F', '#FF8C69'] as readonly [string, string],
+    gradientSecondary: ['#36194b', "#6b3296", '#36194b'] as readonly [string, string, string],
 
     // Icons
     iconPrimary: '#454545',

@@ -1,13 +1,13 @@
+import CalendarComp, { DateData, getMarkedDatesForRange } from '@/components/CalendarComp';
 import HeaderComp from '@/components/HeaderComp';
 import WrapperContainer from '@/components/WrapperContainer';
-import CalendarComp, { DateData, getMarkedDatesForRange } from '@/components/CalendarComp';
 import YourCycleCard from '@/components/YourCycleCard';
 import { Colors } from '@/styles/colors';
 import React, { useMemo, useState } from 'react';
 import { ScrollView, View } from 'react-native';
 import styles from './styles';
 
-const CycleOverview: React.FC = () => {
+const OvulationFertility: React.FC = () => {
     const [rangeStart, setRangeStart] = useState<string | null>(null);
     const [rangeEnd, setRangeEnd] = useState<string | null>(null);
     const [currentMonth, setCurrentMonth] = useState<string>(() => {
@@ -46,14 +46,15 @@ const CycleOverview: React.FC = () => {
         setCurrentMonth(month.dateString.slice(0, 7));
     };
 
+
     return (
         <WrapperContainer style={styles.container}>
             <HeaderComp
-                title="Cycle Overview"
+                showBack={true}
+                leftIcon="backBlack"
+                title="Ovulation & Fertility"
                 iconColor={Colors.brandPurple}
-                rightIcon="notification"
                 titleStyle={{ color: Colors.brandPurple }}
-                leftIcon="menu"
             />
             <ScrollView style={{ flex: 1 }} contentContainerStyle={styles.content} showsVerticalScrollIndicator={false}>
                 <View style={styles.calendarCard}>
@@ -76,4 +77,4 @@ const CycleOverview: React.FC = () => {
     );
 };
 
-export default CycleOverview;
+export default OvulationFertility;
