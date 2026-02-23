@@ -1,18 +1,19 @@
+import { localImages } from '@/assets/images';
 import CategoryCard from '@/components/CategoryCard';
 import HeaderComp from '@/components/HeaderComp';
 import SearchBar from '@/components/SearchBar';
 import WrapperContainer from '@/components/WrapperContainer';
+import routes from '@/constants/routes';
 import { Colors } from '@/styles/colors';
-import { moderateScale } from '@/styles/scaling';
+import { useNavigation } from '@react-navigation/native';
 import React, { useState } from 'react';
 import { ScrollView, View } from 'react-native';
 import styles from './styles';
-import { localImages } from '@/assets/images';
 
 const Categories: React.FC = () => {
 
     const [searchQuery, setSearchQuery] = useState('');
-
+    const navigation = useNavigation<any>();
     const categories = [
         {
             id: 1,
@@ -67,9 +68,17 @@ const Categories: React.FC = () => {
                                 key={item.id}
                                 id={item.id}
                                 title={item.title}
-                                image={item.image}
+                                image={item.image as any}
                                 color={item.color}
-                                onPress={() => { }}
+                                actionLabel={item.title}
+                                showFavorite={false}
+                                showDetails={false}
+                                onPress={() =>
+                                    navigation.navigate(routes.main.categoryProducts, {
+                                        categoryId: item.id,
+                                        categoryTitle: item.title,
+                                    })
+                                }
                             />
                         ))}
                     </View>

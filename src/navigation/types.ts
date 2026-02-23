@@ -43,5 +43,22 @@ export type MainStackParamList = {
   InsightsThreads: undefined;
   ReminderAlert: undefined;
   AiChatScreen: undefined;
+  CategoryProducts: {
+    categoryId: number;
+    categoryTitle: string;
+  };
+  ProductDetails: undefined;
+  Cart: undefined;
+  RatingReview: undefined;
+  Checkout: undefined;
+  ShippingAddress: undefined;
+  AddShippingAddress: undefined;
+  CardDetails: undefined;
+  EnterPin: undefined;
+  RequestAppointment: undefined;
+  RequestAquote: undefined;
+  ApplicationStatus: undefined;
+  OrderDetails: undefined;
+  WriteRatingReview: undefined;
 };
 

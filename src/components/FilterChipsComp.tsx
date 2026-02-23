@@ -52,7 +52,7 @@ const styles = StyleSheet.create({
         gap: moderateScale(10),
     },
     filterTab: {
-        paddingHorizontal: moderateScale(18),
+        paddingHorizontal: moderateScale(16),
         paddingVertical: moderateScale(10),
         borderRadius: moderateScale(20),
         backgroundColor: Colors.background,
@@ -64,7 +64,7 @@ const styles = StyleSheet.create({
         borderColor: Colors.brandSalmon,
     },
     filterTabText: {
-        fontSize: moderateScale(14),
+        fontSize: moderateScale(12),
         fontFamily: fontFamily.regular,
         color: Colors.textSecondary,
     },

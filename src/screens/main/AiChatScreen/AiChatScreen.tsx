@@ -162,7 +162,7 @@ const AiChatScreen: React.FC = () => {
                 <View style={styles.inputArea}>
                     <View style={styles.inputRow}>
                         <TouchableOpacity style={styles.attachButton} activeOpacity={0.7}>
-                            <MyIcons name="plus" size={moderateScale(20)} stroke={Colors.gray400} />
+                            <MyIcons name="attachment" size={moderateScale(20)} stroke={Colors.gray400} />
                         </TouchableOpacity>
                         <TextInput
                             style={styles.input}

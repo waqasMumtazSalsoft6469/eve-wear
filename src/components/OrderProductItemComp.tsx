@@ -46,8 +46,8 @@ const styles = StyleSheet.create({
         elevation: 2,
     },
     productImage: {
-        width: moderateScale(72),
-        height: moderateScale(72),
+        width: moderateScale(80),
+        height: '100%',
         borderRadius: moderateScale(10),
         backgroundColor: Colors.gray100,
     },
@@ -55,6 +55,7 @@ const styles = StyleSheet.create({
         flex: 1,
         marginLeft: moderateScale(12),
         justifyContent: 'space-between',
+        gap: moderateScale(3),
     },
     productDetailsRTL: {
         marginLeft: 0,

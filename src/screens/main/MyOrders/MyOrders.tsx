@@ -1,13 +1,16 @@
-import HeaderComp from '@/components/HeaderComp';
+import { localImages } from '@/assets/images';
+import routes from '@/constants/routes';
 import FilterChipsComp, { FilterChipOption } from '@/components/FilterChipsComp';
+import HeaderComp from '@/components/HeaderComp';
 import OrderCardComp from '@/components/OrderCardComp';
 import SearchBar from '@/components/SearchBar';
 import TextComp from '@/components/TextComp';
 import WrapperContainer from '@/components/WrapperContainer';
-import { localImages } from '@/assets/images';
-import { Colors } from '@/styles/colors';
+import { MainStackParamList } from '@/navigation/types';
 import { Order, OrderStatus } from '@/models/Order';
-import { moderateScale } from '@/styles/scaling';
+import { Colors } from '@/styles/colors';
+import { useNavigation } from '@react-navigation/native';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import React, { useMemo, useState } from 'react';
 import { FlatList, View } from 'react-native';
 import styles from './styles';
@@ -68,6 +71,7 @@ const MOCK_ORDERS: Order[] = [
 ];
 
 const MyOrders: React.FC = () => {
+    const navigation = useNavigation<NativeStackNavigationProp<MainStackParamList>>();
     const [searchQuery, setSearchQuery] = useState('');
     const [activeFilter, setActiveFilter] = useState<OrderFilterKey>('All');
 
@@ -89,7 +93,7 @@ const MyOrders: React.FC = () => {
     }, [activeFilter, searchQuery]);
 
     const handleOrderPress = (_order: Order) => {
-        // TODO: navigate to order detail screen
+        navigation.navigate(routes.main.orderDetails);
     };
 
     return (

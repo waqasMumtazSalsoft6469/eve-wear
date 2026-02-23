@@ -1538,6 +1538,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@egjs/hammerjs@npm:^2.0.17":
+  version: 2.0.17
+  resolution: "@egjs/hammerjs@npm:2.0.17"
+  dependencies:
+    "@types/hammerjs": "npm:^2.0.36"
+  checksum: 10c0/dbedc15a0e633f887c08394bd636faf6a3abd05726dc0909a0e01209d5860a752d9eca5e512da623aecfabe665f49f1d035de3103eb2f9022c5cea692f9cc9be
+  languageName: node
+  linkType: hard
+
 "@eslint-community/eslint-utils@npm:^4.2.0, @eslint-community/eslint-utils@npm:^4.4.0":
   version: 4.9.1
   resolution: "@eslint-community/eslint-utils@npm:4.9.1"
@@ -3665,6 +3674,13 @@ __metadata:
   dependencies:
     "@types/node": "npm:*"
   checksum: 10c0/235d2fc69741448e853333b7c3d1180a966dd2b8972c8cbcd6b2a0c6cd7f8d582ab2b8e58219dbc62cce8f1b40aa317ff78ea2201cdd8249da5025adebed6f0b
+  languageName: node
+  linkType: hard
+
+"@types/hammerjs@npm:^2.0.36":
+  version: 2.0.46
+  resolution: "@types/hammerjs@npm:2.0.46"
+  checksum: 10c0/f3c1cb20dc2f0523f7b8c76065078544d50d8ae9b0edc1f62fed657210ed814266ff2dfa835d2c157a075991001eec3b64c88bf92e3e6e895c0db78d05711d06
   languageName: node
   linkType: hard
 
@@ -10005,6 +10021,20 @@ __metadata:
   languageName: node
   linkType: hard
 
+"react-native-gesture-handler@npm:^2.30.0":
+  version: 2.30.0
+  resolution: "react-native-gesture-handler@npm:2.30.0"
+  dependencies:
+    "@egjs/hammerjs": "npm:^2.0.17"
+    hoist-non-react-statics: "npm:^3.3.0"
+    invariant: "npm:^2.2.4"
+  peerDependencies:
+    react: "*"
+    react-native: "*"
+  checksum: 10c0/26b94b0f97433fc6fb5b1c196ef29fce4f5a66c77fabb1bc33db91099357fbd44a5220783fcbb91d42700bcd578f2fd114314029d9e0d4674878767d9b7f5df6
+  languageName: node
+  linkType: hard
+
 "react-native-gifted-charts@npm:^1.4.74":
   version: 1.4.74
   resolution: "react-native-gifted-charts@npm:1.4.74"
@@ -10067,6 +10097,18 @@ __metadata:
   languageName: node
   linkType: hard
 
+"react-native-reanimated-carousel@npm:^4.0.3":
+  version: 4.0.3
+  resolution: "react-native-reanimated-carousel@npm:4.0.3"
+  peerDependencies:
+    react: ">=18.0.0"
+    react-native: ">=0.70.3"
+    react-native-gesture-handler: ">=2.9.0"
+    react-native-reanimated: ">=3.0.0"
+  checksum: 10c0/b7d192fa5d5ad8b779cd51c67fe8a477eb338dbe29478eadb74deffd107b42e24fc7e581b6a055fae54cb8491801fb67f32be34b73e6bf346b6b9ab8ee51ad08
+  languageName: node
+  linkType: hard
+
 "react-native-reanimated@npm:^4.1.0":
   version: 4.2.2
   resolution: "react-native-reanimated@npm:4.2.2"
@@ -10101,6 +10143,13 @@ __metadata:
     react: "*"
     react-native: "*"
   checksum: 10c0/91c0c9840d36923adc49cb0d463f4e6b63d63060245029d49f8b80d82a405fcecce2196695c993f214c5ecb945e1b0bfb8ec0b8b44845b1438b8fac0d9ed53a7
+  languageName: node
+  linkType: hard
+
+"react-native-share@npm:^12.2.5":
+  version: 12.2.5
+  resolution: "react-native-share@npm:12.2.5"
+  checksum: 10c0/d0e7f2fa405346b2eab37b3776c9d6c79f673930f0854ac45dfdf3aed0923b8a512fbe8653960399f5d9bf965aa98fe374c27c36e9fd1f93825e572ea3bf83df
   languageName: node
   linkType: hard
 
@@ -10591,13 +10640,16 @@ __metadata:
     react-native: "npm:0.81.4"
     react-native-bootsplash: "npm:^6.3.10"
     react-native-calendars: "npm:^1.1314.0"
+    react-native-gesture-handler: "npm:^2.30.0"
     react-native-gifted-charts: "npm:^1.4.74"
     react-native-linear-gradient: "npm:^2.8.3"
     react-native-modal: "npm:^14.0.0-rc.1"
     react-native-otp-entry: "npm:^1.8.5"
     react-native-reanimated: "npm:^4.1.0"
+    react-native-reanimated-carousel: "npm:^4.0.3"
     react-native-safe-area-context: "npm:^5.6.1"
     react-native-screens: "npm:^4.15.4"
+    react-native-share: "npm:^12.2.5"
     react-native-svg: "npm:^15.12.1"
     react-native-svg-transformer: "npm:^1.5.1"
     react-native-worklets: "npm:^0.7.1"

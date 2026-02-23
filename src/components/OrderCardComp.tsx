@@ -33,14 +33,8 @@ const OrderCardComp: React.FC<OrderCardCompProps> = ({ order, onPress }) => {
                 </View>
                 <View style={styles.orderChevron}>
                     <MyIcons
-                        name="back"
-                        size={moderateScale(20)}
-                        stroke={Colors.gray400}
-                        style={{
-                            transform: [
-                                { rotate: I18nManager.isRTL ? '0deg' : '180deg' },
-                            ],
-                        }}
+                        name="rightArrow"
+                        size={moderateScale(16)}
                     />
                 </View>
             </TouchableOpacity>
@@ -71,6 +65,7 @@ const styles = StyleSheet.create({
     },
     orderHeaderLeft: {
         flex: 1,
+        gap: moderateScale(2),
     },
     orderId: {
         fontSize: moderateScale(15),

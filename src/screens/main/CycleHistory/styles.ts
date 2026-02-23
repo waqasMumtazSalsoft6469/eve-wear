@@ -24,7 +24,7 @@ export default StyleSheet.create({
         width: moderateScale(44),
         height: moderateScale(44),
         borderRadius: moderateScale(22),
-        backgroundColor: Colors.gray100,
+        // backgroundColor: Colors.gray100,
         justifyContent: 'center',
         alignItems: 'center',
         marginRight: I18nManager.isRTL ? 0 : moderateScale(14),

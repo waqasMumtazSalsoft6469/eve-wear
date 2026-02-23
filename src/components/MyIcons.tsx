@@ -7,19 +7,23 @@ import React from 'react';
 import { View, ViewStyle } from 'react-native';
 import { SvgProps } from 'react-native-svg';
 
+import Ai from '@/assets/icons/ai.svg';
 import Apple from '@/assets/icons/apple.svg';
+import Attachment from '@/assets/icons/attachment.svg';
 import BackBlack from '@/assets/icons/back-black.svg';
 import Back from '@/assets/icons/back.svg';
 import BadgeEarned from '@/assets/icons/badge-earned.svg';
 import Billing from '@/assets/icons/billing.svg';
 import BloodDrop from '@/assets/icons/blood-drop.svg';
 import Cancel from '@/assets/icons/cancel.svg';
+import Card from '@/assets/icons/card.svg';
 import ChallengeLevel from '@/assets/icons/challenge-level.svg';
 import ChangePlan from '@/assets/icons/change-plan.svg';
 import ClockWhite from '@/assets/icons/clock-white.svg';
 import CycleConsistency from '@/assets/icons/cycle-consistency.svg';
 import DateTime from '@/assets/icons/date-time.svg';
 import DateWhite from '@/assets/icons/date-white.svg';
+import Delete from '@/assets/icons/delete.svg';
 import DrawerCollaboration from '@/assets/icons/drawer-collaboration.svg';
 import DrawerContact from '@/assets/icons/drawer-contact.svg';
 import DrawerHome from '@/assets/icons/drawer-home.svg';
@@ -30,8 +34,12 @@ import DrawerNotificationWhite from '@/assets/icons/drawer-notification-white.sv
 import DrawerOrders from '@/assets/icons/drawer-orders.svg';
 import DrawerSessions from '@/assets/icons/drawer-sessions.svg';
 import DrawerSubscription from '@/assets/icons/drawer-subscription.svg';
+import EditIcon from '@/assets/icons/edit-icon.svg';
+import Facebook from '@/assets/icons/facebook.svg';
 import Google from '@/assets/icons/google.svg';
+import GradientHeart from '@/assets/icons/gradient-heart.svg';
 import Help from '@/assets/icons/help.svg';
+import Instagram from '@/assets/icons/instagram.svg';
 import LocationWhite from '@/assets/icons/location-white.svg';
 import Logo from '@/assets/icons/logo.svg';
 import Menu from '@/assets/icons/menu.svg';
@@ -40,7 +48,9 @@ import Notification from '@/assets/icons/notification.svg';
 import Pause from '@/assets/icons/pause.svg';
 import Paypal from '@/assets/icons/paypal.svg';
 import Plus from '@/assets/icons/plus.svg';
+import RightArrow from '@/assets/icons/right-arrow.svg';
 import Search from '@/assets/icons/search.svg';
+import Share from '@/assets/icons/share.svg';
 import Skip from '@/assets/icons/skip.svg';
 import Streak from '@/assets/icons/streak.svg';
 import TabAi from '@/assets/icons/tab-ai.svg';
@@ -49,22 +59,27 @@ import TabCross from '@/assets/icons/tab-cross.svg';
 import TabGallery from '@/assets/icons/tab-gallery.svg';
 import TabHome from '@/assets/icons/tab-home.svg';
 import TabPlus from '@/assets/icons/tab-plus.svg';
+import User from '@/assets/icons/user.svg';
 import Visa from '@/assets/icons/visa.svg';
 
 export type IconName =
+  | 'ai'
   | 'apple'
+  | 'attachment'
   | 'backBlack'
   | 'back'
   | 'badgeEarned'
   | 'billing'
   | 'bloodDrop'
   | 'cancel'
+  | 'card'
   | 'challengeLevel'
   | 'changePlan'
   | 'clockWhite'
   | 'cycleConsistency'
   | 'dateTime'
   | 'dateWhite'
+  | 'delete'
   | 'drawerCollaboration'
   | 'drawerContact'
   | 'drawerHome'
@@ -75,8 +90,12 @@ export type IconName =
   | 'drawerOrders'
   | 'drawerSessions'
   | 'drawerSubscription'
+  | 'editIcon'
+  | 'facebook'
   | 'google'
+  | 'gradientHeart'
   | 'help'
+  | 'instagram'
   | 'locationWhite'
   | 'logo'
   | 'menu'
@@ -85,7 +104,9 @@ export type IconName =
   | 'pause'
   | 'paypal'
   | 'plus'
+  | 'rightArrow'
   | 'search'
+  | 'share'
   | 'skip'
   | 'streak'
   | 'tabAi'
@@ -94,24 +115,29 @@ export type IconName =
   | 'tabGallery'
   | 'tabHome'
   | 'tabPlus'
+  | 'user'
   | 'visa';
 
 type IconComponent = React.FC<SvgProps>;
 
 const iconMap: Record<IconName, IconComponent> = {
+  ai: Ai,
   apple: Apple,
+  attachment: Attachment,
   backBlack: BackBlack,
   back: Back,
   badgeEarned: BadgeEarned,
   billing: Billing,
   bloodDrop: BloodDrop,
   cancel: Cancel,
+  card: Card,
   challengeLevel: ChallengeLevel,
   changePlan: ChangePlan,
   clockWhite: ClockWhite,
   cycleConsistency: CycleConsistency,
   dateTime: DateTime,
   dateWhite: DateWhite,
+  delete: Delete,
   drawerCollaboration: DrawerCollaboration,
   drawerContact: DrawerContact,
   drawerHome: DrawerHome,
@@ -122,8 +148,12 @@ const iconMap: Record<IconName, IconComponent> = {
   drawerOrders: DrawerOrders,
   drawerSessions: DrawerSessions,
   drawerSubscription: DrawerSubscription,
+  editIcon: EditIcon,
+  facebook: Facebook,
   google: Google,
+  gradientHeart: GradientHeart,
   help: Help,
+  instagram: Instagram,
   locationWhite: LocationWhite,
   logo: Logo,
   menu: Menu,
@@ -132,7 +162,9 @@ const iconMap: Record<IconName, IconComponent> = {
   pause: Pause,
   paypal: Paypal,
   plus: Plus,
+  rightArrow: RightArrow,
   search: Search,
+  share: Share,
   skip: Skip,
   streak: Streak,
   tabAi: TabAi,
@@ -141,6 +173,7 @@ const iconMap: Record<IconName, IconComponent> = {
   tabGallery: TabGallery,
   tabHome: TabHome,
   tabPlus: TabPlus,
+  user: User,
   visa: Visa,
 };
 

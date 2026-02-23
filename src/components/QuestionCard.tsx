@@ -23,7 +23,7 @@ const QuestionCard: React.FC<QuestionCardProps> = ({
     return (
         <TouchableOpacity style={[styles.container, style]} onPress={onPress} activeOpacity={0.7}>
             <View style={[styles.iconBox, { backgroundColor: color }]}>
-                <MyIcons name="tabAi" size={moderateScale(24)} stroke={Colors.white} />
+                <MyIcons name="ai" size={moderateScale(24)} />
             </View>
             <TextComp text={text} style={styles.text} />
         </TouchableOpacity>

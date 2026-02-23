@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import {
     StyleSheet,
-    TouchableOpacity,
+    Pressable,
     TextStyle,
     DimensionValue,
     View,
@@ -22,7 +22,7 @@ import { moderateScale } from '@/styles/scaling';
 import fontFamily from '@/styles/fontFamily';
 import LinearGradient from 'react-native-linear-gradient';
 
-const AnimatedTouchableOpacity = Animated.createAnimatedComponent(TouchableOpacity);
+const AnimatedPressable = Animated.createAnimatedComponent(Pressable);
 
 interface ButtonCompProps {
     onPress: () => void;
@@ -138,16 +138,16 @@ const ButtonComp: React.FC<ButtonCompProps> = ({
     const gradientColors: string[] = disabled
         ? [Colors.gray200, Colors.gray200]
         : isGradient
-          ? [...Colors.gradientSecondary]
-          : [Colors.white, Colors.white];
+            ? [...Colors.gradientSecondary]
+            : [Colors.white, Colors.white];
     const solidBackgroundColor =
         variant === 'secondary'
             ? Colors.secondary
             : variant === 'premium'
-              ? Colors.brandPurple
-              : isOutline
-                ? Colors.transparent
-                : undefined;
+                ? Colors.brandPurple
+                : isOutline
+                    ? Colors.transparent
+                    : undefined;
 
     const buttonContent = (
         <>
@@ -174,11 +174,10 @@ const ButtonComp: React.FC<ButtonCompProps> = ({
     );
 
     return (
-        <AnimatedTouchableOpacity
+        <AnimatedPressable
             onPress={onPress}
             disabled={disabled || loading}
             style={buttonStyles}
-            activeOpacity={0.8}
             onLayout={handleLayout}
         >
             {isGradient ? (
@@ -203,7 +202,7 @@ const ButtonComp: React.FC<ButtonCompProps> = ({
                     {buttonContent}
                 </View>
             )}
-        </AnimatedTouchableOpacity>
+        </AnimatedPressable>
     );
 };
 

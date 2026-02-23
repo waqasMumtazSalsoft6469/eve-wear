@@ -146,7 +146,11 @@ function updateNavigationFile(screenName: string, screenType: ScreenType): void 
     const idx = content.indexOf(closing);
 
     if (idx !== -1) {
-        const newScreen = `      <${tag} name={${prop}} component={${mapping}[${prop}]} />\n`;
+        const lineStart = content.lastIndexOf('\n', idx - 1) + 1;
+        const closingIndent = content.slice(lineStart, idx).match(/^\s*/)?.[0] ?? '';
+        const screenIndent = `${closingIndent}  `;
+        const needsLeadingNewline = idx > 0 && content[idx - 1] !== '\n';
+        const newScreen = `${needsLeadingNewline ? '\n' : ''}${screenIndent}<${tag} name={${prop}} component={${mapping}[${prop}]} />\n`;
         content = content.slice(0, idx) + newScreen + content.slice(idx);
         fs.writeFileSync(navPath, content, 'utf8');
         console.log(`✓ Updated ${path.basename(navPath)}`);

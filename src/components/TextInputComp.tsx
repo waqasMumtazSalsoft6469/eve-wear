@@ -20,6 +20,8 @@ interface TextInputCompProps extends TextInputProps {
     error?: boolean | string;
     touched?: boolean;
     placeholder?: string;
+    leftIcon?: React.ReactNode;
+    onLeftIconPress?: () => void;
     rightIcon?: React.ReactNode;
     onRightIconPress?: () => void;
     underline?: boolean;
@@ -36,6 +38,8 @@ const TextInputComp: React.FC<TextInputCompProps> = ({
     error,
     touched,
     placeholder = '',
+    leftIcon,
+    onLeftIconPress,
     rightIcon,
     onRightIconPress,
     underline,
@@ -64,6 +68,15 @@ const TextInputComp: React.FC<TextInputCompProps> = ({
                     inputContainerStyle
                 ]}
             >
+                {leftIcon && (
+                    <TouchableOpacity
+                        onPress={onLeftIconPress}
+                        disabled={!onLeftIconPress}
+                        style={styles.leftIconWrap}
+                    >
+                        {leftIcon}
+                    </TouchableOpacity>
+                )}
                 <TextInput
                     style={[
                         styles.input,
@@ -80,6 +93,7 @@ const TextInputComp: React.FC<TextInputCompProps> = ({
                     <TouchableOpacity
                         onPress={onRightIconPress}
                         disabled={!onRightIconPress}
+                        style={styles.rightIconWrap}
                     >
                         {rightIcon}
                     </TouchableOpacity>
@@ -104,6 +118,12 @@ const styles = StyleSheet.create({
         padding: moderateScale(14),
         flexDirection: I18nManager.isRTL ? 'row-reverse' : 'row',
         alignItems: 'center',
+    },
+    leftIconWrap: {
+        marginEnd: moderateScale(8),
+    },
+    rightIconWrap: {
+        marginStart: moderateScale(8),
     },
     underlineContainer: {
         backgroundColor: 'transparent',
