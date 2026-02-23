@@ -5,13 +5,18 @@ import SearchBar from '@/components/SearchBar';
 import TextComp from '@/components/TextComp';
 import WrapperContainer from '@/components/WrapperContainer';
 import { localImages } from '@/assets/images';
+import routes from '@/constants/routes';
+import { MainStackParamList } from '@/navigation/types';
 import { OrderItem } from '@/models/Order';
 import { Colors } from '@/styles/colors';
+import { useNavigation } from '@react-navigation/native';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import React from 'react';
 import { ScrollView, TouchableOpacity, View } from 'react-native';
 import styles from './styles';
 
 const OrderDetails: React.FC = () => {
+    const navigation = useNavigation<NativeStackNavigationProp<MainStackParamList>>();
     const [searchQuery, setSearchQuery] = React.useState('');
     const [isActionMenuVisible, setIsActionMenuVisible] = React.useState(false);
 
@@ -29,7 +34,7 @@ const OrderDetails: React.FC = () => {
         <WrapperContainer style={styles.container}>
             <HeaderComp
                 title="Order Details"
-                leftIcon="back"
+                leftIcon="backBlack"
                 rightIcon="notification"
                 iconColor={Colors.brandPurple}
                 titleStyle={styles.headerTitle}
@@ -61,7 +66,12 @@ const OrderDetails: React.FC = () => {
                 <OrderProductItemComp item={product} />
 
                 <View style={styles.orderMetaSection}>
-                    <TextComp text="Rate & Review Product" style={styles.rateReviewText} />
+                    <TouchableOpacity
+                        activeOpacity={0.8}
+                        onPress={() => navigation.navigate(routes.main.writeRatingReview)}
+                    >
+                        <TextComp text="Rate & Review Product" style={styles.rateReviewText} />
+                    </TouchableOpacity>
 
                     <View style={styles.orderInfoCard}>
                         <View style={styles.orderInfoTopRow}>
