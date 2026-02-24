@@ -137,17 +137,6 @@ const Login = () => {
                                     />
 
                                     <View style={styles.footerRow}>
-                                        <TouchableOpacity
-                                            style={styles.rememberMeRow}
-                                            onPress={() => setRememberMe(!rememberMe)}
-                                        >
-                                            <View style={[
-                                                styles.checkbox,
-                                                rememberMe && { backgroundColor: 'white' }
-                                            ]} />
-                                            <TextComp text="Remember me" style={styles.rememberMeText} />
-                                        </TouchableOpacity>
-
                                         <TouchableOpacity onPress={handleForgotPassword}>
                                             <TextComp text="Forgot password?" style={styles.forgotPasswordText} />
                                         </TouchableOpacity>

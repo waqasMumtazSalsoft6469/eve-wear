@@ -34,7 +34,7 @@ const styles = StyleSheet.create({
     },
     subtitle: {
         fontSize: moderateScale(14),
-        fontFamily: fontFamily.medium,
+        fontFamily: fontFamily.regular,
         color: Colors.white,
         textAlign: I18nManager.isRTL ? 'right' : 'left',
         marginBottom: moderateScale(30),
@@ -44,30 +44,10 @@ const styles = StyleSheet.create({
         marginBottom: moderateScale(20),
     },
     footerRow: {
-        flexDirection: I18nManager.isRTL ? 'row-reverse' : 'row',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-        marginTop: moderateScale(10),
+        alignItems: 'flex-end',
         marginBottom: moderateScale(25),
     },
-    rememberMeRow: {
-        flexDirection: I18nManager.isRTL ? 'row-reverse' : 'row',
-        alignItems: 'center',
-    },
-    checkbox: {
-        width: moderateScale(16),
-        height: moderateScale(16),
-        borderWidth: 1,
-        borderColor: Colors.white,
-        borderRadius: moderateScale(3),
-        marginEnd: moderateScale(8),
-        backgroundColor: 'rgba(255,255,255,0.2)',
-    },
-    rememberMeText: {
-        fontSize: moderateScale(12),
-        fontFamily: fontFamily.regular,
-        color: Colors.white,
-    },
+   
     forgotPasswordText: {
         fontSize: moderateScale(12),
         fontFamily: fontFamily.medium,
