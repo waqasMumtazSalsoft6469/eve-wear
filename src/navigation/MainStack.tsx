@@ -26,6 +26,9 @@ export const MainStack = () => {
             component={BottomTabs}
             options={{ animation: 'none' }}
           />
+          <Stack.Screen name={routes.main.userProfile} component={mainRoutes[routes.main.userProfile]} />
+          <Stack.Screen name={routes.main.editProfile} component={mainRoutes[routes.main.editProfile]} />
+          <Stack.Screen name={routes.main.changePassword} component={mainRoutes[routes.main.changePassword]} />
           <Stack.Screen name={routes.main.myOrders} component={mainRoutes[routes.main.myOrders]} />
           <Stack.Screen name={routes.main.subscription} component={mainRoutes[routes.main.subscription]} />
           <Stack.Screen name={routes.main.mySessions} component={mainRoutes[routes.main.mySessions]} />

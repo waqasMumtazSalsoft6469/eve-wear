@@ -105,7 +105,7 @@ const styles = StyleSheet.create({
     bookButtonText: {
         color: Colors.white,
         fontSize: moderateScale(11),
-        fontFamily: fontFamily.medium,
+        fontFamily: fontFamily.regular,
     },
 });
 

@@ -52,6 +52,11 @@ import Notification from '@/assets/icons/notification.svg';
 import Pause from '@/assets/icons/pause.svg';
 import Paypal from '@/assets/icons/paypal.svg';
 import Plus from '@/assets/icons/plus.svg';
+import ProfileHelp from '@/assets/icons/profile-help.svg';
+import ProfileLock from '@/assets/icons/profile-lock.svg';
+import ProfileLogout from '@/assets/icons/profile-logout.svg';
+import ProfileNotification from '@/assets/icons/profile-notification.svg';
+import ProfileUser from '@/assets/icons/profile-user.svg';
 import RightArrow from '@/assets/icons/right-arrow.svg';
 import Search from '@/assets/icons/search.svg';
 import Share from '@/assets/icons/share.svg';
@@ -113,6 +118,11 @@ export type IconName =
   | 'pause'
   | 'paypal'
   | 'plus'
+  | 'profileHelp'
+  | 'profileLock'
+  | 'profileLogout'
+  | 'profileNotification'
+  | 'profileUser'
   | 'rightArrow'
   | 'search'
   | 'share'
@@ -176,6 +186,11 @@ const iconMap: Record<IconName, IconComponent> = {
   pause: Pause,
   paypal: Paypal,
   plus: Plus,
+  profileHelp: ProfileHelp,
+  profileLock: ProfileLock,
+  profileLogout: ProfileLogout,
+  profileNotification: ProfileNotification,
+  profileUser: ProfileUser,
   rightArrow: RightArrow,
   search: Search,
   share: Share,

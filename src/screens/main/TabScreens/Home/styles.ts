@@ -34,7 +34,7 @@ const styles = StyleSheet.create({
     },
     monthText: {
         fontSize: moderateScale(16),
-        fontFamily: fontFamily.medium,
+        fontFamily: fontFamily.regular,
         color: Colors.white,
         marginLeft: moderateScale(8),
     },
@@ -89,7 +89,7 @@ const styles = StyleSheet.create({
     },
     dayLabel: {
         fontSize: moderateScale(14),
-        fontFamily: fontFamily.medium,
+        fontFamily: fontFamily.regular,
         color: Colors.textSecondary,
     },
     dayValue: {
@@ -99,7 +99,7 @@ const styles = StyleSheet.create({
     },
     phaseLabel: {
         fontSize: moderateScale(16),
-        fontFamily: fontFamily.medium,
+        fontFamily: fontFamily.regular,
         color: Colors.text,
     },
     predictionCard: {
@@ -114,7 +114,7 @@ const styles = StyleSheet.create({
     predictionText: {
         flex: 1,
         fontSize: moderateScale(14),
-        fontFamily: fontFamily.medium,
+        fontFamily: fontFamily.regular,
         color: Colors.text,
     },
     logText: {
@@ -143,7 +143,7 @@ const styles = StyleSheet.create({
     },
     viewAllText: {
         fontSize: moderateScale(14),
-        fontFamily: fontFamily.medium,
+        fontFamily: fontFamily.regular,
         color: '#FF8C69',
     },
     reminderList: {
@@ -178,7 +178,7 @@ const styles = StyleSheet.create({
     },
     reminderTitle: {
         fontSize: moderateScale(16),
-        fontFamily: fontFamily.medium,
+        fontFamily: fontFamily.regular,
         color: Colors.text,
     },
     reminderTime: {

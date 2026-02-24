@@ -21,6 +21,8 @@ export type MainStackParamList = {
   Profile: undefined;
   Settings: undefined;
   UserProfile: undefined;
+  EditProfile: undefined;
+  ChangePassword: undefined;
   CycleOverview: undefined;
   ChatAi: undefined;
   Shop: undefined;

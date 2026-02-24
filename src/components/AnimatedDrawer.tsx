@@ -10,6 +10,8 @@ import React from 'react';
 import { I18nManager, ImageBackground, ScrollView, StyleSheet, TouchableOpacity, View } from 'react-native';
 import Animated, { interpolate, useAnimatedStyle } from 'react-native-reanimated';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import AppModal from './AppModal';
+import ButtonComp from './ButtonComp';
 import MyIcons, { IconName } from './MyIcons';
 import TextComp from './TextComp';
 
@@ -50,6 +52,7 @@ const DrawerContent: React.FC = () => {
     const insets = useSafeAreaInsets();
     const { close } = useDrawer();
     const navigation = useNavigation<any>();
+    const [isLogoutModalVisible, setIsLogoutModalVisible] = React.useState(false);
 
     const handleNavigate = (screen: string) => {
         if (TAB_SCREENS.includes(screen)) {
@@ -64,8 +67,7 @@ const DrawerContent: React.FC = () => {
     };
 
     const handleLogout = () => {
-        close();
-        setTimeout(() => clearDataAction(), 400);
+        setIsLogoutModalVisible(true);
     };
 
     return (
@@ -108,6 +110,45 @@ const DrawerContent: React.FC = () => {
                 <MyIcons name="drawerLogout" size={moderateScale(22)} />
                 <TextComp text="Logout" style={styles.logoutLabel} />
             </TouchableOpacity>
+
+            <AppModal
+                isVisible={isLogoutModalVisible}
+                onClose={() => setIsLogoutModalVisible(false)}
+                type="filter"
+                title=""
+            >
+                <View style={styles.logoutModalIconWrap}>
+                    <View style={styles.logoutModalIconCircle}>
+                        <MyIcons name="profileLogout" size={34} stroke={Colors.white} />
+                    </View>
+                </View>
+
+                <TextComp text="Are you sure you want to logout?" style={styles.logoutModalTitle} />
+
+                <View style={styles.logoutModalActionsRow}>
+                    <ButtonComp
+                        title="No"
+                        onPress={() => setIsLogoutModalVisible(false)}
+                        variant="outline"
+                        height={46}
+                        style={styles.logoutModalActionButton}
+                        textStyle={styles.logoutModalNoText}
+                    />
+
+                    <ButtonComp
+                        title="Yes"
+                        onPress={() => {
+                            setIsLogoutModalVisible(false);
+                            close();
+                            setTimeout(() => clearDataAction(), 400);
+                        }}
+                        variant="primary"
+                        height={46}
+                        style={styles.logoutModalActionButton}
+                        textStyle={styles.logoutModalYesText}
+                    />
+                </View>
+            </AppModal>
         </View>
     );
 };
@@ -247,6 +288,46 @@ const styles = StyleSheet.create({
         color: Colors.black,
         fontSize: moderateScale(16),
         fontFamily: family.regular,
+    },
+    logoutModalIconWrap: {
+        alignItems: 'center',
+        marginBottom: moderateScale(8),
+    },
+    logoutModalIconCircle: {
+        width: moderateScale(80),
+        height: moderateScale(80),
+        borderRadius: moderateScale(44),
+        backgroundColor: Colors.brandPurple,
+        alignItems: 'center',
+        justifyContent: 'center',
+        paddingVertical: moderateScale(10),
+    },
+    logoutModalTitle: {
+        color: Colors.gray700,
+        fontSize: moderateScale(19),
+        fontFamily: family.bold,
+        textAlign: 'center',
+        marginBottom: moderateScale(14),
+        paddingHorizontal: moderateScale(8),
+    },
+    logoutModalActionsRow: {
+        flexDirection: 'row',
+        gap: moderateScale(10),
+        width: '100%',
+    },
+    logoutModalActionButton: {
+        flex: 1,
+        borderRadius: moderateScale(22),
+    },
+    logoutModalNoText: {
+        color: Colors.gray700,
+        fontSize: moderateScale(15),
+        fontFamily: family.bold,
+    },
+    logoutModalYesText: {
+        color: Colors.white,
+        fontSize: moderateScale(15),
+        fontFamily: family.bold,
     },
 });
 

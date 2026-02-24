@@ -12,6 +12,9 @@ export { default as HealthPreferences } from './auth/HealthPreferences/HealthPre
 //home screens
 export { default as Profile } from '@/screens/main/Profile/Profile';
 export { default as Settings } from '@/screens/main/Settings/Settings';
+export { default as UserProfile } from '@/screens/main/UserProfile/UserProfile';
+export { default as EditProfile } from '@/screens/main/EditProfile/EditProfile';
+export { default as ChangePassword } from '@/screens/main/ChangePassword/ChangePassword';
 
 
 //tab screens

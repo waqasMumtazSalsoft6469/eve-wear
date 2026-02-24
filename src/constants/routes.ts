@@ -15,6 +15,8 @@ const routes = {
     profile: 'Profile',
     settings: 'Settings',
     userProfile: 'UserProfile',
+    editProfile: 'EditProfile',
+    changePassword: 'ChangePassword',
     chatAi: 'ChatAi',
     shop: 'Shop',
     categories: 'Categories',
@@ -84,6 +86,9 @@ export const tabRoutes = {
 };
 export const mainRoutes = {
   // Add other main stack screens here that are not in tabs,
+  [routes.main.userProfile]: Screens.UserProfile,
+  [routes.main.editProfile]: Screens.EditProfile,
+  [routes.main.changePassword]: Screens.ChangePassword,
   [routes.main.chatAi]: Screens.ChatAi,
   [routes.main.shop]: Screens.Shop,
   [routes.main.categories]: Screens.Categories,

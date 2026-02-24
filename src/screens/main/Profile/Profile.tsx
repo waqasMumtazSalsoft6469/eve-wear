@@ -10,7 +10,7 @@ import TextComp from '@/components/TextComp';
 const Profile = () => {
     return (
         <WrapperContainer style={styles.container}>
-            <HeaderComp showBack={false} title="Profile" />
+            <HeaderComp showBack={false} title="Profile"  />
             <View style={styles.content}>
                 <TextComp text='PROFILE' />
             </View>

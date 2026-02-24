@@ -15,6 +15,7 @@ interface HomeHeaderCompProps {
     description?: string;
     profileImage?: string;
     onNotificationPress?: () => void;
+    onProfilePress?: () => void;
     customStyle?: object;
 }
 
@@ -23,6 +24,7 @@ const HomeHeaderComp: React.FC<HomeHeaderCompProps> = ({
     description = "Your wellness journey begins here.",
     profileImage = "https://i.pravatar.cc/150?u=alexa",
     onNotificationPress,
+    onProfilePress,
     customStyle,
 }) => {
     const navigation = useNavigation<NavigationProp<MainStackParamList>>();
@@ -52,7 +54,10 @@ const HomeHeaderComp: React.FC<HomeHeaderCompProps> = ({
                 </View>
 
                 <View style={styles.rightSection}>
-                    <TouchableOpacity style={styles.profileContainer}>
+                    <TouchableOpacity
+                        style={styles.profileContainer}
+                        onPress={onProfilePress ? onProfilePress : () => navigation.navigate(routes.main.userProfile)}
+                    >
                         <Image
                             source={{ uri: profileImage }}
                             style={styles.profileImage}

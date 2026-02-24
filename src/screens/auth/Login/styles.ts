@@ -50,7 +50,7 @@ const styles = StyleSheet.create({
    
     forgotPasswordText: {
         fontSize: moderateScale(12),
-        fontFamily: fontFamily.medium,
+        fontFamily: fontFamily.regular,
         color: Colors.brandSalmon,
     },
     loginButton: {

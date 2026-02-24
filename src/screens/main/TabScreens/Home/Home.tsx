@@ -7,6 +7,13 @@ import { moderateScale } from '@/styles/scaling';
 import React from 'react';
 import { Image, ScrollView, StyleSheet, TouchableOpacity, View } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
+import Animated, {
+    Easing,
+    useAnimatedStyle,
+    useSharedValue,
+    withDelay,
+    withTiming
+} from 'react-native-reanimated';
 import Svg, { Circle } from 'react-native-svg';
 import styles from './styles';
 import { localImages } from '@/assets/images';
@@ -16,6 +23,32 @@ import { MainStackParamList } from '@/navigation/types';
 
 const Home: React.FC = () => {
     const navigation = useNavigation<NavigationProp<MainStackParamList>>();
+    const cycleTextProgress = useSharedValue(0);
+
+    React.useEffect(() => {
+        cycleTextProgress.value = withDelay(
+            120,
+            withTiming(1, {
+                duration: 650,
+                easing: Easing.out(Easing.cubic),
+            })
+        );
+    }, [cycleTextProgress]);
+
+    const dayLabelAnimatedStyle = useAnimatedStyle(() => ({
+        opacity: cycleTextProgress.value,
+        transform: [{ translateY: (1 - cycleTextProgress.value) * 8 }],
+    }));
+
+    const dayValueAnimatedStyle = useAnimatedStyle(() => ({
+        opacity: cycleTextProgress.value,
+        transform: [{ translateY: (1 - cycleTextProgress.value) * 12 }],
+    }));
+
+    const phaseLabelAnimatedStyle = useAnimatedStyle(() => ({
+        opacity: cycleTextProgress.value,
+        transform: [{ translateY: (1 - cycleTextProgress.value) * 6 }],
+    }));
 
     // Placeholder data
     const dates = [
@@ -107,9 +140,15 @@ const Home: React.FC = () => {
                             style={[StyleSheet.absoluteFill, { borderRadius: moderateScale(110), margin: moderateScale(15) }]}
                         />
                         <View style={styles.cycleInnerContent}>
-                            <TextComp text="Day" style={styles.dayLabel} />
-                            <TextComp text="23" style={styles.dayValue} />
-                            <TextComp text="Luteal Phase" style={styles.phaseLabel} />
+                            <Animated.View style={dayLabelAnimatedStyle}>
+                                <TextComp text="Day" style={styles.dayLabel} />
+                            </Animated.View>
+                            <Animated.View style={dayValueAnimatedStyle}>
+                                <TextComp text="23" style={styles.dayValue} />
+                            </Animated.View>
+                            <Animated.View style={phaseLabelAnimatedStyle}>
+                                <TextComp text="Luteal Phase" style={styles.phaseLabel} />
+                            </Animated.View>
                         </View>
                     </View>
                 </View>
