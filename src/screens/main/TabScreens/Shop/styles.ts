@@ -84,7 +84,7 @@ const styles = StyleSheet.create({
     },
     specialty: {
         fontSize: moderateScale(11),
-        fontFamily: fontFamily.medium,
+        fontFamily: fontFamily.regular,
         color: Colors.brandPurple,
     },
     ratingText: {

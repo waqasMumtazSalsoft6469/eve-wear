@@ -8,6 +8,9 @@ import HeaderComp from '@/components/HeaderComp';
 import { Colors } from '@/styles/colors';
 import styles from './styles';
 import { localImages } from '@/assets/images';
+import routes from '@/constants/routes';
+import { MainStackParamList } from '@/navigation/types';
+import { NavigationProp, useNavigation } from '@react-navigation/native';
 
 interface Provider {
     id: string;
@@ -26,10 +29,14 @@ const PROVIDERS: Provider[] = [
 ];
 
 const Shop: React.FC = () => {
+    const navigation = useNavigation<NavigationProp<MainStackParamList>>();
     const [searchText, setSearchText] = useState('');
 
     const renderProvider = ({ item }: { item: Provider }) => (
-        <View style={styles.providerCard}>
+        <Pressable
+            style={styles.providerCard}
+            onPress={() => navigation.navigate(routes.main.providerProfile)}
+        >
             <View style={styles.providerImageContainer}>
                 {item.image ? (
                     <Image source={item.image} style={styles.providerImage} resizeMode="cover" />
@@ -46,7 +53,10 @@ const Shop: React.FC = () => {
                         style={styles.ratingText}
                     />
                 </View>
-                <Pressable style={styles.bookButton} onPress={() => { }}>
+                <Pressable
+                    style={styles.bookButton}
+                    onPress={() => navigation.navigate(routes.main.providerProfile)}
+                >
                     <LinearGradient
                         colors={['#6B2D45', '#E07A5F']}
                         start={{ x: 0, y: 0 }}
@@ -57,7 +67,7 @@ const Shop: React.FC = () => {
                     </LinearGradient>
                 </Pressable>
             </View>
-        </View>
+        </Pressable>
     );
 
     return (

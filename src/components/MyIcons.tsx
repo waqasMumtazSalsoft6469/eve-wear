@@ -15,6 +15,7 @@ import Back from '@/assets/icons/back.svg';
 import BadgeEarned from '@/assets/icons/badge-earned.svg';
 import Billing from '@/assets/icons/billing.svg';
 import BloodDrop from '@/assets/icons/blood-drop.svg';
+import CallWhite from '@/assets/icons/call-white.svg';
 import Cancel from '@/assets/icons/cancel.svg';
 import Card from '@/assets/icons/card.svg';
 import ChallengeLevel from '@/assets/icons/challenge-level.svg';
@@ -34,14 +35,17 @@ import DrawerNotificationWhite from '@/assets/icons/drawer-notification-white.sv
 import DrawerOrders from '@/assets/icons/drawer-orders.svg';
 import DrawerSessions from '@/assets/icons/drawer-sessions.svg';
 import DrawerSubscription from '@/assets/icons/drawer-subscription.svg';
+import DropdownArrow from '@/assets/icons/dropdown-arrow.svg';
 import EditIcon from '@/assets/icons/edit-icon.svg';
 import Facebook from '@/assets/icons/facebook.svg';
 import Google from '@/assets/icons/google.svg';
 import GradientHeart from '@/assets/icons/gradient-heart.svg';
 import Help from '@/assets/icons/help.svg';
+import InPerson from '@/assets/icons/in-person.svg';
 import Instagram from '@/assets/icons/instagram.svg';
 import LocationWhite from '@/assets/icons/location-white.svg';
 import Logo from '@/assets/icons/logo.svg';
+import MailWhite from '@/assets/icons/mail-white.svg';
 import Menu from '@/assets/icons/menu.svg';
 import Mic from '@/assets/icons/mic.svg';
 import Notification from '@/assets/icons/notification.svg';
@@ -60,6 +64,7 @@ import TabGallery from '@/assets/icons/tab-gallery.svg';
 import TabHome from '@/assets/icons/tab-home.svg';
 import TabPlus from '@/assets/icons/tab-plus.svg';
 import User from '@/assets/icons/user.svg';
+import VideoCall from '@/assets/icons/video-call.svg';
 import Visa from '@/assets/icons/visa.svg';
 
 export type IconName =
@@ -71,6 +76,7 @@ export type IconName =
   | 'badgeEarned'
   | 'billing'
   | 'bloodDrop'
+  | 'callWhite'
   | 'cancel'
   | 'card'
   | 'challengeLevel'
@@ -90,14 +96,17 @@ export type IconName =
   | 'drawerOrders'
   | 'drawerSessions'
   | 'drawerSubscription'
+  | 'dropdownArrow'
   | 'editIcon'
   | 'facebook'
   | 'google'
   | 'gradientHeart'
   | 'help'
+  | 'inPerson'
   | 'instagram'
   | 'locationWhite'
   | 'logo'
+  | 'mailWhite'
   | 'menu'
   | 'mic'
   | 'notification'
@@ -116,6 +125,7 @@ export type IconName =
   | 'tabHome'
   | 'tabPlus'
   | 'user'
+  | 'videoCall'
   | 'visa';
 
 type IconComponent = React.FC<SvgProps>;
@@ -129,6 +139,7 @@ const iconMap: Record<IconName, IconComponent> = {
   badgeEarned: BadgeEarned,
   billing: Billing,
   bloodDrop: BloodDrop,
+  callWhite: CallWhite,
   cancel: Cancel,
   card: Card,
   challengeLevel: ChallengeLevel,
@@ -148,14 +159,17 @@ const iconMap: Record<IconName, IconComponent> = {
   drawerOrders: DrawerOrders,
   drawerSessions: DrawerSessions,
   drawerSubscription: DrawerSubscription,
+  dropdownArrow: DropdownArrow,
   editIcon: EditIcon,
   facebook: Facebook,
   google: Google,
   gradientHeart: GradientHeart,
   help: Help,
+  inPerson: InPerson,
   instagram: Instagram,
   locationWhite: LocationWhite,
   logo: Logo,
+  mailWhite: MailWhite,
   menu: Menu,
   mic: Mic,
   notification: Notification,
@@ -174,6 +188,7 @@ const iconMap: Record<IconName, IconComponent> = {
   tabHome: TabHome,
   tabPlus: TabPlus,
   user: User,
+  videoCall: VideoCall,
   visa: Visa,
 };
 

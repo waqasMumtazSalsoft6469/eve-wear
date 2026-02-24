@@ -52,3 +52,4 @@ export { default as RequestAquote } from './main/RequestAquote/RequestAquote';
 export { default as ApplicationStatus } from './main/ApplicationStatus/ApplicationStatus';
 export { default as OrderDetails } from './main/OrderDetails/OrderDetails';
 export { default as WriteRatingReview } from './main/WriteRatingReview/WriteRatingReview';
+export { default as ProviderProfile } from './main/ProviderProfile/ProviderProfile';

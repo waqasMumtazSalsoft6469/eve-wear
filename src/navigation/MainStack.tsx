@@ -59,6 +59,7 @@ export const MainStack = () => {
   <Stack.Screen name={routes.main.applicationStatus} component={mainRoutes[routes.main.applicationStatus]} />
   <Stack.Screen name={routes.main.orderDetails} component={mainRoutes[routes.main.orderDetails]} />
   <Stack.Screen name={routes.main.writeRatingReview} component={mainRoutes[routes.main.writeRatingReview]} />
+  <Stack.Screen name={routes.main.providerProfile} component={mainRoutes[routes.main.providerProfile]} />
 </Stack.Navigator>
       </AnimatedDrawer>
     </DrawerProvider>

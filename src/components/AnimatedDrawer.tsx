@@ -43,6 +43,7 @@ const MENU_ITEMS: MenuItem[] = [
     { label: 'Insights Threads', icon: 'drawerCollaboration', screen: routes.main.insightsThreads },
     { label: 'Reminder & Alerts', icon: 'drawerCollaboration', screen: routes.main.reminderAlert },
     { label: 'My Cart', icon: 'drawerCollaboration', screen: routes.main.cart },
+    { label: 'Request A Quote', icon: 'drawerCollaboration', screen: routes.main.requestAquote },
 ];
 
 const DrawerContent: React.FC = () => {

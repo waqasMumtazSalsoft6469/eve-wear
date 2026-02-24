@@ -13,6 +13,7 @@ export type LocalImages = {
     drawerBg: ImageSourcePropType;
     loginBg: ImageSourcePropType;
     logo: ImageSourcePropType;
+    map: ImageSourcePropType;
     onboardBg: ImageSourcePropType;
     product1: ImageSourcePropType;
     product2: ImageSourcePropType;
@@ -29,6 +30,7 @@ export const localImages: LocalImages = {
     drawerBg: require('./drawer-bg.png'),
     loginBg: require('./login-bg.png'),
     logo: require('./logo.png'),
+    map: require('./map.png'),
     onboardBg: require('./onboard-bg.png'),
     product1: require('./product-1.png'),
     product2: require('./product-2.png'),

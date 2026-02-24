@@ -49,6 +49,7 @@ const routes = {
     applicationStatus: 'ApplicationStatus',
     orderDetails: 'OrderDetails',
     writeRatingReview: 'WriteRatingReview',
+    providerProfile: 'ProviderProfile',
 },
   tab: {
     home: 'Home',
@@ -117,5 +118,6 @@ export const mainRoutes = {
   [routes.main.applicationStatus]: Screens.ApplicationStatus,
   [routes.main.orderDetails]: Screens.OrderDetails,
   [routes.main.writeRatingReview]: Screens.WriteRatingReview,
+  [routes.main.providerProfile]: Screens.ProviderProfile,
 };
 export default routes;

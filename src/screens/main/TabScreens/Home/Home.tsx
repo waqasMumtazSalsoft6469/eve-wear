@@ -99,12 +99,7 @@ const Home: React.FC = () => {
                                     strokeDasharray="40, 100"
                                     strokeLinecap="round"
                                 />
-                                {/* <Circle
-                                    cx="85"
-                                    cy="76"
-                                    r="3"
-                                    fill="#FF8C69"
-                                /> */}
+                            
                             </Svg>
                         </View>
                         <LinearGradient

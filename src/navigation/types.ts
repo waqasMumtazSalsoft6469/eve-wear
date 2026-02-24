@@ -60,5 +60,6 @@ export type MainStackParamList = {
   ApplicationStatus: undefined;
   OrderDetails: undefined;
   WriteRatingReview: undefined;
+  ProviderProfile: undefined;
 };
 
