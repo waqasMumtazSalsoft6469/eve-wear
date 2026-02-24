@@ -34,6 +34,7 @@ interface ButtonCompProps {
     width?: DimensionValue;
     height?: DimensionValue;
     variant?: 'primary' | 'secondary' | 'premium' | 'outline';
+    gradientColors?: readonly string[];
     leftIcon?: React.ReactNode;
     rightIcon?: React.ReactNode;
     iconSize?: number;
@@ -49,6 +50,7 @@ const ButtonComp: React.FC<ButtonCompProps> = ({
     width = '100%',
     height,
     variant = 'primary',
+    gradientColors,
     leftIcon,
     rightIcon,
     iconSize = moderateScale(20),
@@ -133,13 +135,15 @@ const ButtonComp: React.FC<ButtonCompProps> = ({
 
     const loaderColor = (StyleSheet.flatten(textStyles) as TextStyle).color || Colors.white;
 
-    const isGradient = variant === 'primary';
+    const isGradient = variant === 'primary' || Boolean(gradientColors?.length);
     const isOutline = variant === 'outline';
-    const gradientColors: string[] = disabled
+    const resolvedGradientColors: string[] = disabled
         ? [Colors.gray200, Colors.gray200]
-        : isGradient
-            ? [...Colors.gradientSecondary]
-            : [Colors.white, Colors.white];
+        : gradientColors?.length
+            ? [...gradientColors]
+            : isGradient
+                ? [...Colors.gradientSecondary]
+                : [Colors.white, Colors.white];
     const solidBackgroundColor =
         variant === 'secondary'
             ? Colors.secondary
@@ -182,7 +186,7 @@ const ButtonComp: React.FC<ButtonCompProps> = ({
         >
             {isGradient ? (
                 <LinearGradient
-                    colors={gradientColors}
+                    colors={resolvedGradientColors}
                     start={{ x: 0, y: 0 }}
                     end={{ x: 1, y: 0 }}
                     style={styles.gradient}

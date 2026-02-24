@@ -38,9 +38,10 @@ const InsurancePlanCard: React.FC<InsurancePlanCardProps> = ({
             <ButtonComp
                 title="Request Quote"
                 onPress={handlePress}
-                variant="primary"
+                variant="secondary"
                 height={moderateScale(40)}
                 style={styles.button}
+                gradientColors={Colors.gradientPrimary}
             />
         </LinearGradient>
     );
