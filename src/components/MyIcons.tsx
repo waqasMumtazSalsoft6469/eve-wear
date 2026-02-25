@@ -25,14 +25,20 @@ import CycleConsistency from '@/assets/icons/cycle-consistency.svg';
 import DateTime from '@/assets/icons/date-time.svg';
 import DateWhite from '@/assets/icons/date-white.svg';
 import Delete from '@/assets/icons/delete.svg';
+import DrawerBlood from '@/assets/icons/drawer-blood.svg';
+import DrawerCart from '@/assets/icons/drawer-cart.svg';
 import DrawerCollaboration from '@/assets/icons/drawer-collaboration.svg';
 import DrawerContact from '@/assets/icons/drawer-contact.svg';
 import DrawerHome from '@/assets/icons/drawer-home.svg';
+import DrawerInsights from '@/assets/icons/drawer-insights.svg';
 import DrawerInsurance from '@/assets/icons/drawer-insurance.svg';
 import DrawerLogout from '@/assets/icons/drawer-logout.svg';
+import DrawerLogs from '@/assets/icons/drawer-logs.svg';
 import DrawerMenu from '@/assets/icons/drawer-menu.svg';
 import DrawerNotificationWhite from '@/assets/icons/drawer-notification-white.svg';
 import DrawerOrders from '@/assets/icons/drawer-orders.svg';
+import DrawerQuote from '@/assets/icons/drawer-quote.svg';
+import DrawerReminder from '@/assets/icons/drawer-reminder.svg';
 import DrawerSessions from '@/assets/icons/drawer-sessions.svg';
 import DrawerSubscription from '@/assets/icons/drawer-subscription.svg';
 import DropdownArrow from '@/assets/icons/dropdown-arrow.svg';
@@ -91,14 +97,20 @@ export type IconName =
   | 'dateTime'
   | 'dateWhite'
   | 'delete'
+  | 'drawerBlood'
+  | 'drawerCart'
   | 'drawerCollaboration'
   | 'drawerContact'
   | 'drawerHome'
+  | 'drawerInsights'
   | 'drawerInsurance'
   | 'drawerLogout'
+  | 'drawerLogs'
   | 'drawerMenu'
   | 'drawerNotificationWhite'
   | 'drawerOrders'
+  | 'drawerQuote'
+  | 'drawerReminder'
   | 'drawerSessions'
   | 'drawerSubscription'
   | 'dropdownArrow'
@@ -159,14 +171,20 @@ const iconMap: Record<IconName, IconComponent> = {
   dateTime: DateTime,
   dateWhite: DateWhite,
   delete: Delete,
+  drawerBlood: DrawerBlood,
+  drawerCart: DrawerCart,
   drawerCollaboration: DrawerCollaboration,
   drawerContact: DrawerContact,
   drawerHome: DrawerHome,
+  drawerInsights: DrawerInsights,
   drawerInsurance: DrawerInsurance,
   drawerLogout: DrawerLogout,
+  drawerLogs: DrawerLogs,
   drawerMenu: DrawerMenu,
   drawerNotificationWhite: DrawerNotificationWhite,
   drawerOrders: DrawerOrders,
+  drawerQuote: DrawerQuote,
+  drawerReminder: DrawerReminder,
   drawerSessions: DrawerSessions,
   drawerSubscription: DrawerSubscription,
   dropdownArrow: DropdownArrow,

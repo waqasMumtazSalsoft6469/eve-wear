@@ -40,12 +40,12 @@ const MENU_ITEMS: MenuItem[] = [
     { label: 'Contact Us', icon: 'drawerContact', screen: routes.main.support },
     { label: "Help And FAQ's", icon: 'help', screen: routes.main.help },
     { label: 'Our Collaborators', icon: 'drawerCollaboration', screen: routes.main.ourCollaboration },
-    { label: 'Log Symptoms', icon: 'drawerCollaboration', screen: routes.main.logSymptoms },
-    { label: 'Cycle History', icon: 'drawerCollaboration', screen: routes.main.cycleHistory },
-    { label: 'Insights Threads', icon: 'drawerCollaboration', screen: routes.main.insightsThreads },
-    { label: 'Reminder & Alerts', icon: 'drawerCollaboration', screen: routes.main.reminderAlert },
-    { label: 'My Cart', icon: 'drawerCollaboration', screen: routes.main.cart },
-    { label: 'Request A Quote', icon: 'drawerCollaboration', screen: routes.main.requestAquote },
+    { label: 'Log Symptoms', icon: 'drawerLogs', screen: routes.main.logSymptoms },
+    { label: 'Cycle History', icon: 'drawerBlood', screen: routes.main.cycleHistory },
+    { label: 'Insights Threads', icon: 'drawerInsights', screen: routes.main.insightsThreads },
+    { label: 'Reminder & Alerts', icon: 'drawerReminder', screen: routes.main.reminderAlert },
+    { label: 'My Cart', icon: 'drawerCart', screen: routes.main.cart },
+    { label: 'Request A Quote', icon: 'drawerQuote', screen: routes.main.requestAquote },
 ];
 
 const DrawerContent: React.FC = () => {
