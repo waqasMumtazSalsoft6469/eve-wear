@@ -156,7 +156,6 @@ const styles = StyleSheet.create({
     gradientContainer: {
         borderTopLeftRadius: moderateScale(20),
         borderTopRightRadius: moderateScale(20),
-        backgroundColor: Colors.background,
     }
 });
 

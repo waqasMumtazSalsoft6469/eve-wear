@@ -31,7 +31,7 @@ export const Colors = {
     gray700: '#1A1A1A',
 
     // Base
-    background: '#FFFFFF',
+    background: '#f5f5f5',
     surface: '#FFFFFF',
     text: '#000000',
     textSecondary: '#454545',

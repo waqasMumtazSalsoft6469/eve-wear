@@ -5,6 +5,7 @@ import MyTabBar from './MyTabBar';
 import MyIcons from '@/components/MyIcons';
 import { moderateScale } from '@/styles/scaling';
 import { Colors } from '@/styles/colors';
+import { View } from 'react-native';
 
 const Tab = createBottomTabNavigator();
 
@@ -17,6 +18,9 @@ export const BottomTabs = () => {
         <Tab.Navigator
             screenOptions={{
                 headerShown: false,
+                tabBarStyle: {
+                    backgroundColor: '#ffffff',
+                },
             }}
             tabBar={(props) => <MyTabBar {...props} />}
             initialRouteName={routes.tab.home}

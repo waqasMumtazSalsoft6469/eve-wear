@@ -5,6 +5,7 @@ import BottomTabs from './TabStack';
 import { MainStackParamList } from './types';
 import { DrawerProvider } from '@/context/DrawerContext';
 import AnimatedDrawer from '@/components/AnimatedDrawer';
+import { Colors } from '@/styles/colors';
 
 const Stack = createNativeStackNavigator<MainStackParamList>();
 
@@ -24,7 +25,7 @@ export const MainStack = () => {
           <Stack.Screen
             name={routes.navigator.tab as any}
             component={BottomTabs}
-            options={{ animation: 'none' }}
+            options={{ animation: 'none', contentStyle: { backgroundColor: Colors.background } }}
           />
           <Stack.Screen name={routes.main.userProfile} component={mainRoutes[routes.main.userProfile]} />
           <Stack.Screen name={routes.main.editProfile} component={mainRoutes[routes.main.editProfile]} />

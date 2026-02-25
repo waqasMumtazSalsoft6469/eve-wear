@@ -74,7 +74,7 @@ const Home: React.FC = () => {
 
     return (
         <WrapperContainer style={styles.wrapper}>
-            <ScrollView showsVerticalScrollIndicator={false}>
+            <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={{ backgroundColor: Colors.background }}>
                 {/* Header Section with Gradient */}
                 <LinearGradient
                     colors={[Colors.tabPrimary, Colors.tabSecondary]}

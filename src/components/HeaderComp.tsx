@@ -1,4 +1,5 @@
 import TextComp from '@/components/TextComp';
+import routes from '@/constants/routes';
 import { useDrawerSafe } from '@/context/DrawerContext';
 import { clearDataAction } from '@/redux/actions/auth';
 import { useSelector } from '@/redux/hooks';
@@ -7,11 +8,8 @@ import fontFamily from '@/styles/fontFamily';
 import { moderateScale } from '@/styles/scaling';
 import { useNavigation } from '@react-navigation/native';
 import React, { useState } from 'react';
-import { I18nManager, Pressable, StyleSheet, TouchableOpacity, View } from 'react-native';
-import ButtonComp from './ButtonComp';
-import ModalComp from './ModalComp';
+import { I18nManager, Pressable, StyleSheet, View } from 'react-native';
 import MyIcons, { IconName } from './MyIcons';
-import routes from '@/constants/routes';
 
 interface HeaderCompProps {
     title?: string;
