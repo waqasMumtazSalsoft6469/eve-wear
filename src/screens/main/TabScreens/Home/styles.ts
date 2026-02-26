@@ -10,8 +10,7 @@ const styles = StyleSheet.create({
     },
     gradientContainer: {
         paddingBottom: moderateScale(20),
-        borderBottomLeftRadius: moderateScale(40),
-        borderBottomRightRadius: moderateScale(40),
+        overflow: 'hidden',
         backgroundColor: Colors.background
     },
     calendarSection: {

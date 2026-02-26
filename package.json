@@ -16,7 +16,8 @@
     "generate:icons": "ts-node src/customscripts/generate-icons.ts",
     "generate:icons:watch": "ts-node src/customscripts/generate-icons.ts --watch",
     "generate:images": "ts-node src/customscripts/generate-images.ts",
-    "generate:images:watch": "ts-node src/customscripts/generate-images.ts --watch"
+    "generate:images:watch": "ts-node src/customscripts/generate-images.ts --watch",
+    "localApk": "react-native run-android --mode=release"
   },
   "dependencies": {
     "@react-native-clipboard/clipboard": "^1.16.3",

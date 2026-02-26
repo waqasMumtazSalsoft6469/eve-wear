@@ -291,7 +291,7 @@ const styles = StyleSheet.create({
     },
     logoutModalIconWrap: {
         alignItems: 'center',
-        marginBottom: moderateScale(8),
+        marginBottom: moderateScale(16),
     },
     logoutModalIconCircle: {
         width: moderateScale(80),
@@ -318,6 +318,8 @@ const styles = StyleSheet.create({
     logoutModalActionButton: {
         flex: 1,
         borderRadius: moderateScale(22),
+        borderWidth: 1,
+        borderColor: Colors.gray200,
     },
     logoutModalNoText: {
         color: Colors.gray700,

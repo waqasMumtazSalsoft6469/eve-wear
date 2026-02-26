@@ -9,6 +9,7 @@ import { Image, ScrollView, StyleSheet, TouchableOpacity, View } from 'react-nat
 import LinearGradient from 'react-native-linear-gradient';
 import Animated, {
     Easing,
+    interpolate,
     useAnimatedStyle,
     useSharedValue,
     withDelay,
@@ -18,22 +19,25 @@ import Svg, { Circle } from 'react-native-svg';
 import styles from './styles';
 import { localImages } from '@/assets/images';
 import routes from '@/constants/routes';
-import { NavigationProp, useNavigation } from '@react-navigation/native';
+import { NavigationProp, useFocusEffect, useNavigation } from '@react-navigation/native';
 import { MainStackParamList } from '@/navigation/types';
 
 const Home: React.FC = () => {
     const navigation = useNavigation<NavigationProp<MainStackParamList>>();
     const cycleTextProgress = useSharedValue(0);
 
-    React.useEffect(() => {
-        cycleTextProgress.value = withDelay(
-            120,
-            withTiming(1, {
-                duration: 650,
-                easing: Easing.out(Easing.cubic),
-            })
-        );
-    }, [cycleTextProgress]);
+    useFocusEffect(
+        React.useCallback(() => {
+            cycleTextProgress.value = 0;
+            cycleTextProgress.value = withDelay(
+                120,
+                withTiming(1, {
+                    duration: 650,
+                    easing: Easing.out(Easing.cubic),
+                })
+            );
+        }, [cycleTextProgress])
+    );
 
     const dayLabelAnimatedStyle = useAnimatedStyle(() => ({
         opacity: cycleTextProgress.value,
@@ -48,6 +52,12 @@ const Home: React.FC = () => {
     const phaseLabelAnimatedStyle = useAnimatedStyle(() => ({
         opacity: cycleTextProgress.value,
         transform: [{ translateY: (1 - cycleTextProgress.value) * 6 }],
+    }));
+
+    const gradientRadius = moderateScale(40);
+    const gradientRadiusAnimatedStyle = useAnimatedStyle(() => ({
+        borderBottomLeftRadius: interpolate(cycleTextProgress.value, [0, 1], [0, gradientRadius]),
+        borderBottomRightRadius: interpolate(cycleTextProgress.value, [0, 1], [0, gradientRadius]),
     }));
 
     // Placeholder data
@@ -76,12 +86,13 @@ const Home: React.FC = () => {
         <WrapperContainer style={styles.wrapper}>
             <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={{ backgroundColor: Colors.background }}>
                 {/* Header Section with Gradient */}
-                <LinearGradient
-                    colors={[Colors.tabPrimary, Colors.tabSecondary]}
-                    start={{ x: 0, y: 0 }}
-                    end={{ x: 1, y: 0 }}
-                    style={styles.gradientContainer}
-                >
+                <Animated.View style={[styles.gradientContainer, gradientRadiusAnimatedStyle]}>
+                    <LinearGradient
+                        colors={[Colors.tabPrimary, Colors.tabSecondary]}
+                        start={{ x: 0, y: 0 }}
+                        end={{ x: 1, y: 0 }}
+                        style={StyleSheet.absoluteFill}
+                    />
                     <HomeHeaderComp onNotificationPress={() => navigation.navigate(routes.main.notification)}/>
 
                     <View style={styles.calendarSection}>
@@ -108,7 +119,7 @@ const Home: React.FC = () => {
                             </TouchableOpacity>
                         </View>
                     </View>
-                </LinearGradient>
+                </Animated.View>
                 <View style={styles.cycleSection}>
                     <View style={styles.cycleCircle}>
                         <View style={StyleSheet.absoluteFill}>
