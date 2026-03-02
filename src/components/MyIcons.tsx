@@ -8,6 +8,7 @@ import { View, ViewStyle } from 'react-native';
 import { SvgProps } from 'react-native-svg';
 
 import Ai from '@/assets/icons/ai.svg';
+import Alert from '@/assets/icons/alert.svg';
 import Apple from '@/assets/icons/apple.svg';
 import Attachment from '@/assets/icons/attachment.svg';
 import BackBlack from '@/assets/icons/back-black.svg';
@@ -80,6 +81,7 @@ import Visa from '@/assets/icons/visa.svg';
 
 export type IconName =
   | 'ai'
+  | 'alert'
   | 'apple'
   | 'attachment'
   | 'backBlack'
@@ -154,6 +156,7 @@ type IconComponent = React.FC<SvgProps>;
 
 const iconMap: Record<IconName, IconComponent> = {
   ai: Ai,
+  alert: Alert,
   apple: Apple,
   attachment: Attachment,
   backBlack: BackBlack,

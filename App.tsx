@@ -4,6 +4,7 @@
  * including Redux store, navigation, and animated boot splash.
  */
 
+import ErrorBoundary from '@/components/ErrorBoundary';
 import { requestUserPermission } from '@/helper/notifciationService';
 import Routes from '@/navigation/Routes';
 import store from '@/redux/store';
@@ -49,11 +50,15 @@ const App = () => {
 
   return (
     <View style={styles.container}>
-      <SafeAreaProvider>
-        <Provider store={store}>
-          <Routes />
-        </Provider>
-      </SafeAreaProvider>
+      <ErrorBoundary
+        onError={() => setSplashVisible(false)}
+      >
+        <SafeAreaProvider>
+          <Provider store={store}>
+            <Routes />
+          </Provider>
+        </SafeAreaProvider>
+      </ErrorBoundary>
       {splashVisible && (
         <AnimatedBootSplash
           onAnimationEnd={() => {
